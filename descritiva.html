@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/descritiva.css">
+    <title>Estatistica Descritiva</title>
+</head>
+<body>
+
+    <nav>
+        <div id="logo-nav">
+            <a href="index.html"><img src="images/logo-fake.png" alt="logo" srcset=""></a>
+        </div>
+        <div id="main-menu">
+            <ul class="remove-decoration">
+                <li class="item-main-menu"><a href="descritiva.html">Estatística Descritiva</a></li>
+                <li class="item-main-menu"><a href="propabilidade.html">Probabilidade</a></li>
+                <li class="item-main-menu"><a href="correlacao-regressao.html">Correlação e Regressão</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div>
+        <label>Nome da pesquisa</label>
+        <input id="nomePesquisa" type="text" placeholder="Informe aqui" size="35">
+    </div>
+    <div>
+        <label>Entrada de dados</label>
+        <input id="dadosManual" type="text" placeholder="Virgulas para separar os dados" size="35">
+    </div>
+    <div>
+        <label>Escolha a Variável</label>
+        <select id="variavel">
+            <option >(Selecione)</option>
+            <option>Nominal</option>
+            <option>Ordinal</option>
+            <option>Discreta</option>
+            <option>Contínua</option>
+        </select>
+    </div>
+    <div>
+        <button id="inserir">Inserir</button>
+    </div>
+    <div>
+        <button id="exibir">Exibir</button>
+    </div>
+    <div id="saidaDados">
+
+    </div>
+
+    <script src="js/descritiva.js"></script>
+
+
+</body>
+</html>
