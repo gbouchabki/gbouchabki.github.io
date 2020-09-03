@@ -4,24 +4,26 @@ const saidaDados = document.getElementById('saidaDados')
 const inserir = document.getElementById('inserir')
 const exibir = document.getElementById('exibir')
 const variavel = document.getElementById('variavel')
+const nomePesquisa = document.getElementById('nomePesquisa')
 
 let todosDados = []
-let objVariavel = []
 
 //Função para coletar os dados
 function coletaDados (){
-    //Comando para rejeitar dados em branco.
-    if(dadosManual.value.trim()==''){
+
+    if(variavel.selectedIndex <= 0){
+        alert('Selecione uma variável!')
+    }
+    else if(dadosManual.value.trim()===''){
         alert("Insira dados válidos")
     }
     else{
-    //Comando para injetar os dados inseridos manualmente no vetor
     todosDados.push(dadosManual.value)
     dadosManual.value = '' //Apagar o input
     }
 
     //Log para conferir Arrays no console
-    console.log(todosDados, objVariavel)
+    console.log(todosDados)
 }
 
 //Chamada da função no botão inserir
@@ -30,13 +32,25 @@ inserir.addEventListener('click', coletaDados)
 
 //Função para exibir os dados coletados na função "coletaDados"
 function exibirDados(){
-    //Comando para injetar a Variável Estatística dentro do Vetor
-    objVariavel.push(variavel.value)
-    variavel.value = '' //Apagar o input
+    /*
+    if(variavel.selectedIndex ==1){ //Nominal
+        
+    }
+    else if(variavel.selectedIndex ==2){ //Ordinal
+        
+    }
+    else if(variavel.selectedIndex ==3){ //Discreta
+        
+    }
+    else if(variavel.selectedIndex ==4){ //Continua
+        
+    }
+    */
 
+    saidaDados.innerHTML += nomePesquisa.value + '</br>'
     //Loop para imprimir os dados na tela
     for(let a=0; a<todosDados.length; a++){
-        saidaDados.innerHTML += objVariavel + '&nbsp' + todosDados[a] + '</br>'
+        saidaDados.innerHTML += todosDados[a] + '&nbsp' + '</br>'
     }
     
 }

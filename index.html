@@ -11,13 +11,22 @@
     <p>O melhor grupo.</p>
 
     <div>
-        <label>Informe a variável</label>
-        <input id="variavel" type="text" placeholder="Informe aqui" size="35">
+        <label>Nome da pesquisa</label>
+        <input id="nomePesquisa" type="text" placeholder="Informe aqui" size="35">
     </div>
-
     <div>
         <label>Entrada de dados</label>
         <input id="dadosManual" type="text" placeholder="Virgulas para separar os dados" size="35">
+    </div>
+    <div>
+        <label>Escolha a Variável</label>
+        <select id="variavel">
+            <option>(Selecione)</option>
+            <option>Nominal</option>
+            <option>Ordinal</option>
+            <option>Discreta</option>
+            <option>Contínua</option>
+        </select>
     </div>
     <div>
         <button id="inserir">Inserir</button>

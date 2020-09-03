@@ -4,7 +4,7 @@ body{
 div{
     padding: 2px;
 }
-input{
+input, select, option{
     border-radius: 5px;
     background-color: rgb(231, 231, 231);
 }
