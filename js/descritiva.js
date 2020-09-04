@@ -12,39 +12,17 @@ let dadosSeparados = []
 //Função para coletar os dados
 function coletaDados (separarDados){
 
-    if(variavel.selectedIndex <= 0){
-        alert('Selecione uma variável!')
-    }
-    else if(dadosManual.value.trim()===''){
-        alert("Insira dados válidos")
+    if(nomeVariavel.value.trim()==='' || dadosManual.value.trim()==='' || variavel.selectedIndex <= 0){
+        alert('Informe os dados corretos')
     }
     else{
-    todosDados = dadosManual.value
-    dadosSeparados = todosDados.split(';')
+    todosDados = dadosManual.value // Entrada de dados Manual
+    dadosSeparados = todosDados.split(';') // Converte String em Array
     }
 
     //Log para conferir Arrays no console
     console.log(dadosSeparados)
 
-    //Separa String em Array
-    
-}
-
-// function separarDados (){
-//     let dadosSeparados = []
-//     dadosSeparados = todosDados.split(';')
-//     console.log(dadosSeparados)
-// }
-
-//Chamada da função no botão inserir
-inserir.addEventListener('click', coletaDados)
-
-
-
-
-
-//Função para exibir os dados coletados na função "coletaDados"
-function exibirDados(){
     /*
     if(variavel.selectedIndex ==1){ //Nominal
         
@@ -60,12 +38,19 @@ function exibirDados(){
     }
     */
 
-    saidaDados.innerHTML += nomeVariavel.value + '</br>'
-    //Loop para imprimir os dados na tela
-    for(let i = 0; i < dadosSeparados.length; i++){
-        saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
-    }
+   saidaDados.innerHTML += nomeVariavel.value + '</br>'
+   //Loop para imprimir os dados na tela
+   for(let i = 0; i < dadosSeparados.length; i++){
+       saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
+   }
     
 }
-//Chamada da função no botão exibir
-exibir.addEventListener('click', exibirDados)
+
+// function separarDados (){
+//     let dadosSeparados = []
+//     dadosSeparados = todosDados.split(';')
+//     console.log(dadosSeparados)
+// }
+
+//Chamada da função no botão inserir
+inserir.addEventListener('click', coletaDados)
