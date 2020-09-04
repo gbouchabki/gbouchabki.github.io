@@ -10,7 +10,7 @@ let todosDados
 let dadosSeparados = []
 
 //Função para coletar os dados
-function coletaDados (separarDados){
+function coletaDados (){
 
     if(nomeVariavel.value.trim()==='' || dadosManual.value.trim()==='' || variavel.selectedIndex <= 0){
         alert('Informe os dados corretos')
