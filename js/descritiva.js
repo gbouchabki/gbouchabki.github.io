@@ -4,12 +4,13 @@ const saidaDados = document.getElementById('saidaDados')
 const inserir = document.getElementById('inserir')
 const exibir = document.getElementById('exibir')
 const variavel = document.getElementById('variavel')
-const nomePesquisa = document.getElementById('nomePesquisa')
+const nomeVariavel = document.getElementById('nomeVariavel')
 
-let todosDados = []
+let todosDados
+let dadosSeparados = []
 
 //Função para coletar os dados
-function coletaDados (){
+function coletaDados (separarDados){
 
     if(variavel.selectedIndex <= 0){
         alert('Selecione uma variável!')
@@ -18,16 +19,28 @@ function coletaDados (){
         alert("Insira dados válidos")
     }
     else{
-    todosDados.push(dadosManual.value)
-    dadosManual.value = '' //Apagar o input
+    todosDados = dadosManual.value
+    dadosSeparados = todosDados.split(';')
     }
 
     //Log para conferir Arrays no console
-    console.log(todosDados)
+    console.log(dadosSeparados)
+
+    //Separa String em Array
+    
 }
+
+// function separarDados (){
+//     let dadosSeparados = []
+//     dadosSeparados = todosDados.split(';')
+//     console.log(dadosSeparados)
+// }
 
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
+
+
+
 
 
 //Função para exibir os dados coletados na função "coletaDados"
@@ -47,10 +60,10 @@ function exibirDados(){
     }
     */
 
-    saidaDados.innerHTML += nomePesquisa.value + '</br>'
+    saidaDados.innerHTML += nomeVariavel.value + '</br>'
     //Loop para imprimir os dados na tela
-    for(let a=0; a<todosDados.length; a++){
-        saidaDados.innerHTML += todosDados[a] + '&nbsp' + '</br>'
+    for(let i = 0; i < dadosSeparados.length; i++){
+        saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
     }
     
 }

@@ -1,3 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #75B9BE;
+    --soft-color: #B3D6C6;
+    --action-color: #C7D66D;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
@@ -12,13 +23,20 @@ div{
 }
 input, select, option{
     border-radius: 5px;
-    background-color: rgb(231, 231, 231);
+    background-color: var(--soft-color);
 }
 
-:root {
-    --primary-color: #75B9BE;
-    --soft-color: #B3D6C6;
-    --action-color: #C7D66D;
+input {
+    padding: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+select {
+    padding: 5px;
 }
 
 .remove-decoration{
@@ -29,7 +47,7 @@ input, select, option{
 nav {
     padding: 0;
     margin: 0;
-    background-color: #75B9BE;
+    background-color: var(--primary-color);
     width: 100%;
 }
 
@@ -67,4 +85,21 @@ nav {
 #main-menu ul li a:hover {
     color: black;
     border-bottom:3px solid var(--action-color);
+}
+
+#main-content{
+    margin: 40px 0;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.button-group button {
+    border-radius: 10px;
+    background-color: var(--action-color);
+    border: none;
+    padding: 10px;
+    width: 100px;
+    
 }

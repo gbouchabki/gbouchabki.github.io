@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/descritiva.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <title>Estatistica Descritiva</title>
 </head>
 <body>
@@ -21,33 +23,33 @@
         </div>
     </nav>
     
-    <div>
-        <label>Nome da pesquisa</label>
-        <input id="nomePesquisa" type="text" placeholder="Informe aqui" size="35">
-    </div>
-    <div>
-        <label>Entrada de dados</label>
-        <input id="dadosManual" type="text" placeholder="Virgulas para separar os dados" size="35">
-    </div>
-    <div>
-        <label>Escolha a Variável</label>
-        <select id="variavel">
-            <option >(Selecione)</option>
-            <option>Nominal</option>
-            <option>Ordinal</option>
-            <option>Discreta</option>
-            <option>Contínua</option>
-        </select>
-    </div>
-    <div>
-        <button id="inserir">Inserir</button>
-    </div>
-    <div>
-        <button id="exibir">Exibir</button>
-    </div>
-    <div id="saidaDados">
+    <div id="main-content">
+        <div>
+            <label>Nome da variável</label>
+            <input id="nomeVariavel" type="text" placeholder="Informe aqui" size="35">
+        </div>
+        <div>
+            <label>Entrada de Dados</label>
+            <input id="dadosManual" type="text" placeholder="Separar os dados com ;" size="35">
+        </div>
+        <div>
+            <label>Tipo da Variável</label>
+            <select id="variavel">
+                <option >(Selecione)</option>
+                <option>Nominal</option>
+                <option>Ordinal</option>
+                <option>Discreta</option>
+                <option>Contínua</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button id="inserir">Inserir</button>
+            <button id="exibir">Exibir</button>
+        </div>
+        <div id="saidaDados">
 
-    </div>
+        </div>
+    </div> 
 
     <script src="js/descritiva.js"></script>
 
