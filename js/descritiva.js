@@ -10,7 +10,7 @@ let todosDados
 let dadosSeparados = []
 
 //Função para coletar os dados
-function coletaDados (separarDados){
+function coletaDados (){
 
     if(variavel.selectedIndex <= 0){
         alert('Selecione uma variável!')
