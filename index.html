@@ -5,25 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiniBI</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
-    <nav>
-        
-        <div id="logo-nav">
-            <a href="index.html"><img src="images/logo-fake.png" alt="logo" srcset=""></a>
+    <header>
+        <nav id="header">
+            
+            <div id="logo-nav">
+                <a href="index.html"><img src="images/logo-minibi.png" alt="logo" srcset=""></a>
+            </div>
+            <div id="main-menu">
+                <ul class="remove-decoration">
+                    <li class="item-main-menu1"><a href="descritiva.html">Estatística Descritiva</a></li>
+                    <li class="item-main-menu2"><a href="propabilidade.html">Probabilidade</a></li>
+                    <li class="item-main-menu3"><a href="correlacao-regressao.html">Correlação e Regressão</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="slider-banner">
+            <div class="selected">
+                <a href=""></a>
+            </div>
         </div>
-        <div id="main-menu">
+
+        <div id="content-box">
             <ul class="remove-decoration">
-                <li class="item-main-menu"><a href="descritiva.html">Estatística Descritiva</a></li>
-                <li class="item-main-menu"><a href="propabilidade.html">Probabilidade</a></li>
-                <li class="item-main-menu"><a href="correlacao-regressao.html">Correlação e Regressão</a></li>
+                <li id="coluna1" class="coluna">
+                </li>
+                <li id="coluna2" class="coluna">
+                </li>
+                <li id="coluna3" class="coluna">
+                </li>
             </ul>
         </div>
-    </nav>
 
+        <iframe width="727" height="409" src="https://www.youtube.com/embed/xcJtL7QggTI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </main>
+
+    <footer id="footer">
+        
+    </footer>
 
     <script src="js/index.js"></script>
 </body>

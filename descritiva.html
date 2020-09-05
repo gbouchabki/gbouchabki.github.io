@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/descritiva.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 
     <title>Estatistica Descritiva</title>
 </head>
@@ -12,27 +14,27 @@
 
     <nav>
         <div id="logo-nav">
-            <a href="index.html"><img src="images/logo-fake.png" alt="logo" srcset=""></a>
+            <a href="index.html"><img src="images/logo-minibi.png" alt="logo" srcset=""></a>
         </div>
         <div id="main-menu">
             <ul class="remove-decoration">
-                <li class="item-main-menu"><a href="descritiva.html">Estatística Descritiva</a></li>
-                <li class="item-main-menu"><a href="propabilidade.html">Probabilidade</a></li>
-                <li class="item-main-menu"><a href="correlacao-regressao.html">Correlação e Regressão</a></li>
+                <li class="item-main-menu1"><a href="descritiva.html">Estatística Descritiva</a></li>
+                <li class="item-main-menu2"><a href="propabilidade.html">Probabilidade</a></li>
+                <li class="item-main-menu3"><a href="correlacao-regressao.html">Correlação e Regressão</a></li>
             </ul>
         </div>
     </nav>
     
     <div id="main-content">
-        <div>
+        <div class="center-content">
             <label>Nome da variável</label>
             <input id="nomeVariavel" type="text" placeholder="Informe aqui" size="35">
         </div>
-        <div>
+        <div class="center-content">
             <label>Entrada de Dados</label>
             <input id="dadosManual" type="text" placeholder="Separar os dados com ;" size="35">
         </div>
-        <div>
+        <div class="center-content">
             <label>Tipo da Variável</label>
             <select id="variavel">
                 <option >(Selecione)</option>
@@ -42,11 +44,11 @@
                 <option>Contínua</option>
             </select>
         </div>
-        <div class="button-group">
+        <div class="button-group" class="center-content">
             <button id="inserir">Inserir</button>
-            <button id="exibir">Exibir</button>
+            <!-- <button id="exibir">Exibir</button> -->
         </div>
-        <div id="saidaDados">
+        <div id="saidaDados" class="center-content">
 
         </div>
     </div> 
