@@ -5,15 +5,37 @@ const inserir = document.getElementById('inserir')
 const exibir = document.getElementById('exibir')
 const variavel = document.getElementById('variavel')
 const nomeVariavel = document.getElementById('nomeVariavel')
+const populacao = document.getElementById('populacao')
+const parametro = document.getElementById('parametro')
 
 let todosDados
 let dadosSeparados = []
 
+
 //Função para coletar os dados
 function coletaDados (){
 
-    if(nomeVariavel.value.trim()==='' || dadosManual.value.trim()==='' || variavel.selectedIndex <= 0){
-        alert('Informe os dados corretos')
+    let valido = true
+
+    if(nomeVariavel.value.trim()===''){
+        alert('Informe um nome de variável válido')
+        nomeVariavel.focus()
+        return 0
+    }
+    else if(dadosManual.value.trim()===''){
+        alert('Informe dados válidos')
+        dadosManual.focus()
+        return 0
+    }
+    else if(variavel.selectedIndex === 0){
+        alert('Informe uma variável')
+        variavel.focus()
+        return 0
+    }
+    else if(parametro.selectedIndex === 0){
+        alert('Informe um parâmetro')
+        parametro.focus()
+        return 0
     }
     else{
     todosDados = dadosManual.value // Entrada de dados Manual
