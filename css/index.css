@@ -24,7 +24,14 @@ body{
     text-align: center;
 }
 
-#slider-banner {
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#slider {
     /* position: absolute; */
     margin-top: 19px;
     width: 100%;
@@ -33,7 +40,7 @@ body{
 }
 
 #content-box ul {
-    width: 90%;
+    width: 100%;
     margin: auto;
     padding: 35px;
 

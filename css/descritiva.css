@@ -45,6 +45,18 @@ select {
     margin-top: 10px;
 }
 
+#tituloResultado{
+    text-align: center;
+}
+
+#mostra-resultado {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .button-group button {
     border-radius: 10px;
     background-color: var(--action-color);
