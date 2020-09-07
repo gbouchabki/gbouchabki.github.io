@@ -10,6 +10,7 @@ const parametro = document.getElementById('parametro')
 
 let todosDados
 let dadosSeparados = []
+let freq1 = []
 
 
 //Função para coletar os dados
@@ -17,22 +18,22 @@ function coletaDados (){
 
     let valido = true
 
-    if(nomeVariavel.value.trim()===''){
+    if(nomeVariavel.value.trim()===''){ //Validar se o campo do nome da variável foi preenchido
         alert('Informe um nome de variável válido')
         nomeVariavel.focus()
         return 0
     }
-    else if(dadosManual.value.trim()===''){
+    else if(dadosManual.value.trim()===''){ //Validar se o campo dos dados foi preenchido
         alert('Informe dados válidos')
         dadosManual.focus()
         return 0
     }
-    else if(variavel.selectedIndex === 0){
+    else if(variavel.selectedIndex === 0){ //Validar se a opção de variável foi selecionada
         alert('Informe uma variável')
         variavel.focus()
         return 0
     }
-    else if(parametro.selectedIndex === 0){
+    else if(parametro.selectedIndex === 0){//Validar se o parâmetro foi selecionado
         alert('Informe um parâmetro')
         parametro.focus()
         return 0
@@ -44,6 +45,7 @@ function coletaDados (){
 
     //Log para conferir Arrays no console
     console.log(dadosSeparados)
+
 
     /*
     if(variavel.selectedIndex ==1){ //Nominal
