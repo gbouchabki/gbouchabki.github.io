@@ -7,6 +7,8 @@ const variavel = document.getElementById('variavel')
 const nomeVariavel = document.getElementById('nomeVariavel')
 const populacao = document.getElementById('populacao')
 const parametro = document.getElementById('parametro')
+const tituloResultado = document.getElementById('tituloResultado')
+const frequenciaTotal = document.getElementById('frequencia')
 
 let todosDados
 let dadosSeparados = []
@@ -62,19 +64,22 @@ function coletaDados (){
     }
     */
 
-   saidaDados.innerHTML += nomeVariavel.value + '</br>'
-   //Loop para imprimir os dados na tela
-   for(let i = 0; i < dadosSeparados.length; i++){
-       saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
-   }
+    //Função para comparar e ordenar numeros
+    function ordernarNumeros(a, b){
+        return a - b
+    }
+
+    dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
+    dadosSeparados.sort() //Ordenar textos em Ordem Alfabética
+
+    tituloResultado.innerHTML += nomeVariavel.value + '</br>'
+    //Loop para imprimir os dados na tela
+    for(let i = 0; i < dadosSeparados.length; i++){
+        saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
+    }
     
 }
 
-// function separarDados (){
-//     let dadosSeparados = []
-//     dadosSeparados = todosDados.split(';')
-//     console.log(dadosSeparados)
-// }
-
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
+
