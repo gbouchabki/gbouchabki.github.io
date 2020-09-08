@@ -12,7 +12,9 @@ const frequenciaTotal = document.getElementById('frequencia')
 
 let todosDados
 let dadosSeparados = []
-let freq1 = []
+let dadosRepetidos = []
+let mostraNomeVariavel = []
+let freq = []
 
 
 //Função para coletar os dados
@@ -49,6 +51,26 @@ function coletaDados (){
     console.log(dadosSeparados)
 
 
+    //Retirar dados repetidos na exibição do array de exibição "mostraNomeVariavel"
+    let aux = dadosSeparados.filter(function(elemento, i){
+        if(dadosSeparados.indexOf(elemento) == i){
+            mostraNomeVariavel.push(elemento)
+        }
+    })
+    console.log(mostraNomeVariavel)//Log para conferir Array no console
+
+    //Inserir os elementos repetidos no Array "dadosRepetidos"
+    let aux2 = dadosSeparados.filter(function(elemento, i){
+        if(dadosSeparados.indexOf(elemento) !== i){
+            dadosRepetidos.push(elemento)
+        }
+    })
+    console.log(dadosRepetidos)//Log para conferir Array no console
+
+
+    console.log(freq)
+    
+
     /*
     if(variavel.selectedIndex ==1){ //Nominal
         
@@ -74,8 +96,8 @@ function coletaDados (){
 
     tituloResultado.innerHTML += nomeVariavel.value + '</br>'
     //Loop para imprimir os dados na tela
-    for(let i = 0; i < dadosSeparados.length; i++){
-        saidaDados.innerHTML += dadosSeparados[i] + '&nbsp' + '</br>'
+    for(let i = 0; i < mostraNomeVariavel.length; i++){
+        saidaDados.innerHTML += mostraNomeVariavel[i] + '&nbsp' + '</br>'
     }
     
 }
