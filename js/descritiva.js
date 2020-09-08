@@ -60,16 +60,18 @@ function coletaDados (){
     console.log(mostraNomeVariavel)//Log para conferir Array no console
 
     //Inserir os elementos repetidos no Array "dadosRepetidos"
-    let aux2 = dadosSeparados.filter(function(elemento, i){
+    /*let aux2 = dadosSeparados.filter(function(elemento, i){
         if(dadosSeparados.indexOf(elemento) !== i){
             dadosRepetidos.push(elemento)
         }
     })
     console.log(dadosRepetidos)//Log para conferir Array no console
+    */
 
-
+    dadosSeparados.forEach(function(elemento){
+    freq[elemento] = freq[elemento] + 1 || 1
+    });
     console.log(freq)
-    
 
     /*
     if(variavel.selectedIndex ==1){ //Nominal
@@ -97,7 +99,7 @@ function coletaDados (){
     tituloResultado.innerHTML += nomeVariavel.value + '</br>'
     //Loop para imprimir os dados na tela
     for(let i = 0; i < mostraNomeVariavel.length; i++){
-        saidaDados.innerHTML += mostraNomeVariavel[i] + '&nbsp' + '</br>'
+        saidaDados.innerHTML += mostraNomeVariavel[i] + '&nbsp' + freq[i] + '&nbsp' + '</br>'
     }
     
 }
