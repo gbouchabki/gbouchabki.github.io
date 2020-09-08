@@ -37,6 +37,13 @@ select {
     padding: 5px;
 }
 
+.conteudo {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #main-content{
     margin: 40px 0;
 }

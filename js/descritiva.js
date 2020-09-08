@@ -50,6 +50,13 @@ function coletaDados (){
     //Log para conferir Arrays no console
     console.log(dadosSeparados)
 
+    function ordernarNumeros(a, b){
+        return a - b
+    }
+
+    dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
+    dadosSeparados.sort() //Ordenar textos em Ordem Alfabética
+
 
     //Retirar dados repetidos na exibição do array de exibição "mostraNomeVariavel"
     let aux = dadosSeparados.filter(function(elemento, i){
@@ -63,6 +70,14 @@ function coletaDados (){
     dadosSeparados.forEach(function(elemento){
     freq[elemento] = freq[elemento] + 1 || 1
     });
+
+    //Limpar Array e excluir os elementos vázios !!!!!
+    let limpaArray = freq.filter(function (elem)
+    {
+        return elem != null
+    })
+
+    console.log(limpaArray)
     console.log(freq)
 
     /*
@@ -81,17 +96,11 @@ function coletaDados (){
     */
 
     //Função para comparar e ordenar numeros
-    function ordernarNumeros(a, b){
-        return a - b
-    }
 
-    dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
-    dadosSeparados.sort() //Ordenar textos em Ordem Alfabética
-
-    tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + 'Fa' + '</br>'
+    tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fa' + '</br>' 
     //Loop para imprimir os dados na tela
     for(let i = 0; i < mostraNomeVariavel.length; i++){
-        saidaDados.innerHTML += mostraNomeVariavel[i] + '&nbsp' + freq[i] + '&nbsp' + '</br>'
+        saidaDados.innerHTML += mostraNomeVariavel[i] + ' ---- ' + limpaArray[i] + '</br>'
     }
     
 }
