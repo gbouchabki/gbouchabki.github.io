@@ -32,16 +32,16 @@ function coletaDados (){
         dadosManual.focus()
         return 0
     }
-    else if(variavel.selectedIndex === 0){ //Validar se a opção de variável foi selecionada
-        alert('Informe uma variável')
-        variavel.focus()
-        return 0
-    }
-    else if(parametro.selectedIndex === 0){//Validar se o parâmetro foi selecionado
-        alert('Informe um parâmetro')
-        parametro.focus()
-        return 0
-    }
+    // else if(variavel.selectedIndex === 0){ //Validar se a opção de variável foi selecionada
+    //     alert('Informe uma variável')
+    //     variavel.focus()
+    //     return 0
+    // }
+    // else if(parametro.selectedIndex === 0){//Validar se o parâmetro foi selecionado
+    //     alert('Informe um parâmetro')
+    //     parametro.focus()
+    //     return 0
+    // }
     else{
     todosDados = dadosManual.value // Entrada de dados Manual
     dadosSeparados = todosDados.split(';') // Converte String em Array
