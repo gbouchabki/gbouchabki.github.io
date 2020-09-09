@@ -110,11 +110,11 @@ function coletaDados (){
     
         dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
 
-        let at = 0
-        let xmin = 0
-        let xmax = 0
-        let k = 0
-        let n = 0
+        let at = 0 //Amplitude
+        let xmin = 0 // Menor Numero
+        let xmax = 0 //Maior Numero
+        let k = 0 //Numero de Linhas
+        let n = 0 // Quantidade de Elementos
         let intervalo = 0
 
         n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
@@ -127,18 +127,11 @@ function coletaDados (){
         //Logs para aferição dos resultados no console
         console.log(at)
         console.log(n)
-        console.log(k)
-        console.log(intervalo)
+        console.log(Math.round(k))
+        console.log(Math.round(intervalo))
 
         
         
-         /*
-        let at = dados[dados.length - 1] - dados[0]
-        console.log(at) 
-
-        let linhas = 
-        */
-
     }
     
 }
