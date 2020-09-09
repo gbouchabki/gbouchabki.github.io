@@ -15,8 +15,6 @@ let dadosSeparados = []
 let dadosRepetidos = []
 let mostraNomeVariavel = []
 let freq = []
-
-
 //Função para coletar os dados
 function coletaDados (){
 
@@ -64,16 +62,30 @@ function coletaDados (){
 
     let dados = Object.keys(obj)
     let fi = Object.values(obj)
+    let fr = Object.values(obj)
 
     console.log(dados)
     console.log(fi)
 
 
     if(variavel.selectedIndex ==1){ //Nominal
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>' 
+        let total = 0
+
+        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
+            fr[i] = (fi[i]/total) * 100
+        }
+        
+        //Logs para conferir os arrays  no console
+        console.log(somaFi)
+        console.log(total)
+        console.log(fr)
+        
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + '</br>'
         }        
     }
     else if(variavel.selectedIndex ==2){ //Ordinal
