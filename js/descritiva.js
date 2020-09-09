@@ -103,20 +103,43 @@ function coletaDados (){
             saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
         } 
     }
-    // else if(variavel.selectedIndex ==4){
-    //     function ordernarNumeros(a, b){
-    //         return a - b
-    //     }
+    else if(variavel.selectedIndex == 4){ //Contínua
+        function ordernarNumeros(a, b){
+             return a - b
+        }
     
-    //     dadosSeparados.sort(ordernarNumeros)
-        
-    //     let at = dados[dados.length - 1] - dados[0]
-    //     console.log(at) 
+        dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
 
-    //     let linhas = 
+        let at = 0
+        let xmin = 0
+        let xmax = 0
+        let k = 0
+        let n = 0
+        let intervalo = 0
+
+        n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
+        xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
+        xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
+        at = xmax --- xmin //Subtração do primeiro elemento pelo ultimo elemento
+        k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
+        intervalo = (at / k) //Calcula o intervalo dos agrupamentos
+
+        //Logs para aferição dos resultados no console
+        console.log(at)
+        console.log(n)
+        console.log(k)
+        console.log(intervalo)
 
         
-    // }
+        
+         /*
+        let at = dados[dados.length - 1] - dados[0]
+        console.log(at) 
+
+        let linhas = 
+        */
+
+    }
     
 }
 
