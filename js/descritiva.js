@@ -47,61 +47,76 @@ function coletaDados (){
     dadosSeparados = todosDados.split(';') // Converte String em Array
     }
 
+
     //Log para conferir Arrays no console
     console.log(dadosSeparados)
 
-    function ordernarNumeros(a, b){
-        return a - b
-    }
 
-    dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
-    dadosSeparados.sort() //Ordenar textos em Ordem Alfabética
+    let obj = dadosSeparados.reduce(function (object, item) {
 
-
-    //Retirar dados repetidos na exibição do array de exibição "mostraNomeVariavel"
-    let aux = dadosSeparados.filter(function(elemento, i){
-        if(dadosSeparados.indexOf(elemento) == i){
-            mostraNomeVariavel.push(elemento)
+        if (!object[item]) {
+            object[item] = 1;
+        } else {
+            object[item]++;
         }
-    })
-    console.log(mostraNomeVariavel)//Log para conferir Array no console
+        return object;
+    }, {})
 
-    //Mostrar quantos e quais os elementos repetidos da Array "dadosSeparados"
-    dadosSeparados.forEach(function(elemento){
-    freq[elemento] = freq[elemento] + 1 || 1
-    });
+    let dados = Object.keys(obj)
+    let fi = Object.values(obj)
 
-    //Limpar Array e excluir os elementos vázios !!!!!
-    let limpaArray = freq.filter(function (elem)
-    {
-        return elem != null
-    })
+    console.log(dados)
+    console.log(fi)
 
-    console.log(limpaArray)
-    console.log(freq)
 
-    /*
     if(variavel.selectedIndex ==1){ //Nominal
-        
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+        //Loop para imprimir os dados na tela
+        for(let i = 0; i < dados.length; i++){
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+        }        
     }
     else if(variavel.selectedIndex ==2){ //Ordinal
-        
+        function ordernarNumeros(a, b){
+            return a - b
+        }
+        fi.sort(ordernarNumeros)
+
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+
+        //Loop para imprimir os dados na tela
+        for(let i = 0; i < dados.length; i++){
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+        }    
     }
     else if(variavel.selectedIndex ==3){ //Discreta
+        function ordernarNumeros(a, b){
+            return a - b
+        }
+    
+        dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
         
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+
+        //Loop para imprimir os dados na tela
+        for(let i = 0; i < dados.length; i++){
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+        } 
     }
-    else if(variavel.selectedIndex ==4){ //Continua
+    // else if(variavel.selectedIndex ==4){
+    //     function ordernarNumeros(a, b){
+    //         return a - b
+    //     }
+    
+    //     dadosSeparados.sort(ordernarNumeros)
         
-    }
-    */
+    //     let at = dados[dados.length - 1] - dados[0]
+    //     console.log(at) 
 
-    //Função para comparar e ordenar numeros
+    //     let linhas = 
 
-    tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fa' + '</br>' 
-    //Loop para imprimir os dados na tela
-    for(let i = 0; i < mostraNomeVariavel.length; i++){
-        saidaDados.innerHTML += mostraNomeVariavel[i] + ' ---- ' + limpaArray[i] + '</br>'
-    }
+        
+    // }
     
 }
 
