@@ -68,10 +68,10 @@ function coletaDados (){
     console.log(fi)
 
 
-    if(variavel.selectedIndex ==1){ //Nominal
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>' 
+    if(variavel.selectedIndex ==1){ //Nominal*****************************
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>' // Titulo da tabela provisória
+        
         let total = 0
-
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
@@ -79,7 +79,6 @@ function coletaDados (){
         }
         
         //Logs para conferir os arrays  no console
-        console.log(somaFi)
         console.log(total)
         console.log(fr)
         
@@ -88,39 +87,69 @@ function coletaDados (){
             saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + '</br>'
         }        
     }
-    else if(variavel.selectedIndex ==2){ //Ordinal
+    else if(variavel.selectedIndex ==2){ //Ordinal*************************
         function ordernarNumeros(a, b){
             return a - b
         }
         fi.sort(ordernarNumeros)
-
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>' // Titulo da tabela provisória
+        
+        let total = 0
+        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
+            fr[i] = (fi[i]/total) * 100
+        }
+        
+        //Logs para conferir os arrays  no console
+        console.log(total)
+        console.log(fr)
 
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + '</br>'
         }    
     }
-    else if(variavel.selectedIndex ==3){ //Discreta
+    else if(variavel.selectedIndex ==3){ //Discreta***************************
         function ordernarNumeros(a, b){
             return a - b
         }
-    
         dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>'// Titulo da tabela provisória 
         
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi' + '</br>' 
+        let total = 0
+        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
+            fr[i] = (fi[i]/total) * 100
+        }
+        //Logs para conferir os arrays  no console
+        console.log(total)
+        console.log(fr)
 
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ---- ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + '</br>'
         } 
     }
-    else if(variavel.selectedIndex == 4){ //Contínua
+    else if(variavel.selectedIndex == 4){ //Contínua******************************************
         function ordernarNumeros(a, b){
              return a - b
         }
-    
         dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
+
+        let total = 0
+        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
+            fr[i] = (fi[i]/total) * 100
+        }
+
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado - Fi - Fr' + '</br>' // Titulo da tabela provisória
+
+        //Logs para conferir os arrays  no console
+        console.log(total)
+        console.log(fr)
 
         let at = 0 //Amplitude
         let xmin = 0 // Menor Numero
