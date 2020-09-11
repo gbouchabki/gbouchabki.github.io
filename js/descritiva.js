@@ -64,13 +64,14 @@ function coletaDados (){
     let fi = Object.values(obj)
     let fr = Object.values(obj)
     let fac = Object.values(obj)
+    let facP = Object.values(obj)
 
     console.log(dados)
     console.log(fi)
 
 
     if(variavel.selectedIndex ==1){ //Nominal*****************************
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
         
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
@@ -82,6 +83,11 @@ function coletaDados (){
         fac[0] = fi[0]
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
             fac[i+1] = fac[i+0] + fi[i+1]
+        }
+
+        facP[0] = fr[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
+            facP[i+1] = facP[i+0] + fr[i+1]
         }
         
         //Logs para conferir os arrays  no console
@@ -89,10 +95,11 @@ function coletaDados (){
         console.log(fr)
         console.log(fi)
         console.log(fac)
+        console.log(facP)
         
         //Loop para imprimir os dados na tela provisória
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + ' ---- ' + fac[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
         }        
     }
     else if(variavel.selectedIndex ==2){ //Ordinal*************************
@@ -100,7 +107,7 @@ function coletaDados (){
             return a - b
         }
         fi.sort(ordernarNumeros)
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
         
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
@@ -113,6 +120,11 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
             fac[i+1] = fac[i+0] + fi[i+1]
         }
+
+        facP[0] = fr[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
+            facP[i+1] = facP[i+0] + fr[i+1]
+        }
         
         //Logs para conferir os arrays  no console
         console.log(total)
@@ -120,7 +132,7 @@ function coletaDados (){
 
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + ' ---- ' + fac[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
         }    
     }
     else if(variavel.selectedIndex ==3){ //Discreta***************************
@@ -128,7 +140,7 @@ function coletaDados (){
             return a - b
         }
         dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória 
+        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória 
         
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
@@ -141,13 +153,18 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
             fac[i+1] = fac[i+0] + fi[i+1]
         }
+
+        facP[0] = fr[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
+            facP[i+1] = facP[i+0] + fr[i+1]
+        }
         //Logs para conferir os arrays  no console
         console.log(total)
         console.log(fr)
 
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + Math.round(fr[i]) + '%' + ' ---- ' + fac[i] + '</br>'
+            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
         } 
     }
     else if(variavel.selectedIndex == 4){ //Contínua******************************************
@@ -166,6 +183,11 @@ function coletaDados (){
         fac[0] = fi[0]
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
             fac[i+1] = fac[i+0] + fi[i+1]
+        }
+
+        facP[0] = fr[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
+            facP[i+1] = facP[i+0] + fr[i+1]
         }
 
         tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
