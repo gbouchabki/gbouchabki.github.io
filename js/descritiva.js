@@ -12,6 +12,7 @@ const tituloResultado = document.getElementById('tituloResultado')
 const frequenciaTotal = document.getElementById('frequencia')
 const ctx = document.getElementsByClassName("line-chart")
 const ctx2 = document.getElementsByClassName("line-chart2")
+const ctx3 = document.getElementsByClassName("line-chart3")
 
 
 
@@ -147,6 +148,25 @@ function coletaDados (){
                 }
             }
         });
+        new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fac,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC",
+                    fontSize: 45,
+                }
+            }
+        });
     }
     else if(variavel.selectedIndex ==2){ //Ordinal*************************
         function ordernarNumeros(a, b){
@@ -218,6 +238,25 @@ function coletaDados (){
                     fontSize: 45,
                 }
             }
+        });
+        new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fac,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC",
+                    fontSize: 45,
+                }
+            }
         });   
     }
     else if(variavel.selectedIndex ==3){ //Discreta***************************
@@ -286,6 +325,25 @@ function coletaDados (){
                 title: {
                     display: true,
                     text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });
+        new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fac,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC",
                     fontSize: 45,
                 }
             }
@@ -379,6 +437,25 @@ function coletaDados (){
                 }
             }
         });
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fac,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });
         
     }
     
@@ -386,4 +463,3 @@ function coletaDados (){
 
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
-
