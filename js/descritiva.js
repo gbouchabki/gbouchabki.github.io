@@ -1,4 +1,5 @@
 'use strict'
+
 const dadosManual = document.getElementById('dadosManual')
 const saidaDados = document.getElementById('saidaDados')
 const inserir = document.getElementById('inserir')
@@ -9,6 +10,11 @@ const populacao = document.getElementById('populacao')
 const parametro = document.getElementById('parametro')
 const tituloResultado = document.getElementById('tituloResultado')
 const frequenciaTotal = document.getElementById('frequencia')
+const ctx = document.getElementsByClassName("line-chart")
+const ctx2 = document.getElementsByClassName("line-chart2")
+
+
+
 
 let todosDados
 let dadosSeparados = []
@@ -100,7 +106,47 @@ function coletaDados (){
         //Loop para imprimir os dados na tela provisória
         for(let i = 0; i < dados.length; i++){
             saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        }        
+        }
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fr,
+                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FR%",
+                    fontSize: 45,
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: facP,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });
     }
     else if(variavel.selectedIndex ==2){ //Ordinal*************************
         function ordernarNumeros(a, b){
@@ -133,7 +179,46 @@ function coletaDados (){
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
             saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        }    
+        }
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fr,
+                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FR%",
+                    fontSize: 45,
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: facP,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });   
     }
     else if(variavel.selectedIndex ==3){ //Discreta***************************
         function ordernarNumeros(a, b){
@@ -165,7 +250,46 @@ function coletaDados (){
         //Loop para imprimir os dados na tela
         for(let i = 0; i < dados.length; i++){
             saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        } 
+        }
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fr,
+                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FR%",
+                    fontSize: 45,
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: facP,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });
     }
     else if(variavel.selectedIndex == 4){ //Contínua******************************************
         function ordernarNumeros(a, b){
@@ -216,7 +340,45 @@ function coletaDados (){
         console.log(Math.round(k))
         console.log(Math.round(intervalo))
 
-        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fr,
+                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FR%",
+                    fontSize: 45,
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: facP,
+                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                //responsive: false,
+                title: {
+                    display: true,
+                    text: "FaC%",
+                    fontSize: 45,
+                }
+            }
+        });
         
     }
     
