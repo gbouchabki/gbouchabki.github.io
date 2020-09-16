@@ -425,7 +425,7 @@ function coletaDados (){
               scales: {
                 xAxes: [{
                   display: false,
-                  barPercentage: 1.3,
+                  barPercentage: 1.25,
                   ticks: {
                       max: 3,
                   }
