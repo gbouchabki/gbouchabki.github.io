@@ -99,9 +99,8 @@ function coletaDados (){
     thead.appendChild(linhaHead)
         
 
-    if(variavel.selectedIndex ==1){ //Nominal*****************************
-        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
-        
+    if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
+
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
@@ -132,10 +131,7 @@ function coletaDados (){
         console.log(fac)
         console.log(facP)
         
-        //Loop para imprimir os dados na tela provisória
-        // for(let i = 0; i < dados.length; i++){
-        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        // }
+        //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
 
@@ -159,7 +155,7 @@ function coletaDados (){
             tbody.appendChild(linha)
         }
 
-
+        //GRÁFICO
         new Chart(ctx, {
             type: 'pie',
             data: {
@@ -179,54 +175,13 @@ function coletaDados (){
                 }
             }
         });
-
-        new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: facP,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC%",
-                    fontSize: 45,
-                }
-            }
-        });
-        new Chart(ctx3, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: fac,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC",
-                    fontSize: 45,
-                }
-            }
-        });
     }
-
-    else if(variavel.selectedIndex == 2){ //Ordinal*************************
+    else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
         function ordernarNumeros(a, b){
             return a - b
         }
         fi.sort(ordernarNumeros)
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
-        
+                
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
@@ -254,11 +209,7 @@ function coletaDados (){
         console.log(total)
         console.log(fr)
 
-        //Loop para imprimir os dados na tela
-        // for(let i = 0; i < dados.length; i++){
-        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        // }
-
+        //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
 
@@ -282,6 +233,7 @@ function coletaDados (){
             tbody.appendChild(linha)
         }
 
+        //GRÁFICO
         new Chart(ctx, {
             type: 'pie',
             data: {
@@ -301,52 +253,12 @@ function coletaDados (){
                 }
             }
         });
-
-        new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: facP,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC%",
-                    fontSize: 45,
-                }
-            }
-        });
-        new Chart(ctx3, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: fac,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC",
-                    fontSize: 45,
-                }
-            }
-        });   
     }
-    else if(variavel.selectedIndex ==3){ //Discreta***************************
+    else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
         function ordernarNumeros(a, b){
             return a - b
         }
         dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
-        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória 
         
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
@@ -374,11 +286,7 @@ function coletaDados (){
         console.log(total)
         console.log(fr)
 
-        //Loop para imprimir os dados na tela
-        // for(let i = 0; i < dados.length; i++){
-        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
-        // }
-
+        //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
 
@@ -401,9 +309,10 @@ function coletaDados (){
 
             tbody.appendChild(linha)
         }
-
+        
+        //GRÁFICO
         new Chart(ctx, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels: dados,
                 datasets: [{
@@ -421,47 +330,8 @@ function coletaDados (){
                 }
             }
         });
-
-        new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: facP,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC%",
-                    fontSize: 45,
-                }
-            }
-        });
-        new Chart(ctx3, {
-            type: 'pie',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: fac,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC",
-                    fontSize: 45,
-                }
-            }
-        });
     }
-    else if(variavel.selectedIndex == 4){ //Contínua******************************************
+    else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
         function ordernarNumeros(a, b){
              return a - b
         }
@@ -516,9 +386,7 @@ function coletaDados (){
         console.log(Math.round(intervalo))
 
         
-
-
-        
+        //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
             tbody.appendChild(linha)
@@ -541,64 +409,41 @@ function coletaDados (){
                 linha.appendChild(tdFacP)
 
         }
+
+        //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: dados,
-                datasets: [{
+              labels: dados,
+              datasets: [{
+                label: 'Fr%',
                 data: fr,
                 backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
-                }],
+              }]
             },
             options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FR%",
-                    fontSize: 45,
-                }
-            }
-        });
-
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: facP,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
+              scales: {
+                xAxes: [{
+                  display: false,
+                  barPercentage: 1.3,
+                  ticks: {
+                      max: 3,
+                  }
+               }, {
+                  display: true,
+                  ticks: {
+                      autoSkip: false,
+                      max: 4,
+                  }
                 }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC%",
-                    fontSize: 45,
-                }
+                yAxes: [{
+                  ticks: {
+                    beginAtZero:true
+                  }
+                }]
+              }
             }
-        });
-        new Chart(ctx3, {
-            type: 'bar',
-            data: {
-                labels: dados,
-                datasets: [{
-                data: fac,
-                backgroundColor: ['#006400', '#008000', '#228B22', '#32CD32', '#00FF00', '#7CFC00'],
-                }],
-            },
-            options: {
-                maintainAspectRatio: false,
-                //responsive: false,
-                title: {
-                    display: true,
-                    text: "FaC%",
-                    fontSize: 45,
-                }
-            }
-        });
+          });
         
     }
     
