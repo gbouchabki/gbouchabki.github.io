@@ -10,6 +10,7 @@ const populacao = document.getElementById('populacao')
 const parametro = document.getElementById('parametro')
 const tituloResultado = document.getElementById('tituloResultado')
 const frequenciaTotal = document.getElementById('frequencia')
+const tabela = document.getElementById('tabela')
 const ctx = document.getElementsByClassName("line-chart")
 const ctx2 = document.getElementsByClassName("line-chart2")
 const ctx3 = document.getElementsByClassName("line-chart3")
@@ -22,6 +23,7 @@ let dadosSeparados = []
 let dadosRepetidos = []
 let mostraNomeVariavel = []
 let freq = []
+
 //Função para coletar os dados
 function coletaDados (){
 
@@ -76,9 +78,35 @@ function coletaDados (){
     console.log(dados)
     console.log(fi)
 
+    // Criar Tabela
+
+    function criarElemento (elemento){
+        return document.createElement(elemento)
+    }
+
+
+    let thead = criarElemento('thead')
+    let tbody = criarElemento('tbody')
+
+    let indicesTabela = [nomeVariavel.value, 'Fi','Fr%','Fac','Fac%']
+
+
+    tabela.appendChild(thead)
+    tabela.appendChild(tbody)
+
+    let linhaHead = criarElemento('tr')
+
+    thead.appendChild(linhaHead)
+        
 
     if(variavel.selectedIndex ==1){ //Nominal*****************************
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
+        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
+        
+        for (let i = 0; i < indicesTabela.length; i++){
+            let th = criarElemento('th')
+            th.textContent = indicesTabela[i]
+            linhaHead.appendChild(th)
+        }
         
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
@@ -105,9 +133,32 @@ function coletaDados (){
         console.log(facP)
         
         //Loop para imprimir os dados na tela provisória
+        // for(let i = 0; i < dados.length; i++){
+        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+        // }
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+            let linha = criarElemento('tr')
+
+                let tdDados = criarElemento('td')
+                tdDados.textContent = dados[i]
+                let tdFi = criarElemento('td')
+                tdFi.textContent = fi[i]
+                let tdFr = criarElemento('td')
+                tdFr.textContent = fr[i].toFixed(2) + '%'
+                let tdFac = criarElemento('td')
+                tdFac.textContent = fac[i]
+                let tdFacP = criarElemento('td')
+                tdFacP.textContent = facP[i].toFixed(2)+'%'
+
+                linha.appendChild(tdDados)
+                linha.appendChild(tdFi)
+                linha.appendChild(tdFr)
+                linha.appendChild(tdFac)
+                linha.appendChild(tdFacP)
+
+            tbody.appendChild(linha)
         }
+
 
         new Chart(ctx, {
             type: 'pie',
@@ -168,13 +219,20 @@ function coletaDados (){
             }
         });
     }
-    else if(variavel.selectedIndex ==2){ //Ordinal*************************
+
+    else if(variavel.selectedIndex == 2){ //Ordinal*************************
         function ordernarNumeros(a, b){
             return a - b
         }
         fi.sort(ordernarNumeros)
         tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória
         
+        for (let i = 0; i < indicesTabela.length; i++){
+            let th = criarElemento('th')
+            th.textContent = indicesTabela[i]
+            linhaHead.appendChild(th)
+        }
+
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
@@ -197,9 +255,33 @@ function coletaDados (){
         console.log(fr)
 
         //Loop para imprimir os dados na tela
+        // for(let i = 0; i < dados.length; i++){
+        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+        // }
+
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+            let linha = criarElemento('tr')
+
+                let tdDados = criarElemento('td')
+                tdDados.textContent = dados[i]
+                let tdFi = criarElemento('td')
+                tdFi.textContent = fi[i]
+                let tdFr = criarElemento('td')
+                tdFr.textContent = fr[i].toFixed(2) + '%'
+                let tdFac = criarElemento('td')
+                tdFac.textContent = fac[i]
+                let tdFacP = criarElemento('td')
+                tdFacP.textContent = facP[i].toFixed(2)+'%'
+
+                linha.appendChild(tdDados)
+                linha.appendChild(tdFi)
+                linha.appendChild(tdFr)
+                linha.appendChild(tdFac)
+                linha.appendChild(tdFacP)
+
+            tbody.appendChild(linha)
         }
+
         new Chart(ctx, {
             type: 'pie',
             data: {
@@ -264,8 +346,14 @@ function coletaDados (){
             return a - b
         }
         dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória 
+        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr%  -  Fac - Fac%' + '</br>' // Titulo da tabela provisória 
         
+        for (let i = 0; i < indicesTabela.length; i++){
+            let th = criarElemento('th')
+            th.textContent = indicesTabela[i]
+            linhaHead.appendChild(th)
+        }
+
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
@@ -287,9 +375,33 @@ function coletaDados (){
         console.log(fr)
 
         //Loop para imprimir os dados na tela
+        // for(let i = 0; i < dados.length; i++){
+        //     saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+        // }
+
         for(let i = 0; i < dados.length; i++){
-            saidaDados.innerHTML += dados[i] + ' ------ ' + fi[i] +  ' ---- ' + fr[i].toFixed(2) + '%' + ' ---- ' + fac[i] + ' ---- ' + facP[i].toFixed(2) + '%' + '</br>'
+            let linha = criarElemento('tr')
+
+                let tdDados = criarElemento('td')
+                tdDados.textContent = dados[i]
+                let tdFi = criarElemento('td')
+                tdFi.textContent = fi[i]
+                let tdFr = criarElemento('td')
+                tdFr.textContent = fr[i].toFixed(2) + '%'
+                let tdFac = criarElemento('td')
+                tdFac.textContent = fac[i]
+                let tdFacP = criarElemento('td')
+                tdFacP.textContent = facP[i].toFixed(2)+'%'
+
+                linha.appendChild(tdDados)
+                linha.appendChild(tdFi)
+                linha.appendChild(tdFr)
+                linha.appendChild(tdFac)
+                linha.appendChild(tdFacP)
+
+            tbody.appendChild(linha)
         }
+
         new Chart(ctx, {
             type: 'pie',
             data: {
@@ -355,6 +467,12 @@ function coletaDados (){
         }
         dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
 
+        for (let i = 0; i < indicesTabela.length; i++){
+            let th = criarElemento('th')
+            th.textContent = indicesTabela[i]
+            linhaHead.appendChild(th)
+        }
+
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
@@ -372,32 +490,57 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
-
+        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
         //Logs para conferir os arrays  no console
         console.log(total)
         console.log(fr)
-
+        
         let at = 0 //Amplitude
         let xmin = 0 // Menor Numero
         let xmax = 0 //Maior Numero
         let k = 0 //Numero de Linhas
         let n = 0 // Quantidade de Elementos
         let intervalo = 0
-
+        
         n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
         xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
         xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
         at = xmax --- xmin //Subtração do primeiro elemento pelo ultimo elemento
         k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
         intervalo = (at / k) //Calcula o intervalo dos agrupamentos
-
+        
         //Logs para aferição dos resultados no console
         console.log(at)
         console.log(n)
         console.log(Math.round(k))
         console.log(Math.round(intervalo))
 
+        
+
+
+        
+        for(let i = 0; i < dados.length; i++){
+            let linha = criarElemento('tr')
+            tbody.appendChild(linha)
+
+                let tdDados = criarElemento('td')
+                tdDados.textContent = dados[i]
+                let tdFi = criarElemento('td')
+                tdFi.textContent = fi[i]
+                let tdFr = criarElemento('td')
+                tdFr.textContent = fr[i].toFixed(2) + '%'
+                let tdFac = criarElemento('td')
+                tdFac.textContent = fac[i]
+                let tdFacP = criarElemento('td')
+                tdFacP.textContent = facP[i].toFixed(2)+'%'
+
+                linha.appendChild(tdDados)
+                linha.appendChild(tdFi)
+                linha.appendChild(tdFr)
+                linha.appendChild(tdFac)
+                linha.appendChild(tdFacP)
+
+        }
         new Chart(ctx, {
             type: 'bar',
             data: {

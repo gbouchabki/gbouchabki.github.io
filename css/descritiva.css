@@ -37,6 +37,29 @@ select {
     padding: 5px;
 }
 
+#tabela{
+    margin: auto;
+    margin-top: 20px;
+    width: 60%;
+}
+
+#tabela tr {
+    border: solid black 2px;
+    width: 800px;
+}
+
+#tabela th {
+    width: 60px;
+    padding: 15px;
+    border: solid black 1px;
+}
+#tabela td {
+    width: 60px;
+    padding: 15px;
+    border: solid black 1px;
+}
+
+
 .conteudo {
     margin-top: 25px;
     display: flex;
