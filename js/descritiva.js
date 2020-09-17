@@ -167,7 +167,6 @@ function coletaDados (){
             },
             options: {
                 maintainAspectRatio: false,
-                //responsive: false,
                 title: {
                     display: true,
                     text: "FR%",
@@ -245,7 +244,6 @@ function coletaDados (){
             },
             options: {
                 maintainAspectRatio: false,
-                //responsive: false,
                 title: {
                     display: true,
                     text: "FR%",
@@ -313,19 +311,19 @@ function coletaDados (){
         //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
+            label: ' ',
             data: {
                 labels: dados,
                 datasets: [{
-                data: fr,
-                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                    label: "FR%",
+                    data: fr,
+                    backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
                 }],
             },
             options: {
                 maintainAspectRatio: false,
-                //responsive: false,
                 title: {
                     display: true,
-                    text: "FR%",
                     fontSize: 45,
                 }
             }
@@ -444,7 +442,7 @@ function coletaDados (){
               }
             }
           });
-        
+
     }
     
 }
