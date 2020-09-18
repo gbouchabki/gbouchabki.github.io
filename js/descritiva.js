@@ -24,6 +24,36 @@ let dadosRepetidos = []
 let mostraNomeVariavel = []
 let freq = []
 
+const ordem = document.querySelector('#ordem-resultado')
+const ordinal = document.querySelector('#ordinal')
+
+
+// ------------ Mostrar O Input de Variaveis --------
+
+function mostrarOrdinal(){
+    if(variavel.selectedIndex === 2){
+        ordem.style.visibility = 'visible'
+        let label = document.createElement('label') 
+        label.textContent = 'Ordem das Váriaveis'
+        ordem.appendChild(label)  
+        let campo = document.createElement('input')
+        campo.className = 'ordinal'
+        campo.placeholder = 'Separar os termos por ;'
+        campo.id = 'dadoOrdinal'
+        ordem.appendChild(campo)
+        console.log('esta funcionando') 
+    
+    }else{
+        ordem.innerHTML = ''
+        //let campo = document.createElement()
+        //form.appendChild(campo)
+    }
+}
+
+variavel.addEventListener('change', mostrarOrdinal)
+
+
+
 //Função para coletar os dados
 function coletaDados (){
 
@@ -88,7 +118,7 @@ function coletaDados (){
     let thead = criarElemento('thead')
     let tbody = criarElemento('tbody')
 
-    let indicesTabela = [nomeVariavel.value, 'Fi','Fr%','Fac','Fac%']
+    let indicesTabela = [nomeVariavel.value, 'Frequência','Frequência (%)','Frequência Aculmulada','FAC%']
 
 
     tabela.appendChild(thead)
@@ -176,20 +206,26 @@ function coletaDados (){
         });
     }
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
-        function ordernarNumeros(a, b){
-            return a - b
-        }
-        fi.sort(ordernarNumeros)
-                
+        // function ordernarNumeros(a, b){
+        //     return a - b
+        // }
+        // fi.sort(ordernarNumeros)
+
+
+
+        //Criar Cabeçalho Tabela
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
             linhaHead.appendChild(th)
         }
 
+
+        //-------- Calculos ----------
+        //Soma dos elementos do "Fi" retornados em uma variável simples
         let total = 0
-        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
-        
+        total = fi.reduce((total, currentElement) => total + currentElement) 
+
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
             fr[i] = (fi[i]/total) * 100
         }
@@ -230,7 +266,9 @@ function coletaDados (){
                 linha.appendChild(tdFacP)
 
             tbody.appendChild(linha)
+            linha.classList.add('linha-tabela')
         }
+
 
         //GRÁFICO
         new Chart(ctx, {
@@ -251,6 +289,8 @@ function coletaDados (){
                 }
             }
         });
+
+
     }
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
         function ordernarNumeros(a, b){
@@ -444,8 +484,10 @@ function coletaDados (){
           });
 
     }
-    
+
 }
 
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
+
+//Ordenador da tabela - Sistema DRAG & DROP

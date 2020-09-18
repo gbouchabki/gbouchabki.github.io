@@ -26,39 +26,39 @@
     </nav>
     
     <div id="main-content">
-        <div class="center-content">
+        <div>
             <label>Nome da variável</label>
-            <input id="nomeVariavel" type="text" placeholder="Informe aqui" size="35">
+            <input id="nomeVariavel" type="text" placeholder="Digite o nome da variável...">
         </div>
-        <div class="center-content">
+        <div>
             <label>Entrada de Dados</label>
-            <input id="dadosManual" type="text" placeholder="Separar os dados com ;" size="35">
+            <input id="dadosManual" type="text" placeholder="Separar os dados com ;">
         </div>
-        <div class="center-content">
+        <div>
             <label>Tipo da Variável</label>
             <select id="variavel">
-                <option>(Selecione)</option>
-                <option>Nominal</option>
-                <option>Ordinal</option>
-                <option>Discreta</option>
-                <option>Contínua</option>
+                <option >Selecione...</option>
+                <option>Qualitativa Nominal</option>
+                <option id="ordinal">Qualitativa Ordinal</option>
+                <option>Quantitativa Discreta</option>
+                <option>Quantitativa Contínua</option>
             </select>
         </div>
+        <div id="ordem-resultado" style="visibility: hidden;"></div>
         <div>
             <label>Parâmetro</label>
             <select id="parametro">
-                <option>(Selecione)</option>
+                <option >Selecione...</option>
                 <option>População</option>
                 <option>Amostra</option>
             </select>
 
         </div>
-        <div class="button-group" class="center-content">
+        <div class="button-group">
             <button id="inserir">Calcular</button>
             <!-- <button id="exibir">Exibir</button> -->
         </div>
 
-        <h3 id="tituloResultado"></h3>
 
         <table id="tabela"></table>
 
