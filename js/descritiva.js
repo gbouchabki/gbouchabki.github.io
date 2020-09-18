@@ -130,7 +130,11 @@ function coletaDados (){
         
 
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
-
+        let tituloTab = criarElemento('caption')
+        tituloTab.textContent = 'Váriavel Qualitativa Nominal'
+        tituloTab.style.fontWeight = 700
+        tabela.appendChild(tituloTab)
+        
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
@@ -214,6 +218,11 @@ function coletaDados (){
 
 
         //Criar Cabeçalho Tabela
+        let tituloTab = criarElemento('caption')
+        tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
+        tituloTab.style.fontWeight = 700
+        tabela.appendChild(tituloTab)
+
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
@@ -298,6 +307,11 @@ function coletaDados (){
         }
         dadosSeparados.sort(ordernarNumeros) //Ordenar numeros em ordem crescente
         
+        let tituloTab = criarElemento('caption')
+        tituloTab.textContent = 'Váriavel Quantitativa Discreta'
+        tituloTab.style.fontWeight = 700
+        tabela.appendChild(tituloTab)
+
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
@@ -374,6 +388,11 @@ function coletaDados (){
              return a - b
         }
         dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
+
+        let tituloTab = criarElemento('caption')
+        tituloTab.textContent = 'Váriavel Quantitativa Contínua'
+        tituloTab.style.fontWeight = 700
+        tabela.appendChild(tituloTab)
 
         for (let i = 0; i < indicesTabela.length; i++){
             let th = criarElemento('th')
