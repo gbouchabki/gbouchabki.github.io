@@ -14,6 +14,7 @@ const tabela = document.getElementById('tabela')
 const ctx = document.getElementsByClassName("line-chart")
 const ctx2 = document.getElementsByClassName("line-chart2")
 const ctx3 = document.getElementsByClassName("line-chart3")
+const mtc = document.getElementById('mtc')
 
 
 
@@ -86,7 +87,7 @@ function coletaDados (){
 
 
     //Log para conferir Arrays no console
-    console.log(dadosSeparados)
+    console.log(dadosSeparados) //1
 
 
     let obj = dadosSeparados.reduce(function (object, item) {
@@ -104,9 +105,10 @@ function coletaDados (){
     let fr = Object.values(obj)
     let fac = Object.values(obj)
     let facP = Object.values(obj)
+    let ds = Object.values(obj)
 
-    console.log(dados)
-    console.log(fi)
+    console.log(dados) //2
+    console.log(fi) //3
 
     // Criar Tabela
 
@@ -157,14 +159,78 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
             facP[i+1] = facP[i+0] + fr[i+1]
         }
+
+        //Calculo da média######
+        let soma = 0
+        let media = 0
+        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
+        media = soma/dadosSeparados.length
+
+        //Calculo##########
         
+        //Acha a frequência de um número no Array
+        function calcularFreq(numero, dadosSeparados){
+            let num_vezes=0
+            for (let pos in dadosSeparados) {
+                if (dadosSeparados[pos]==numero) {
+                    num_vezes++
+                }
+            }
+            return num_vezes
+        }
+
+        //Descobre a posição do maior elemento
+        function obterPosMaior(dadosSeparados){
+            let posMaior=0
+            let numMaior=dadosSeparados[0]
+            for (var pos in dadosSeparados){
+                if (dadosSeparados[pos]>numMaior) {
+                    numMaior=dadosSeparados[pos]
+                    posMaior=pos
+                }
+            }
+            return posMaior
+        }
+
+        //Função para calcular a MODA
+        function obterModa(dadosSeparados){
+            let freq=new Array(dadosSeparados.length)
+            for (let pos in dadosSeparados){
+                let numero=dadosSeparados[pos]
+                freq[pos]=calcularFreq(numero, dadosSeparados)
+            }
+            let posModa=obterPosMaior(freq)
+            return dadosSeparados[posModa]
+        }
+
+        let vetModa = dadosSeparados
+        let moda = obterModa(vetModa)
+
+        //Calculo da Mediana####
+
+        if(dadosSeparados.length % 2 == 0){
+            let pos1 = dadosSeparados.length/2
+            let pos2 = pos1 - 1
+            let elem1 = dadosSeparados[pos1]
+            let elem2 = dadosSeparados[pos2]
+            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        }
+        else{
+            let posCentro = (dadosSeparados.length - 1)/2
+            var mediana = dadosSeparados[posCentro]
+        }
+        
+
         //Logs para conferir os arrays  no console
-        console.log(total)
-        console.log(fr)
-        console.log(fi)
-        console.log(fac)
-        console.log(facP)
-        
+        console.log(total)//4
+        console.log(fr)//5
+        console.log(fi)//6
+        console.log(fac)//7
+        console.log(facP)//8
+        console.log(soma)//9
+        console.log(media)//10
+        console.log(moda)//11
+        console.log(mediana)//12
         //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
@@ -188,6 +254,10 @@ function coletaDados (){
 
             tbody.appendChild(linha)
         }
+
+        //Exibição da Média, Moda e Mediana#####
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+        
 
         //GRÁFICO
         new Chart(ctx, {
@@ -248,6 +318,66 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
             facP[i+1] = facP[i+0] + fr[i+1]
         }
+
+        //Calculo da média######
+        let soma = 0
+        let media = 0
+        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
+        media = soma/dadosSeparados.length
+
+        //Calculo##########
+        
+        //Acha a frequência de um número no Array
+        function calcularFreq(numero, dadosSeparados){
+            let num_vezes=0
+            for (let pos in dadosSeparados) {
+                if (dadosSeparados[pos]==numero) {
+                    num_vezes++
+                }
+            }
+            return num_vezes
+        }
+
+        //Descobre a posição do maior elemento
+        function obterPosMaior(dadosSeparados){
+            let posMaior=0
+            let numMaior=dadosSeparados[0]
+            for (var pos in dadosSeparados){
+                if (dadosSeparados[pos]>numMaior) {
+                    numMaior=dadosSeparados[pos]
+                    posMaior=pos
+                }
+            }
+            return posMaior
+        }
+
+        //Função para calcular a MODA
+        function obterModa(dadosSeparados){
+            let freq=new Array(dadosSeparados.length)
+            for (let pos in dadosSeparados){
+                let numero=dadosSeparados[pos]
+                freq[pos]=calcularFreq(numero, dadosSeparados)
+            }
+            let posModa=obterPosMaior(freq)
+            return dadosSeparados[posModa]
+        }
+
+        let vetModa = dadosSeparados
+        let moda = obterModa(vetModa)
+
+        //Calculo da Mediana####
+
+        if(dadosSeparados.length % 2 == 0){
+            let pos1 = dadosSeparados.length/2
+            let pos2 = pos1 - 1
+            let elem1 = dadosSeparados[pos1]
+            let elem2 = dadosSeparados[pos2]
+            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        }
+        else{
+            let posCentro = (dadosSeparados.length - 1)/2
+            var mediana = dadosSeparados[posCentro]
+        }
         
         //Logs para conferir os arrays  no console
         console.log(total)
@@ -278,6 +408,8 @@ function coletaDados (){
             linha.classList.add('linha-tabela')
         }
 
+        //Exibição da Média, Moda e Mediana#####
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
 
         //GRÁFICO
         new Chart(ctx, {
@@ -334,6 +466,66 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
             facP[i+1] = facP[i+0] + fr[i+1]
         }
+
+        //Calculo da média######
+        let soma = 0
+        let media = 0
+        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
+        media = soma/dadosSeparados.length
+
+        //Calculo##########
+        
+        //Acha a frequência de um número no Array
+        function calcularFreq(numero, dadosSeparados){
+            let num_vezes=0
+            for (let pos in dadosSeparados) {
+                if (dadosSeparados[pos]==numero) {
+                    num_vezes++
+                }
+            }
+            return num_vezes
+        }
+
+        //Descobre a posição do maior elemento
+        function obterPosMaior(dadosSeparados){
+            let posMaior=0
+            let numMaior=dadosSeparados[0]
+            for (var pos in dadosSeparados){
+                if (dadosSeparados[pos]>numMaior) {
+                    numMaior=dadosSeparados[pos]
+                    posMaior=pos
+                }
+            }
+            return posMaior
+        }
+
+        //Função para calcular a MODA
+        function obterModa(dadosSeparados){
+            let freq=new Array(dadosSeparados.length)
+            for (let pos in dadosSeparados){
+                let numero=dadosSeparados[pos]
+                freq[pos]=calcularFreq(numero, dadosSeparados)
+            }
+            let posModa=obterPosMaior(freq)
+            return dadosSeparados[posModa]
+        }
+
+        let vetModa = dadosSeparados
+        let moda = obterModa(vetModa)
+
+        //Calculo da Mediana####
+
+        if(dadosSeparados.length % 2 == 0){
+            let pos1 = dadosSeparados.length/2
+            let pos2 = pos1 - 1
+            let elem1 = dadosSeparados[pos1]
+            let elem2 = dadosSeparados[pos2]
+            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        }
+        else{
+            let posCentro = (dadosSeparados.length - 1)/2
+            var mediana = dadosSeparados[posCentro]
+        }
         //Logs para conferir os arrays  no console
         console.log(total)
         console.log(fr)
@@ -362,6 +554,9 @@ function coletaDados (){
             tbody.appendChild(linha)
         }
         
+        //Exibição da Média, Moda e Mediana#####
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+
         //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
@@ -417,7 +612,66 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        // tituloResultado.innerHTML += nomeVariavel.value +  '&nbsp' + '</br>' + 'Dado   - Fi  -  Fr  -  Fac' + '</br>' // Titulo da tabela provisória
+        //Calculo da média######
+        let soma = 0
+        let media = 0
+        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
+        media = soma/dadosSeparados.length
+
+        //Calculo##########
+        
+        //Acha a frequência de um número no Array
+        function calcularFreq(numero, dadosSeparados){
+            let num_vezes=0
+            for (let pos in dadosSeparados) {
+                if (dadosSeparados[pos]==numero) {
+                    num_vezes++
+                }
+            }
+            return num_vezes
+        }
+
+        //Descobre a posição do maior elemento
+        function obterPosMaior(dadosSeparados){
+            let posMaior=0
+            let numMaior=dadosSeparados[0]
+            for (var pos in dadosSeparados){
+                if (dadosSeparados[pos]>numMaior) {
+                    numMaior=dadosSeparados[pos]
+                    posMaior=pos
+                }
+            }
+            return posMaior
+        }
+
+        //Função para calcular a MODA
+        function obterModa(dadosSeparados){
+            let freq=new Array(dadosSeparados.length)
+            for (let pos in dadosSeparados){
+                let numero=dadosSeparados[pos]
+                freq[pos]=calcularFreq(numero, dadosSeparados)
+            }
+            let posModa=obterPosMaior(freq)
+            return dadosSeparados[posModa]
+        }
+
+        let vetModa = dadosSeparados
+        let moda = obterModa(vetModa)
+
+        //Calculo da Mediana####
+
+        if(dadosSeparados.length % 2 == 0){
+            let pos1 = dadosSeparados.length/2
+            let pos2 = pos1 - 1
+            let elem1 = dadosSeparados[pos1]
+            let elem2 = dadosSeparados[pos2]
+            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        }
+        else{
+            let posCentro = (dadosSeparados.length - 1)/2
+            var mediana = dadosSeparados[posCentro]
+        }
+
         //Logs para conferir os arrays  no console
         console.log(total)
         console.log(fr)
@@ -466,6 +720,9 @@ function coletaDados (){
                 linha.appendChild(tdFacP)
 
         }
+
+        //Exibição da Média, Moda e Mediana#####
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
 
         //GRÁFICO
         new Chart(ctx, {
