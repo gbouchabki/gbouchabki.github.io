@@ -266,7 +266,7 @@ function coletaDados (){
                 labels: dados,
                 datasets: [{
                 data: fr,
-                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
                 }],
             },
             options: {
@@ -418,7 +418,7 @@ function coletaDados (){
                 labels: dados,
                 datasets: [{
                 data: fr,
-                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
                 }],
             },
             options: {
@@ -566,7 +566,7 @@ function coletaDados (){
                 datasets: [{
                     label: "FR%",
                     data: fr,
-                    backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                    backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
                 }],
             },
             options: {
@@ -732,7 +732,7 @@ function coletaDados (){
               datasets: [{
                 label: 'Fr%',
                 data: fr,
-                backgroundColor: ['#000080', '#0000FF', '#00BFFF', '#87CEFA', '#87CEEB', '#ADD8E6'],
+                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
               }]
             },
             options: {
