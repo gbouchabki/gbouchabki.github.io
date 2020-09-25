@@ -99,6 +99,19 @@ select {
         background-color: var(--primary-color);
         color: white;
     }
+
+    .seta {
+        display: inline-block;
+        text-align: left;
+        width: 10px;
+        height: 10px;
+        background-image: url('../images/seta.png');
+        background-position: center;
+        background-size: cover;
+    }
+
+   
+
 .chart-container {
     position: relative;
     margin: auto;

@@ -31,32 +31,13 @@ const ordinal = document.querySelector('#ordinal')
 
 // ------------ Mostrar O Input de Variaveis --------
 
-function mostrarOrdinal(){
-    if(variavel.selectedIndex === 2){
-        ordem.style.visibility = 'visible'
-        let label = document.createElement('label') 
-        label.textContent = 'Ordem das Váriaveis'
-        ordem.appendChild(label)  
-        let campo = document.createElement('input')
-        campo.className = 'ordinal'
-        campo.placeholder = 'Separar os termos por ;'
-        campo.id = 'dadoOrdinal'
-        ordem.appendChild(campo)
-        console.log('esta funcionando') 
-    
-    }else{
-        ordem.innerHTML = ''
-        //let campo = document.createElement()
-        //form.appendChild(campo)
-    }
-}
-
-variavel.addEventListener('change', mostrarOrdinal)
-
+// 
 
 
 //Função para coletar os dados
 function coletaDados (){
+
+    tabela.innerHTML = ''
 
     let valido = true
 
@@ -280,13 +261,7 @@ function coletaDados (){
         });
     }
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
-        // function ordernarNumeros(a, b){
-        //     return a - b
-        // }
-        // fi.sort(ordernarNumeros)
-
-
-
+        
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -366,7 +341,6 @@ function coletaDados (){
         let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
-
         if(dadosSeparados.length % 2 == 0){
             let pos1 = dadosSeparados.length/2
             let pos2 = pos1 - 1
@@ -383,10 +357,16 @@ function coletaDados (){
         console.log(total)
         console.log(fr)
 
-        //Exibição dos daods na nova tabela
-        for(let i = 0; i < dados.length; i++){
+
+        //Exibição dos dados na nova tabela
+        for(let i = 0; i < dados.length - 1; i++){
+
             let linha = criarElemento('tr')
 
+            let pos = dados.indexOf(dados[i])
+
+
+                let seta = criarElemento('span')
                 let tdDados = criarElemento('td')
                 tdDados.textContent = dados[i]
                 let tdFi = criarElemento('td')
@@ -403,10 +383,27 @@ function coletaDados (){
                 linha.appendChild(tdFr)
                 linha.appendChild(tdFac)
                 linha.appendChild(tdFacP)
+                
+                tdDados.appendChild(seta)
 
-            tbody.appendChild(linha)
+                seta.classList.add('seta')
+                seta.setAttribute('onclick', 'moveDown('+ pos +')')
+                
+                tbody.appendChild(linha)
             linha.classList.add('linha-tabela')
         }
+
+        //Ordenador da tabela
+        function moveDown (pos){
+            let dadoTemp = dados[pos]
+            dados.splice(pos, 1)
+            let prox = pos + 1
+            dados.splice(prox,0,dadoTemp)
+
+            coletaDados()
+        } 
+
+        
 
         //Exibição da Média, Moda e Mediana#####
         mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
@@ -431,6 +428,7 @@ function coletaDados (){
             }
         });
 
+     
 
     }
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
@@ -766,4 +764,6 @@ function coletaDados (){
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
 
-//Ordenador da tabela - Sistema DRAG & DROP
+function limpaTabela (){
+}
+
