@@ -17,8 +17,6 @@ const ctx3 = document.getElementsByClassName("line-chart3")
 const mtc = document.getElementById('mtc')
 
 
-
-
 let todosDados
 let dadosSeparados = []
 let dadosRepetidos = []
@@ -27,12 +25,6 @@ let freq = []
 
 const ordem = document.querySelector('#ordem-resultado')
 const ordinal = document.querySelector('#ordinal')
-
-
-// ------------ Mostrar O Input de Variaveis --------
-
-// 
-
 
 //Função para coletar os dados
 function coletaDados (){
@@ -62,23 +54,19 @@ function coletaDados (){
         return 0
     }
     else{
-    todosDados = dadosManual.value // Entrada de dados Manual
-    dadosSeparados = todosDados.split(';') // Converte String em Array
+        todosDados = dadosManual.value // Entrada de dados Manual
+        dadosSeparados = todosDados.split(';') // Converte String em Array
     }
 
-
-    //Log para conferir Arrays no console
-    console.log(dadosSeparados) //1
-
-
+    
     let obj = dadosSeparados.reduce(function (object, item) {
 
-        if (!object[item]) {
-            object[item] = 1;
-        } else {
-            object[item]++;
-        }
-        return object;
+    if (!object[item]) {
+        object[item] = 1;
+    } else {
+        object[item]++;
+    }
+    return object;
     }, {})
 
     let dados = Object.keys(obj)
@@ -90,6 +78,10 @@ function coletaDados (){
 
     console.log(dados) //2
     console.log(fi) //3
+    console.log(fi.type) //3
+
+    //Log para conferir Arrays no console
+    console.log(dadosSeparados) //1
 
     // Criar Tabela
 
@@ -119,6 +111,8 @@ function coletaDados (){
         
         
         
+        organizarDados()
+
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -291,6 +285,7 @@ function coletaDados (){
         
         
         
+
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -388,51 +383,57 @@ function coletaDados (){
 
 
         //Exibição dos dados na nova tabela
-        for(let i = 0; i < dados.length - 1; i++){
+        for(let i = 0; i < dados.length; i++){
 
             let linha = criarElemento('tr')
 
-            let pos = dados.indexOf(dados[i])
+            let posicao = dados.indexOf(dados[i])
 
 
                 let seta = criarElemento('span')
                 let tdDados = criarElemento('td')
-                tdDados.textContent = dados[i]
+                let pDados = criarElemento('p')
+                pDados.textContent = dados[i]
                 let tdFi = criarElemento('td')
-                tdFi.textContent = fi[i]
+                let pFi = criarElemento('p')
+                pFi.textContent = fi[i]
                 let tdFr = criarElemento('td')
-                tdFr.textContent = fr[i].toFixed(2) + '%'
+                let pFr = criarElemento('p')
+                pFr.textContent = fr[i].toFixed(2) + '%'
                 let tdFac = criarElemento('td')
-                tdFac.textContent = fac[i]
+                let pFac = criarElemento('p')
+                pFac.textContent = fac[i]
                 let tdFacP = criarElemento('td')
-                tdFacP.textContent = facP[i].toFixed(2)+'%'
+                let pFacP = criarElemento('p')
+                pFacP.textContent = facP[i].toFixed(2)+'%'
 
                 linha.appendChild(tdDados)
                 linha.appendChild(tdFi)
                 linha.appendChild(tdFr)
                 linha.appendChild(tdFac)
                 linha.appendChild(tdFacP)
+
+                tdDados.appendChild(pDados)
+                tdFi.appendChild(pFi)
+                tdFr.appendChild(pFr)
+                tdFac.appendChild(pFac)
+                tdFacP.appendChild(pFacP)
                 
                 tdDados.appendChild(seta)
 
                 seta.classList.add('seta')
-                seta.setAttribute('onclick', 'moveDown('+ pos +')')
+                seta.setAttribute('onclick', 'moveDown('+ posicao +')')
+
+                pDados.classList.add('dado')
+                pFi.classList.add('fi')
+                pFr.classList.add('fr')
+                pFac.classList.add('fac')
+                pFacP.classList.add('facP')
                 
                 tbody.appendChild(linha)
             linha.classList.add('linha-tabela')
+
         }
-
-        //Ordenador da tabela
-        function moveDown (pos){
-            let dadoTemp = dados[pos]
-            dados.splice(pos, 1)
-            let prox = pos + 1
-            dados.splice(prox,0,dadoTemp)
-
-            coletaDados()
-        } 
-
-        
 
         //Exibição da Média, Moda e Mediana#####
         mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
@@ -469,6 +470,7 @@ function coletaDados (){
         
         
         
+
         function ordernarNumeros(a, b){
             return a - b
         }
@@ -626,6 +628,7 @@ function coletaDados (){
         
         
         
+               
         function ordernarNumeros(a, b){
              return a - b
         }
@@ -766,6 +769,9 @@ function coletaDados (){
                 linha.appendChild(tdFac)
                 linha.appendChild(tdFacP)
 
+            tbody.appendChild(linha)
+
+
         }
 
         //Exibição da Média, Moda e Mediana#####
@@ -807,12 +813,222 @@ function coletaDados (){
           });
 
     }
-
+   
 }
 
 //Chamada da função no botão inserir
 inserir.addEventListener('click', coletaDados)
 
-function limpaTabela (){
-}
+//Ordenador da tabela
+function moveDown (elem){
 
+    let dados = []
+    let fi = []
+    let fr = []
+    let fac = []
+    let facP = []
+    let numLinhas = document.getElementsByTagName('tr')
+
+    for (let i = 0; i < numLinhas.length - 1; i++){
+        dados.push(document.querySelector('.dado').innerText)
+        fi.push(document.querySelector('.fi').innerText)
+        
+        let rDado = document.querySelector('.dado')
+        rDado.classList.remove('dado')
+        let rFi = document.querySelector('.fi')
+        rFi.classList.remove('fi')
+
+    }
+
+    for(let i = 0; i < fi.length; i++){
+    fi[i] = parseInt(fi[i])
+    fr.push(fi[i])
+    fac.push(fi[i])
+    facP.push(fi[i])
+    }
+
+    console.log(dados)
+    console.log(fi)
+
+    tabela.innerHTML = ''
+    mtc.innerHTML = ''
+
+    function changePosition(arr, from, to) {
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
+        return arr;
+    };
+
+    dados = changePosition(dados, elem , elem + 1)
+    fi = changePosition(fi, elem , elem + 1)
+    fr = changePosition(fr, elem , elem + 1)
+    fac = changePosition(fac, elem , elem + 1)
+    facP = changePosition(facP, elem , elem + 1)
+
+    console.log(dados)
+
+    function criarElemento (elemento){
+        return document.createElement(elemento)
+    }
+
+
+    let thead = criarElemento('thead')
+    let tbody = criarElemento('tbody')
+
+    let indicesTabela = [nomeVariavel.value, 'Frequência','Frequência (%)','Frequência Aculmulada','FAC%']
+
+
+    tabela.appendChild(thead)
+    tabela.appendChild(tbody)
+
+    let linhaHead = criarElemento('tr')
+
+    thead.appendChild(linhaHead)
+
+    let tituloTab = criarElemento('caption')
+        tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
+        tituloTab.style.fontWeight = 700
+        tabela.appendChild(tituloTab)
+
+        for (let i = 0; i < indicesTabela.length; i++){
+            let th = criarElemento('th')
+            th.textContent = indicesTabela[i]
+            linhaHead.appendChild(th)
+        }
+
+
+        //-----------CALCULOS-----------
+
+        let total = 0
+        total = fi.reduce((total, currentElement) => total + currentElement) 
+
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
+            fr[i] = (fi[i]/total) * 100
+        }
+
+        fac[0] = fi[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
+            fac[i+1] = fac[i+0] + fi[i+1]
+        }
+
+        facP[0] = fr[0]
+        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
+            facP[i+1] = facP[i+0] + fr[i+1]
+        }
+
+
+        // //Calculo da média######
+        let soma = 0
+        let media = 0
+        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
+        media = soma/dadosSeparados.length
+
+        //Calculo##########
+        
+        //Acha a frequência de um número no Array
+        function calcularFreq(numero, dadosSeparados){
+            let num_vezes=0
+            for (let pos in dadosSeparados) {
+                if (dadosSeparados[pos]==numero) {
+                    num_vezes++
+                }
+            }
+            return num_vezes
+        }
+
+        //Descobre a posição do maior elemento
+        function obterPosMaior(dadosSeparados){
+            let posMaior=0
+            let numMaior=dadosSeparados[0]
+            for (var pos in dadosSeparados){
+                if (dadosSeparados[pos]>numMaior) {
+                    numMaior=dadosSeparados[pos]
+                    posMaior=pos
+                }
+            }
+            return posMaior
+        }
+
+        //Função para calcular a MODA
+        function obterModa(dadosSeparados){
+            let freq=new Array(dadosSeparados.length)
+            for (let pos in dadosSeparados){
+                let numero=dadosSeparados[pos]
+                freq[pos]=calcularFreq(numero, dadosSeparados)
+            }
+            let posModa=obterPosMaior(freq)
+            return dadosSeparados[posModa]
+        }
+
+        let vetModa = dadosSeparados
+        let moda = obterModa(vetModa)
+
+        //Calculo da Mediana####
+        if(dadosSeparados.length % 2 == 0){
+            let pos1 = dadosSeparados.length/2
+            let pos2 = pos1 - 1
+            let elem1 = dadosSeparados[pos1]
+            let elem2 = dadosSeparados[pos2]
+            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        }
+        else{
+            let posCentro = (dadosSeparados.length - 1)/2
+            var mediana = dadosSeparados[posCentro]
+        }
+
+        // Exibição dos dados na nova tabela
+        for(let i = 0; i < dados.length; i++){
+
+            let linha = criarElemento('tr')
+
+            let posicao = dados.indexOf(dados[i])
+
+
+            let seta = criarElemento('span')
+            let tdDados = criarElemento('td')
+            let pDados = criarElemento('p')
+            pDados.textContent = dados[i]
+            let tdFi = criarElemento('td')
+            let pFi = criarElemento('p')
+            pFi.textContent = fi[i]
+            let tdFr = criarElemento('td')
+            let pFr = criarElemento('p')
+            pFr.textContent = fr[i].toFixed(2) + '%'
+            let tdFac = criarElemento('td')
+            let pFac = criarElemento('p')
+            pFac.textContent = fac[i]
+            let tdFacP = criarElemento('td')
+            let pFacP = criarElemento('p')
+            pFacP.textContent = facP[i].toFixed(2)+'%'
+
+            linha.appendChild(tdDados)
+            linha.appendChild(tdFi)
+            linha.appendChild(tdFr)
+            linha.appendChild(tdFac)
+            linha.appendChild(tdFacP)
+
+            tdDados.appendChild(pDados)
+            tdFi.appendChild(pFi)
+            tdFr.appendChild(pFr)
+            tdFac.appendChild(pFac)
+            tdFacP.appendChild(pFacP)
+            
+            tdDados.appendChild(seta)
+
+            seta.classList.add('seta')
+            seta.setAttribute('onclick', 'moveDown('+ posicao +')')
+
+            pDados.classList.add('dado')
+            pFi.classList.add('fi')
+            pFr.classList.add('fr')
+            pFac.classList.add('fac')
+            pFacP.classList.add('facP')
+            
+            tbody.appendChild(linha)
+            linha.classList.add('linha-tabela')
+
+        }
+        
+                //Exibição da Média, Moda e Mediana#####
+    mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+
+} 
