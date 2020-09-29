@@ -123,3 +123,6 @@ select {
 .visibility {
     visibility: hidden;
 }
+/* .hidden {
+    visibility: hidden;
+} */
