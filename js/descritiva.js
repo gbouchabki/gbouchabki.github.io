@@ -803,6 +803,7 @@ function moveDown (elem){
 
     tabela.innerHTML = ''
     mtc.innerHTML = ''
+    ctx.innerHTML = ''
 
     function changePosition(arr, from, to) {
         arr.splice(to, 0, arr.splice(from, 1)[0]);
@@ -976,6 +977,27 @@ function moveDown (elem){
             
             tbody.appendChild(linha)
             linha.classList.add('linha-tabela')
+
+             //GRÁFICO
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: dados,
+                datasets: [{
+                data: fr,
+                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: "FR%",
+                    fontSize: 45,
+                }
+            }
+        });
+
 
         }
         
