@@ -112,7 +112,13 @@ function coletaDados (){
     thead.appendChild(linhaHead)
         
 
+    
+    
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
+        
+        
+        
+        
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -124,11 +130,11 @@ function coletaDados (){
             linhaHead.appendChild(th)
         }
         
-        let total = 0
-        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        let totalFi = 0
+        totalFi = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
-            fr[i] = (fi[i]/total) * 100
+            fr[i] = (fi[i]/totalFi) * 100
         }
 
         fac[0] = fi[0]
@@ -189,21 +195,31 @@ function coletaDados (){
 
         //Calculo da Mediana####
 
-        if(dadosSeparados.length % 2 == 0){
-            let pos1 = dadosSeparados.length/2
-            let pos2 = pos1 - 1
-            let elem1 = dadosSeparados[pos1]
-            let elem2 = dadosSeparados[pos2]
-            var mediana = (parseInt(elem1)+parseInt(elem2))/2
-        }
-        else{
-            let posCentro = (dadosSeparados.length - 1)/2
-            var mediana = dadosSeparados[posCentro]
-        }
+        let posCentro = (dadosSeparados.length - 1) / 2
+        var mediana = dadosSeparados[posCentro]
+
         
+        //Calcular Quartil##########
+
+        //Q1
+        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
+        let q1 = dadosSeparados[posQ1]
+
+        let mq3 = posQ1 * 3 // Q3
+        let q3 = dadosSeparados[mq3]
+
+        
+        //Calcular Quintil##########
+
+        let posK1 = (dadosSeparados.length -1) / 4 //K1
+        let k1 = dadosSeparados[posK1]
+
+        //Calcular Decil##########
+
+        //Calcular o Porcentil##########
 
         //Logs para conferir os arrays  no console
-        console.log(total)//4
+        console.log(totalFi)//4
         console.log(fr)//5
         console.log(fi)//6
         console.log(fac)//7
@@ -237,7 +253,13 @@ function coletaDados (){
         }
 
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        + 'Moda: ' + moda + '</br>'
+        + 'Mediana: ' + mediana + '</br>'
+        + 'Quartil Q1: ' + q1 + '</br>'
+        + 'Quartil Q2: ' + mediana + '</br>'
+        + 'Quartil Q3: ' + q3 + '</br>'
+        + 'Quartil Q4: ' + dadosSeparados.slice(-1)[0] + '</br>'
         
 
         //GRÁFICO
@@ -260,7 +282,14 @@ function coletaDados (){
             }
         });
     }
+    
+    
+    
+    
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
+        
+        
+        
         
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
@@ -277,11 +306,11 @@ function coletaDados (){
 
         //-------- Calculos ----------
         //Soma dos elementos do "Fi" retornados em uma variável simples
-        let total = 0
-        total = fi.reduce((total, currentElement) => total + currentElement) 
+        let totalFi = 0
+        totalFi = fi.reduce((total, currentElement) => total + currentElement) 
 
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
-            fr[i] = (fi[i]/total) * 100
+            fr[i] = (fi[i]/totalFi) * 100
         }
 
         fac[0] = fi[0]
@@ -354,7 +383,7 @@ function coletaDados (){
         }
         
         //Logs para conferir os arrays  no console
-        console.log(total)
+        console.log(totalFi)
         console.log(fr)
 
 
@@ -431,7 +460,15 @@ function coletaDados (){
      
 
     }
+    
+    
+    
+    
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
+        
+        
+        
+        
         function ordernarNumeros(a, b){
             return a - b
         }
@@ -448,11 +485,11 @@ function coletaDados (){
             linhaHead.appendChild(th)
         }
 
-        let total = 0
-        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        let totalFi = 0
+        totalFi = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
-            fr[i] = (fi[i]/total) * 100
+            fr[i] = (fi[i]/totalFi) * 100
         }
 
         fac[0] = fi[0]
@@ -471,7 +508,6 @@ function coletaDados (){
         soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
         media = soma/dadosSeparados.length
 
-        //Calculo##########
         
         //Acha a frequência de um número no Array
         function calcularFreq(numero, dadosSeparados){
@@ -524,11 +560,16 @@ function coletaDados (){
             let posCentro = (dadosSeparados.length - 1)/2
             var mediana = dadosSeparados[posCentro]
         }
+
+        //Calcular a Variância##########
+
+        //Calcular o DESVIO PADRÃO##########
+
         //Logs para conferir os arrays  no console
-        console.log(total)
+        console.log(totalFi)
         console.log(fr)
 
-        //Exibição dos daods na nova tabela
+        //Exibição dos dados na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
 
@@ -576,7 +617,15 @@ function coletaDados (){
             }
         });
     }
+    
+    
+    
+    
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
+        
+        
+        
+        
         function ordernarNumeros(a, b){
              return a - b
         }
@@ -593,11 +642,11 @@ function coletaDados (){
             linhaHead.appendChild(th)
         }
 
-        let total = 0
-        total = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        let totalFi = 0
+        totalFi = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
         
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
-            fr[i] = (fi[i]/total) * 100
+            fr[i] = (fi[i]/totalFi) * 100
         }
 
         fac[0] = fi[0]
@@ -671,7 +720,7 @@ function coletaDados (){
         }
 
         //Logs para conferir os arrays  no console
-        console.log(total)
+        console.log(totalFi)
         console.log(fr)
         
         let at = 0 //Amplitude
