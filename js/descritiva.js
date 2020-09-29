@@ -104,9 +104,6 @@ function coletaDados (){
     let linhaHead = criarElemento('tr')
 
     thead.appendChild(linhaHead)
-        
-
-    
     
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
         
@@ -359,15 +356,7 @@ function coletaDados (){
         });
     }
     
-    
-    
-    
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
-        
-        
-        
-        
-
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -379,7 +368,6 @@ function coletaDados (){
             th.textContent = indicesTabela[i]
             linhaHead.appendChild(th)
         }
-
 
         //-------- Calculos ----------
         //Soma dos elementos do "Fi" retornados em uma variável simples
@@ -633,14 +621,12 @@ function coletaDados (){
 
     }
     
-    
-    
-    
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
         
         
         
         
+
         function ordernarNumeros(a, b){
             return a - b
         }
@@ -874,14 +860,7 @@ function coletaDados (){
         });
     }
     
-    
-    
-    
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
-        
-        
-        
-        
                
         function ordernarNumeros(a, b){
              return a - b
