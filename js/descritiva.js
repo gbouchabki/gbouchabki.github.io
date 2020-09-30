@@ -216,18 +216,7 @@ function coletaDados (){
 
         //Calcular Decil##########
 
-        let posD1 = (dadosSeparados.length - 1) / 5
-        for(let i = 0; i < 10; i++){
-            decil[i] = dadosSeparados[posD1] * 1
-            console.log(decil)
-        }
-
-        
-        
-        //let decil = (dadosSeparados, val) =>
-        //(10 * dadosSeparados.reduce((acc, v) => acc + (v < val ? 1 : 0) + (v === val ? 0.//5 : 0), 0)) / dadosSeparados.length;
-
-        //Calcular o Porcentil##########
+        //Calcular o Percentil##########
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -446,17 +435,8 @@ function coletaDados (){
         let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
-        if(dadosSeparados.length % 2 == 0){
-            let pos1 = dadosSeparados.length/2
-            let pos2 = pos1 - 1
-            let elem1 = dadosSeparados[pos1]
-            let elem2 = dadosSeparados[pos2]
-            var mediana = (parseInt(elem1)+parseInt(elem2))/2
-        }
-        else{
-            let posCentro = (dadosSeparados.length - 1)/2
-            var mediana = dadosSeparados[posCentro]
-        }
+        let posCentro = (dadosSeparados.length - 1) / 2
+        var mediana = dadosSeparados[Math.round(posCentro)]
 
         //Calcular Quartil##########
 
