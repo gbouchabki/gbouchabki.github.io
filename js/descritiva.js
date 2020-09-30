@@ -55,7 +55,7 @@ function coletaDados (){
     }
     else{
         todosDados = dadosManual.value // Entrada de dados Manual
-        dadosSeparados = todosDados.split('; ') // Converte String em Array
+        dadosSeparados = todosDados.split(';') // Converte String em Array
     }
 
     
@@ -861,7 +861,12 @@ function coletaDados (){
     }
     
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
-               
+        
+        for (let i = 0; i < dadosSeparados.length; i++){
+            dadosSeparados[i] = parseFloat(dadosSeparados[i])
+        }
+        console.log(dadosSeparados)
+
         function ordernarNumeros(a, b){
              return a - b
         }
@@ -878,28 +883,45 @@ function coletaDados (){
         n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
         xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
         xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
-        at = xmax --- xmin //Subtração do primeiro elemento pelo ultimo elemento
+        at = xmax - xmin //Subtração do primeiro elemento pelo ultimo elemento
+        at = at + 1
         k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
-        intervalo = (at / k) //Calcula o intervalo dos agrupamentos
+        
+        //Calculo do intervalo dos agrupamentos
+        let lk2 = Math.trunc(k)
+        let lk1 = lk2 - 1
+        let lk3 = lk2 + 1
+
+        let valid = false
+        do{
+            if(at % lk1 === 0){
+                intervalo = at / lk1
+                valid = true
+                
+            } else if (at % lk2 === 0){
+                intervalo = at / lk2
+                valid = true
+                
+            } else if(at % lk3 === 0){
+                intervalo = at / lk3
+                valid = true
+                
+            } else {
+                at++
+            }
+            console.log('Amplitude: '+ at)
+            console.log('Numero de Linhas 1: '+ lk1)
+            console.log('Numero de Linhas 2: '+ lk2)
+            console.log('Numero de Linhas 3: '+ lk3)
+            console.log(valid)
+
+        } while(valid === false)
+
 
         console.log('Quantidade de Elementos: ' + n)
         console.log('Referência: ' + at)
         console.log('Quantidade de Linhas: ' + Math.round(k))
         console.log('Intervalo: ' + Math.round(intervalo))
-
-        let itvDado = []
-        let itvFi = []
-
-        for (let i = 0; i < dados.length; i++){
-            if(dados[i] <= intervalo){
-                
-
-            }
-        }
-
-        console.log('Dados do Intervalo: ' + itvDado)
-
-
 
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Quantitativa Contínua'
@@ -910,23 +932,6 @@ function coletaDados (){
             let th = criarElemento('th')
             th.textContent = indicesTabela[i]
             linhaHead.appendChild(th)
-        }
-
-        let totalFi = 0
-        totalFi = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
-        
-        for(let i = 0; i < fi.length; i++){ //Calculo do "Fr"
-            fr[i] = (fi[i]/totalFi) * 100
-        }
-
-        fac[0] = fi[0]
-        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac"
-            fac[i+1] = fac[i+0] + fi[i+1]
-        }
-
-        facP[0] = fr[0]
-        for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
-            facP[i+1] = facP[i+0] + fr[i+1]
         }
 
         //Calculo da média######
@@ -1013,104 +1018,131 @@ function coletaDados (){
         let mk4 = posK1 * 4 //K4
         let k4 = dadosSeparados[mk4]
 
-        //Cacular XI.FI
-        for(let i = 0; i < dados.length; i++){
-            xifi[i]=dados[i]*fi[i]
-        }
+        // //Cacular XI.FI
+        // for(let i = 0; i < dados.length; i++){
+        //     xifi[i]=dados[i]*fi[i]
+        // }
 
-        //Soma dos elementos do "xifi" retornados em uma variável simples
-        let totalXifi = 0
-        for(let i in xifi) {
-            totalXifi += xifi[i]
-        }
+        // //Soma dos elementos do "xifi" retornados em uma variável simples
+        // let totalXifi = 0
+        // for(let i in xifi) {
+        //     totalXifi += xifi[i]
+        // }
 
-        //Média aritimética ponderada
-        let map = 0
-        map = totalXifi / totalFi
+        // //Média aritimética ponderada
+        // let map = 0
+        // map = totalXifi / totalFi
 
-        //Calculando o desvio
-        for(let i = 0; i < dados.length; i++){
-            if(dados[i] > map){
-                desvio[i] = dados[i] - map
-            }
-            else{
-                desvio[i] = map - dados[i]
-            }
-        }
+        // //Calculando o desvio
+        // for(let i = 0; i < dados.length; i++){
+        //     if(dados[i] > map){
+        //         desvio[i] = dados[i] - map
+        //     }
+        //     else{
+        //         desvio[i] = map - dados[i]
+        //     }
+        // }
 
-        //Calculando desvio ao quadrado
-        for(let i = 0; i < desvio.length; i++){
-            desvioQ[i] = desvio[i]*desvio[i]
-        }
+        // //Calculando desvio ao quadrado
+        // for(let i = 0; i < desvio.length; i++){
+        //     desvioQ[i] = desvio[i]*desvio[i]
+        // }
 
-        //Calculando desvioQ * f1
-        for(let i = 0; i < desvioQ.length; i++){
-            desvioFi[i] = desvioQ[i]*fi[i]
-        }
+        // //Calculando desvioQ * f1
+        // for(let i = 0; i < desvioQ.length; i++){
+        //     desvioFi[i] = desvioQ[i]*fi[i]
+        // }
 
-        //Soma dos elementos do "desvioFi" retornados em uma variável simples
-        let totalDesvioFi = 0
-        for(let i in desvioFi) {
-            totalDesvioFi += desvioFi[i]
-        }
+        // //Soma dos elementos do "desvioFi" retornados em uma variável simples
+        // let totalDesvioFi = 0
+        // for(let i in desvioFi) {
+        //     totalDesvioFi += desvioFi[i]
+        // }
 
-        //Calculo Variância
-        let variancia = 0
-        variancia = totalDesvioFi / totalFi
+        // //Calculo Variância
+        // let variancia = 0
+        // variancia = totalDesvioFi / totalFi
 
-        //Calculo Desvio Padrão
-        let desvioPadrao = 0
-        desvioPadrao = Math.sqrt(variancia)
+        // //Calculo Desvio Padrão
+        // let desvioPadrao = 0
+        // desvioPadrao = Math.sqrt(variancia)
 
-        //Calculo coeficiente de variação
-        let coefVar = 0
-        coefVar = (desvioPadrao / media)*100
+        // //Calculo coeficiente de variação
+        // let coefVar = 0
+        // coefVar = (desvioPadrao / media)*100
 
-        //Logs para conferir os arrays  no console
-        console.log(totalFi)
-        console.log(fr)
+        // //Logs para conferir os arrays  no console
+        // console.log(totalFi)
+        // console.log(fr)
                 
         //Logs para aferição dos resultados no console
         console.log(at)
         console.log(n)
-        console.log('Quantidade de Linhas: ' + Math.round(k))
+        console.log('Quantidade de Linhas: ' + Math.trunc(k))
         console.log('Intervalo: ' + Math.round(intervalo))
 
 
-        
-        //Exibição dos daods na nova tabela
-        for(let i = 0; i < dados.length; i++){
-            let linha = criarElemento('tr')
-            tbody.appendChild(linha)
+        let auxItv = 0
+        let intervaloTemp = 0
+        let cont = 0
+        let acm = 0
 
-            for (let i = 0; i < Math.round(k); i++){
-                while (dados[i] <= intervalo) {
-                    
+        let frCalc = 0
+        let facPCalc = 0
+
+        let labelContinua = []
+        let dataContinua = []
+    
+        for (let i = 1; i <= Math.round(k); i++){
+
+            intervaloTemp = intervalo * i
+            
+            for (let x = acm; dadosSeparados[x] <= Math.round(intervaloTemp); x++){
+                if (dadosSeparados[i] <= intervaloTemp) {
+                    cont++
+                    acm++
                 }
             }
 
+            console.log('contador 2º FOR: ' + cont)
 
-                let tdDados = criarElemento('td')
-                tdDados.textContent = dados[i]
-                let tdFi = criarElemento('td')
-                tdFi.textContent = fi[i]
-                let tdFr = criarElemento('td')
-                tdFr.textContent = fr[i].toFixed(2) + '%'
-                let tdFac = criarElemento('td')
-                tdFac.textContent = fac[i]
-                let tdFacP = criarElemento('td')
-                tdFacP.textContent = facP[i].toFixed(2)+'%'
+            let linha = criarElemento('tr')
+            tbody.appendChild(linha)
 
-                linha.appendChild(tdDados)
-                linha.appendChild(tdFi)
-                linha.appendChild(tdFr)
-                linha.appendChild(tdFac)
-                linha.appendChild(tdFacP)
+            let tdItv = criarElemento('td')
+            tdItv.textContent = auxItv + ' -- ' + Math.round(intervaloTemp)
+            labelContinua.push(tdItv.textContent)
+            linha.appendChild(tdItv)
+
+            let tdFi = criarElemento('td')
+            tdFi.textContent = cont
+            linha.appendChild(tdFi)
+            
+            let tdFr = criarElemento('td')
+            frCalc = ((cont/dadosSeparados.length) * 100 ).toFixed(2)
+            tdFr.textContent = frCalc + '%'
+            dataContinua.push(frCalc)
+            linha.appendChild(tdFr)
+            
+            let tdFac = criarElemento('td')
+            tdFac.textContent = acm
+            linha.appendChild(tdFac)
+
+            let tdFacP = criarElemento('td')
+            facPCalc = ((acm/dadosSeparados.length) * 100 ).toFixed(2)
+            tdFacP.textContent = facPCalc + '%'
+            linha.appendChild(tdFacP)
+
+
+            auxItv += Math.round(intervaloTemp)
+            cont = 0
+            console.log('Contador Zerado: ' + cont)
 
             tbody.appendChild(linha)
 
-
         }
+
+
 
         //Exibição da Média, Moda e Mediana#####
         mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
@@ -1123,17 +1155,17 @@ function coletaDados (){
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        // + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        // + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
             data: {
-              labels: dados,
+              labels: labelContinua,
               datasets: [{
                 label: 'Fr%',
-                data: fr,
+                data: dataContinua,
                 backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
               }]
             },
