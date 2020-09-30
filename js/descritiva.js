@@ -55,7 +55,7 @@ function coletaDados (){
     }
     else{
         todosDados = dadosManual.value // Entrada de dados Manual
-        dadosSeparados = todosDados.split(';') // Converte String em Array
+        dadosSeparados = todosDados.split('; ') // Converte String em Array
     }
 
     
@@ -603,6 +603,40 @@ function coletaDados (){
         }
         dadosSeparados.sort(ordernarNumeros) //Ordena elementos do menor para o maior
 
+        //-------CALCULOS INTERVALOS---------------
+        let at = 0 //Amplitude
+        let xmin = 0 // Menor Numero
+        let xmax = 0 //Maior Numero
+        let k = 0 //Numero de Linhas
+        let n = 0 // Quantidade de Elementos
+        let intervalo = 0
+        
+        n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
+        xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
+        xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
+        at = xmax --- xmin //Subtração do primeiro elemento pelo ultimo elemento
+        k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
+        intervalo = (at / k) //Calcula o intervalo dos agrupamentos
+
+        console.log('Quantidade de Elementos: ' + n)
+        console.log('Referência: ' + at)
+        console.log('Quantidade de Linhas: ' + Math.round(k))
+        console.log('Intervalo: ' + Math.round(intervalo))
+
+        let itvDado = []
+        let itvFi = []
+
+        for (let i = 0; i < dados.length; i++){
+            if(dados[i] <= intervalo){
+                
+
+            }
+        }
+
+        console.log('Dados do Intervalo: ' + itvDado)
+
+
+
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Quantitativa Contínua'
         tituloTab.style.fontWeight = 700
@@ -694,32 +728,26 @@ function coletaDados (){
         //Logs para conferir os arrays  no console
         console.log(totalFi)
         console.log(fr)
-        
-        let at = 0 //Amplitude
-        let xmin = 0 // Menor Numero
-        let xmax = 0 //Maior Numero
-        let k = 0 //Numero de Linhas
-        let n = 0 // Quantidade de Elementos
-        let intervalo = 0
-        
-        n = dadosSeparados.length //Conta a quantidade de elementos da Array de entrada de dados
-        xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
-        xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
-        at = xmax --- xmin //Subtração do primeiro elemento pelo ultimo elemento
-        k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
-        intervalo = (at / k) //Calcula o intervalo dos agrupamentos
-        
+                
         //Logs para aferição dos resultados no console
         console.log(at)
         console.log(n)
-        console.log(Math.round(k))
-        console.log(Math.round(intervalo))
+        console.log('Quantidade de Linhas: ' + Math.round(k))
+        console.log('Intervalo: ' + Math.round(intervalo))
+
 
         
         //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
             tbody.appendChild(linha)
+
+            for (let i = 0; i < Math.round(k); i++){
+                while (dados[i] <= intervalo) {
+                    
+                }
+            }
+
 
                 let tdDados = criarElemento('td')
                 tdDados.textContent = dados[i]
