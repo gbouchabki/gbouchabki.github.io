@@ -105,6 +105,8 @@ function coletaDados (){
 
     thead.appendChild(linhaHead)
     
+
+
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
         
         
@@ -216,7 +218,7 @@ function coletaDados (){
 
         //Calcular Decil##########
 
-        //Calcular o Porcentil##########
+        //Calcular o Percentil##########
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -320,7 +322,7 @@ function coletaDados (){
         }
 
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
         + 'Moda: ' + moda + '</br>'
         + 'Mediana: ' + mediana + '</br>'
         + 'Quartil Q1: ' + q1 + '</br>'
@@ -330,8 +332,8 @@ function coletaDados (){
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        + 'Desvio Padrão: ' + 'Não existe' + '</br>'
+        + 'Coeficiente de Variação: ' + 'Não existe' + '%' + '</br>'
         
         
 
@@ -356,7 +358,12 @@ function coletaDados (){
         });
     }
     
+
+
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
+        
+        
+        
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -435,41 +442,32 @@ function coletaDados (){
         let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
-        if(dadosSeparados.length % 2 == 0){
-            let pos1 = dadosSeparados.length/2
-            let pos2 = pos1 - 1
-            let elem1 = dadosSeparados[pos1]
-            let elem2 = dadosSeparados[pos2]
-            var mediana = (parseInt(elem1)+parseInt(elem2))/2
-        }
-        else{
-            let posCentro = (dadosSeparados.length - 1)/2
-            var mediana = dadosSeparados[posCentro]
-        }
+        let posCentro = (dadosSeparados.length - 1) / 2
+        var mediana = dadosSeparados[Math.round(posCentro)]
 
         //Calcular Quartil##########
 
         //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -584,7 +582,7 @@ function coletaDados (){
 
         
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
         + 'Moda: ' + moda + '</br>'
         + 'Mediana: ' + mediana + '</br>'
         + 'Quartil Q1: ' + q1 + '</br>'
@@ -594,8 +592,8 @@ function coletaDados (){
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        + 'Desvio Padrão: ' + 'Não existe' + '</br>'
+        + 'Coeficiente de Variação: ' + 'Não existe' + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
@@ -620,6 +618,8 @@ function coletaDados (){
      
 
     }
+
+
     
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
         
@@ -721,27 +721,27 @@ function coletaDados (){
 
         //Calcular Quartil##########
 
-        //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -998,25 +998,25 @@ function coletaDados (){
 
         //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         // //Cacular XI.FI
         // for(let i = 0; i < dados.length; i++){
