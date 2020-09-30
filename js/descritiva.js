@@ -105,6 +105,8 @@ function coletaDados (){
 
     thead.appendChild(linhaHead)
     
+
+
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
         
         
@@ -320,7 +322,7 @@ function coletaDados (){
         }
 
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
         + 'Moda: ' + moda + '</br>'
         + 'Mediana: ' + mediana + '</br>'
         + 'Quartil Q1: ' + q1 + '</br>'
@@ -330,8 +332,8 @@ function coletaDados (){
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        + 'Desvio Padrão: ' + 'Não existe' + '</br>'
+        + 'Coeficiente de Variação: ' + 'Não existe' + '%' + '</br>'
         
         
 
@@ -356,7 +358,12 @@ function coletaDados (){
         });
     }
     
+
+
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
+        
+        
+        
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -575,7 +582,7 @@ function coletaDados (){
 
         
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
         + 'Moda: ' + moda + '</br>'
         + 'Mediana: ' + mediana + '</br>'
         + 'Quartil Q1: ' + q1 + '</br>'
@@ -585,8 +592,8 @@ function coletaDados (){
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        + 'Desvio Padrão: ' + 'Não existe' + '</br>'
+        + 'Coeficiente de Variação: ' + 'Não existe' + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
@@ -611,6 +618,8 @@ function coletaDados (){
      
 
     }
+
+
     
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
         
