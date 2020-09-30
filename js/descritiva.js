@@ -216,6 +216,17 @@ function coletaDados (){
 
         //Calcular Decil##########
 
+        let posD1 = (dadosSeparados.length - 1) / 5
+        for(let i = 0; i < 10; i++){
+            decil[i] = dadosSeparados[posD1] * 1
+            console.log(decil)
+        }
+
+        
+        
+        //let decil = (dadosSeparados, val) =>
+        //(10 * dadosSeparados.reduce((acc, v) => acc + (v < val ? 1 : 0) + (v === val ? 0.//5 : 0), 0)) / dadosSeparados.length;
+
         //Calcular o Porcentil##########
 
         //Cacular XI.FI
@@ -451,25 +462,25 @@ function coletaDados (){
 
         //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -721,27 +732,27 @@ function coletaDados (){
 
         //Calcular Quartil##########
 
-        //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -959,25 +970,25 @@ function coletaDados (){
 
         //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 5 //K1
-        let k1 = dadosSeparados[posK1]
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[mk2]
+        let k2 = dadosSeparados[Math.round(mk2)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[mk3]
+        let k3 = dadosSeparados[Math.round(mk3)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[mk4]
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
