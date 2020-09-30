@@ -71,17 +71,19 @@ function coletaDados (){
 
     let dados = Object.keys(obj)
     let fi = Object.values(obj)
+    let xifi = Object.values(obj)
+    let desvio = Object.values(obj)
+    let desvioQ = Object.values(obj)
+    let desvioFi = Object.values(obj)
     let fr = Object.values(obj)
     let fac = Object.values(obj)
     let facP = Object.values(obj)
     let ds = Object.values(obj)
 
-    console.log(dados) //2
-    console.log(fi) //3
-    console.log(fi.type) //3
-
     //Log para conferir Arrays no console
     console.log(dadosSeparados) //1
+    console.log(dados) //2
+    console.log(fi) //3
 
     // Criar Tabela
 
@@ -104,6 +106,9 @@ function coletaDados (){
     thead.appendChild(linhaHead)
     
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
+        
+        
+        
 
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
@@ -182,27 +187,89 @@ function coletaDados (){
         //Calculo da Mediana####
 
         let posCentro = (dadosSeparados.length - 1) / 2
-        var mediana = dadosSeparados[posCentro]
+        var mediana = dadosSeparados[Math.round(posCentro)]
 
         
         //Calcular Quartil##########
 
         //Q1
         let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[posQ1]
+        let q1 = dadosSeparados[Math.round(posQ1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[mq3]
+        let q3 = dadosSeparados[Math.round(mq3)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length -1) / 4 //K1
-        let k1 = dadosSeparados[posK1]
+        let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        let k1 = dadosSeparados[Math.round(posK1)]
+
+        let mk2 = posK1 * 2 //K2
+        let k2 = dadosSeparados[Math.round(mk2)]
+
+        let mk3 = posK1 * 3 //K3
+        let k3 = dadosSeparados[Math.round(mk3)]
+
+        let mk4 = posK1 * 4 //K4
+        let k4 = dadosSeparados[Math.round(mk4)]
 
         //Calcular Decil##########
 
         //Calcular o Porcentil##########
+
+        //Cacular XI.FI
+        for(let i = 0; i < dados.length; i++){
+            xifi[i]=dados[i]*fi[i]
+        }
+
+        //Soma dos elementos do "xifi" retornados em uma variável simples
+        let totalXifi = 0
+        for(let i in xifi) {
+            totalXifi += xifi[i]
+        }
+
+        //Média aritimética ponderada
+        let map = 0
+        map = totalXifi / totalFi
+
+        //Calculando o desvio
+        for(let i = 0; i < dados.length; i++){
+            if(dados[i] > map){
+                desvio[i] = dados[i] - map
+            }
+            else{
+                desvio[i] = map - dados[i]
+            }
+        }
+
+        //Calculando desvio ao quadrado
+        for(let i = 0; i < desvio.length; i++){
+            desvioQ[i] = desvio[i]*desvio[i]
+        }
+
+        //Calculando desvioQ * f1
+        for(let i = 0; i < desvioQ.length; i++){
+            desvioFi[i] = desvioQ[i]*fi[i]
+        }
+
+        //Soma dos elementos do "desvioFi" retornados em uma variável simples
+        let totalDesvioFi = 0
+        for(let i in desvioFi) {
+            totalDesvioFi += desvioFi[i]
+        }
+
+        //Calculo Variância
+        let variancia = 0
+        variancia = totalDesvioFi / totalFi
+
+        //Calculo Desvio Padrão
+        let desvioPadrao = 0
+        desvioPadrao = Math.sqrt(variancia)
+
+        //Calculo coeficiente de variação
+        let coefVar = 0
+        coefVar = (desvioPadrao / media)*100
 
         //Logs para conferir os arrays  no console
         console.log(totalFi)//4
@@ -214,6 +281,20 @@ function coletaDados (){
         console.log(media)//10
         console.log(moda)//11
         console.log(mediana)//12
+        console.log(k1)
+        console.log(k2)
+        console.log(k3)
+        console.log(k4)
+        console.log(xifi)
+        console.log(totalXifi)
+        console.log(map)
+        console.log(desvio)
+        console.log(desvioQ)
+        console.log(desvioFi)
+        console.log(totalDesvioFi)
+        console.log(variancia)
+        console.log(desvioPadrao)
+        console.log(coefVar)
         //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
@@ -245,7 +326,13 @@ function coletaDados (){
         + 'Quartil Q1: ' + q1 + '</br>'
         + 'Quartil Q2: ' + mediana + '</br>'
         + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quartil Q4: ' + dadosSeparados.slice(-1)[0] + '</br>'
+        + 'Quintil K1: ' + k1 + '</br>'
+        + 'Quintil K2: ' + k2 + '</br>'
+        + 'Quintil K3: ' + k3 + '</br>'
+        + 'Quintil K4: ' + k4 + '</br>'
+        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        
         
 
         //GRÁFICO
@@ -359,6 +446,83 @@ function coletaDados (){
             let posCentro = (dadosSeparados.length - 1)/2
             var mediana = dadosSeparados[posCentro]
         }
+
+        //Calcular Quartil##########
+
+        //Q1
+        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
+        let q1 = dadosSeparados[posQ1]
+
+        let mq3 = posQ1 * 3 // Q3
+        let q3 = dadosSeparados[mq3]
+
+        
+        //Calcular Quintil##########
+
+        let posK1 = (dadosSeparados.length -1) / 5 //K1
+        let k1 = dadosSeparados[posK1]
+
+        let mk2 = posK1 * 2 //K2
+        let k2 = dadosSeparados[mk2]
+
+        let mk3 = posK1 * 3 //K3
+        let k3 = dadosSeparados[mk3]
+
+        let mk4 = posK1 * 4 //K4
+        let k4 = dadosSeparados[mk4]
+
+        //Cacular XI.FI
+        for(let i = 0; i < dados.length; i++){
+            xifi[i]=dados[i]*fi[i]
+        }
+
+        //Soma dos elementos do "xifi" retornados em uma variável simples
+        let totalXifi = 0
+        for(let i in xifi) {
+            totalXifi += xifi[i]
+        }
+
+        //Média aritimética ponderada
+        let map = 0
+        map = totalXifi / totalFi
+
+        //Calculando o desvio
+        for(let i = 0; i < dados.length; i++){
+            if(dados[i] > map){
+                desvio[i] = dados[i] - map
+            }
+            else{
+                desvio[i] = map - dados[i]
+            }
+        }
+
+        //Calculando desvio ao quadrado
+        for(let i = 0; i < desvio.length; i++){
+            desvioQ[i] = desvio[i]*desvio[i]
+        }
+
+        //Calculando desvioQ * f1
+        for(let i = 0; i < desvioQ.length; i++){
+            desvioFi[i] = desvioQ[i]*fi[i]
+        }
+
+        //Soma dos elementos do "desvioFi" retornados em uma variável simples
+        let totalDesvioFi = 0
+        for(let i in desvioFi) {
+            totalDesvioFi += desvioFi[i]
+        }
+
+        //Calculo Variância
+        let variancia = 0
+        variancia = totalDesvioFi / totalFi
+
+        //Calculo Desvio Padrão
+        let desvioPadrao = 0
+        desvioPadrao = Math.sqrt(variancia)
+
+        //Calculo coeficiente de variação
+        let coefVar = 0
+        coefVar = (desvioPadrao / media)*100
         
         //Logs para conferir os arrays  no console
         console.log(totalFi)
@@ -418,8 +582,20 @@ function coletaDados (){
 
         }
 
+        
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        + 'Moda: ' + moda + '</br>'
+        + 'Mediana: ' + mediana + '</br>'
+        + 'Quartil Q1: ' + q1 + '</br>'
+        + 'Quartil Q2: ' + mediana + '</br>'
+        + 'Quartil Q3: ' + q3 + '</br>'
+        + 'Quintil K1: ' + k1 + '</br>'
+        + 'Quintil K2: ' + k2 + '</br>'
+        + 'Quintil K3: ' + k3 + '</br>'
+        + 'Quintil K4: ' + k4 + '</br>'
+        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
@@ -446,6 +622,10 @@ function coletaDados (){
     }
     
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
+        
+        
+        
+        
 
         function ordernarNumeros(a, b){
             return a - b
@@ -539,9 +719,82 @@ function coletaDados (){
             var mediana = dadosSeparados[posCentro]
         }
 
-        //Calcular a Variância##########
+        //Calcular Quartil##########
 
-        //Calcular o DESVIO PADRÃO##########
+        //Q1
+        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
+        let q1 = dadosSeparados[posQ1]
+
+        let mq3 = posQ1 * 3 // Q3
+        let q3 = dadosSeparados[mq3]
+
+        
+        //Calcular Quintil##########
+
+        let posK1 = (dadosSeparados.length -1) / 5 //K1
+        let k1 = dadosSeparados[posK1]
+
+        let mk2 = posK1 * 2 //K2
+        let k2 = dadosSeparados[mk2]
+
+        let mk3 = posK1 * 3 //K3
+        let k3 = dadosSeparados[mk3]
+
+        let mk4 = posK1 * 4 //K4
+        let k4 = dadosSeparados[mk4]
+
+        //Cacular XI.FI
+        for(let i = 0; i < dados.length; i++){
+            xifi[i]=dados[i]*fi[i]
+        }
+
+        //Soma dos elementos do "xifi" retornados em uma variável simples
+        let totalXifi = 0
+        for(let i in xifi) {
+            totalXifi += xifi[i]
+        }
+
+        //Média aritimética ponderada
+        let map = 0
+        map = totalXifi / totalFi
+
+        //Calculando o desvio
+        for(let i = 0; i < dados.length; i++){
+            if(dados[i] > map){
+                desvio[i] = dados[i] - map
+            }
+            else{
+                desvio[i] = map - dados[i]
+            }
+        }
+
+        //Calculando desvio ao quadrado
+        for(let i = 0; i < desvio.length; i++){
+            desvioQ[i] = desvio[i]*desvio[i]
+        }
+
+        //Calculando desvioQ * f1
+        for(let i = 0; i < desvioQ.length; i++){
+            desvioFi[i] = desvioQ[i]*fi[i]
+        }
+
+        //Soma dos elementos do "desvioFi" retornados em uma variável simples
+        let totalDesvioFi = 0
+        for(let i in desvioFi) {
+            totalDesvioFi += desvioFi[i]
+        }
+
+        //Calculo Variância
+        let variancia = 0
+        variancia = totalDesvioFi / totalFi
+
+        //Calculo Desvio Padrão
+        let desvioPadrao = 0
+        desvioPadrao = Math.sqrt(variancia)
+
+        //Calculo coeficiente de variação
+        let coefVar = 0
+        coefVar = (desvioPadrao / media)*100
 
         //Logs para conferir os arrays  no console
         console.log(totalFi)
@@ -572,7 +825,18 @@ function coletaDados (){
         }
         
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        + 'Moda: ' + moda + '</br>'
+        + 'Mediana: ' + mediana + '</br>'
+        + 'Quartil Q1: ' + q1 + '</br>'
+        + 'Quartil Q2: ' + mediana + '</br>'
+        + 'Quartil Q3: ' + q3 + '</br>'
+        + 'Quintil K1: ' + k1 + '</br>'
+        + 'Quintil K2: ' + k2 + '</br>'
+        + 'Quintil K3: ' + k3 + '</br>'
+        + 'Quintil K4: ' + k4 + '</br>'
+        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
@@ -725,6 +989,83 @@ function coletaDados (){
             var mediana = dadosSeparados[posCentro]
         }
 
+        //Calcular Quartil##########
+
+        //Q1
+        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
+        let q1 = dadosSeparados[posQ1]
+
+        let mq3 = posQ1 * 3 // Q3
+        let q3 = dadosSeparados[mq3]
+
+        
+        //Calcular Quintil##########
+
+        let posK1 = (dadosSeparados.length -1) / 5 //K1
+        let k1 = dadosSeparados[posK1]
+
+        let mk2 = posK1 * 2 //K2
+        let k2 = dadosSeparados[mk2]
+
+        let mk3 = posK1 * 3 //K3
+        let k3 = dadosSeparados[mk3]
+
+        let mk4 = posK1 * 4 //K4
+        let k4 = dadosSeparados[mk4]
+
+        //Cacular XI.FI
+        for(let i = 0; i < dados.length; i++){
+            xifi[i]=dados[i]*fi[i]
+        }
+
+        //Soma dos elementos do "xifi" retornados em uma variável simples
+        let totalXifi = 0
+        for(let i in xifi) {
+            totalXifi += xifi[i]
+        }
+
+        //Média aritimética ponderada
+        let map = 0
+        map = totalXifi / totalFi
+
+        //Calculando o desvio
+        for(let i = 0; i < dados.length; i++){
+            if(dados[i] > map){
+                desvio[i] = dados[i] - map
+            }
+            else{
+                desvio[i] = map - dados[i]
+            }
+        }
+
+        //Calculando desvio ao quadrado
+        for(let i = 0; i < desvio.length; i++){
+            desvioQ[i] = desvio[i]*desvio[i]
+        }
+
+        //Calculando desvioQ * f1
+        for(let i = 0; i < desvioQ.length; i++){
+            desvioFi[i] = desvioQ[i]*fi[i]
+        }
+
+        //Soma dos elementos do "desvioFi" retornados em uma variável simples
+        let totalDesvioFi = 0
+        for(let i in desvioFi) {
+            totalDesvioFi += desvioFi[i]
+        }
+
+        //Calculo Variância
+        let variancia = 0
+        variancia = totalDesvioFi / totalFi
+
+        //Calculo Desvio Padrão
+        let desvioPadrao = 0
+        desvioPadrao = Math.sqrt(variancia)
+
+        //Calculo coeficiente de variação
+        let coefVar = 0
+        coefVar = (desvioPadrao / media)*100
+
         //Logs para conferir os arrays  no console
         console.log(totalFi)
         console.log(fr)
@@ -772,7 +1113,18 @@ function coletaDados (){
         }
 
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
+        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        + 'Moda: ' + moda + '</br>'
+        + 'Mediana: ' + mediana + '</br>'
+        + 'Quartil Q1: ' + q1 + '</br>'
+        + 'Quartil Q2: ' + mediana + '</br>'
+        + 'Quartil Q3: ' + q3 + '</br>'
+        + 'Quintil K1: ' + k1 + '</br>'
+        + 'Quintil K2: ' + k2 + '</br>'
+        + 'Quintil K3: ' + k3 + '</br>'
+        + 'Quintil K4: ' + k4 + '</br>'
+        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
