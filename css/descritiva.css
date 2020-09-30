@@ -76,18 +76,18 @@ select {
     font-size: 1rem;
 }
 
-#tabela{
+.tabela{
     margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
     text-align: center;
 }
 
-#tabela tr {
+.tabela tr {
     border-bottom: solid var(--secundary-color) 2px;
     height: 70px;
 }
-#tabela th td{
+.tabela th td{
         padding: 25px;
     }
     
@@ -98,6 +98,7 @@ select {
     th {
         background-color: var(--primary-color);
         color: white;
+        
     }
 
     .seta {

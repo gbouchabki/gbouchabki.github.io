@@ -16,6 +16,11 @@ const ctx2 = document.getElementsByClassName("line-chart2")
 const ctx3 = document.getElementsByClassName("line-chart3")
 const mtc = document.getElementById('mtc')
 
+const tabelaMedia = document.querySelector('#tabela-media')
+const tabelaDesvio = document.querySelector('#tabela-desvio')
+const tabelaSeparatriz = document.querySelector('#separatriz')
+
+
 
 let todosDados
 let dadosSeparados = []
@@ -85,7 +90,7 @@ function coletaDados (){
     console.log(dados) //2
     console.log(fi) //3
 
-    // Criar Tabela
+    // Tabela Exibição dos Dados
 
     function criarElemento (elemento){
         return document.createElement(elemento)
@@ -104,14 +109,60 @@ function coletaDados (){
     let linhaHead = criarElemento('tr')
 
     thead.appendChild(linhaHead)
+
+    //---------------Tabela Media, Moda e Mediana
+
+
+    let tabelaM = criarElemento('table')
+    tabelaMedia.appendChild(tabelaM)
+    tabelaM.classList.add('tabela')
+
+    let mediaHead = criarElemento('thead')
+    let mediabody = criarElemento('tbody')
+
+    tabelaM.appendChild(mediaHead)
+    tabelaM.appendChild(mediabody)
+
+    let indicesMedia = ['Média', 'Moda', 'Mediana']
+
+    let linhaHeadM = criarElemento('tr')
+    mediaHead.appendChild(linhaHeadM)
+
+    for (let i = 0; i < indicesMedia.length; i++) {
+        let thM = criarElemento('th')
+        thM.textContent = indicesMedia[i]
+        linhaHeadM.appendChild(thM)        
+    }
     
+    // -----------------Tabela Desvio Padrão e Coeficiente de Variação (%)
+
+    let tabelaD = criarElemento('table')
+    tabelaDesvio.appendChild(tabelaD)
+    tabelaD.classList.add('tabela')
+
+    let desvioHead = criarElemento('thead')
+    let desvioBody = criarElemento('tbody')
+
+    tabelaD.appendChild(desvioHead)
+    tabelaD.appendChild(desvioBody)
+
+    let indicesDesvio = ['Desvio Padrão', 'Coeficiênte de Variação (%)']
+
+    let linhaHeadD = criarElemento('tr')
+    desvioHead.appendChild(linhaHeadD)
+
+    for (let i = 0; i < indicesMedia.length; i++) {
+        let thD = criarElemento('th')
+        thD.textContent = indicesDesvio[i]
+        linhaHeadD.appendChild(thD)        
+    }
+
+    // -----------------Tabela Medida Separatriz -------------------------------
+
 
 
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
-        
-        
-        
-
+    
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -321,19 +372,44 @@ function coletaDados (){
             tbody.appendChild(linha)
         }
 
+        //Tabela Média, Moda e Mediana (Continuação)
+        let linhaMedia = criarElemento('tr')
+        mediabody.appendChild(linhaMedia)
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = 'Não Existe'
+        linhaMedia.appendChild(tdMedia)
+
+        let tdmoda = criarElemento('td')
+        tdmoda.textContent = moda
+        linhaMedia.appendChild(tdmoda)
+
+        let tdMediana = criarElemento('td')
+        tdMediana.textContent = mediana
+        linhaMedia.appendChild(tdMediana)
+
+        //Tabela Desvio Padrão e Coeficiênte de Variação (continuação)
+        let linhaDesvio = criarElemento('tr')
+        desvioBody.appendChild(linhaDesvio)
+
+        let tdDesvio = criarElemento('td')
+        tdDesvio.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdDesvio)
+
+        let tdCoef = criarElemento('td')
+        tdCoef.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdCoef)
+
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
-        + 'Moda: ' + moda + '</br>'
-        + 'Mediana: ' + mediana + '</br>'
-        + 'Quartil Q1: ' + q1 + '</br>'
+        mtc.innerHTML += 
+        'Quartil Q1: ' + q1 + '</br>'
         + 'Quartil Q2: ' + mediana + '</br>'
         + 'Quartil Q3: ' + q3 + '</br>'
         + 'Quintil K1: ' + k1 + '</br>'
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + 'Não existe' + '</br>'
-        + 'Coeficiente de Variação: ' + 'Não existe' + '%' + '</br>'
+
         
         
 
@@ -358,11 +434,7 @@ function coletaDados (){
         });
     }
     
-
-
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
-        
-        
         
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
@@ -580,6 +652,33 @@ function coletaDados (){
 
         }
 
+        //Tabela Média, Moda e Mediana (Continuação)
+        let linhaMedia = criarElemento('tr')
+        mediabody.appendChild(linhaMedia)
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = 'Não Existe'
+        linhaMedia.appendChild(tdMedia)
+
+        let tdmoda = criarElemento('td')
+        tdmoda.textContent = moda
+        linhaMedia.appendChild(tdmoda)
+
+        let tdMediana = criarElemento('td')
+        tdMediana.textContent = mediana
+        linhaMedia.appendChild(tdMediana)
+
+        //Tabela Desvio Padrão e Coeficiênte de Variação (continuação)
+        let linhaDesvio = criarElemento('tr')
+        desvioBody.appendChild(linhaDesvio)
+
+        let tdDesvio = criarElemento('td')
+        tdDesvio.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdDesvio)
+
+        let tdCoef = criarElemento('td')
+        tdCoef.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdCoef)
         
         //Exibição da Média, Moda e Mediana#####
         mtc.innerHTML += 'Média: ' + 'Não existe' + '</br>'
@@ -618,14 +717,8 @@ function coletaDados (){
      
 
     }
-
-
     
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
-        
-        
-        
-        
 
         function ordernarNumeros(a, b){
             return a - b
@@ -823,21 +916,43 @@ function coletaDados (){
 
             tbody.appendChild(linha)
         }
+
+        let linhaMedia = criarElemento('tr')
+        mediabody.appendChild(linhaMedia)
+
+        //Tabela Média, Moda e Mediana (Continuação)
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = media
+        linhaMedia.appendChild(tdMedia)
+
+        let tdmoda = criarElemento('td')
+        tdmoda.textContent = moda
+        linhaMedia.appendChild(tdmoda)
+
+        let tdMediana = criarElemento('td')
+        tdMediana.textContent = mediana
+        linhaMedia.appendChild(tdMediana)
+
+        //Tabela Desvio Padrão e Coeficiênte de Variação (continuação)
+        let linhaDesvio = criarElemento('tr')
+        desvioBody.appendChild(linhaDesvio)
+
+        let tdDesvio = criarElemento('td')
+        tdDesvio.textContent = desvioPadrao.toFixed(2)
+        linhaDesvio.appendChild(tdDesvio)
+
+        let tdCoef = criarElemento('td')
+        tdCoef.textContent = coefVar.toFixed(2) + '%'
+        linhaDesvio.appendChild(tdCoef)
         
         //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
-        + 'Moda: ' + moda + '</br>'
-        + 'Mediana: ' + mediana + '</br>'
-        + 'Quartil Q1: ' + q1 + '</br>'
+        mtc.innerHTML += 'Quartil Q1: ' + q1 + '</br>'
         + 'Quartil Q2: ' + mediana + '</br>'
         + 'Quartil Q3: ' + q3 + '</br>'
         + 'Quintil K1: ' + k1 + '</br>'
         + 'Quintil K2: ' + k2 + '</br>'
         + 'Quintil K3: ' + k3 + '</br>'
         + 'Quintil K4: ' + k4 + '</br>'
-        + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
-
         //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
@@ -1110,7 +1225,7 @@ function coletaDados (){
             tbody.appendChild(linha)
 
             let tdItv = criarElemento('td')
-            tdItv.textContent = auxItv + ' -- ' + Math.round(intervaloTemp)
+            tdItv.textContent = auxItv + ' |-- ' + Math.round(intervaloTemp)
             labelContinua.push(tdItv.textContent)
             linha.appendChild(tdItv)
 
@@ -1141,7 +1256,6 @@ function coletaDados (){
             tbody.appendChild(linha)
 
         }
-
 
 
         //Exibição da Média, Moda e Mediana#####
@@ -1202,18 +1316,20 @@ inserir.addEventListener('click', coletaDados)
 
 //Ordenador da tabela
 function moveDown (elem){
+    let totalDados = []
 
     let dados = []
     let fi = []
     let fr = []
     let fac = []
     let facP = []
-    let numLinhas = document.getElementsByTagName('tr')
+    let numLinhas = document.getElementsByClassName('linha-tabela')
+    console.log(numLinhas)
 
-    for (let i = 0; i < numLinhas.length - 1; i++){
+    for (let i = 0; i < numLinhas.length; i++){
         dados.push(document.querySelector('.dado').innerText)
         fi.push(document.querySelector('.fi').innerText)
-        
+        console.log(dados)
         let rDado = document.querySelector('.dado')
         rDado.classList.remove('dado')
         let rFi = document.querySelector('.fi')
@@ -1222,16 +1338,23 @@ function moveDown (elem){
     }
 
     for(let i = 0; i < fi.length; i++){
-    fi[i] = parseInt(fi[i])
-    fr.push(fi[i])
-    fac.push(fi[i])
-    facP.push(fi[i])
+        fi[i] = parseInt(fi[i])
+        fr.push(fi[i])
+        fac.push(fi[i])
+        facP.push(fi[i])
+        for(let x = 0; x < fi[i]; x++){
+            totalDados.push(dados[i])
+        }
     }
 
     console.log(dados)
     console.log(fi)
+    console.log('todos os dados abaixo vvvv')
+    console.log(totalDados)
 
     tabela.innerHTML = ''
+    tabelaMedia.innerHTML = ''
+    tabelaDesvio.innerHTML = ''
     mtc.innerHTML = ''
     ctx.innerHTML = ''
 
@@ -1277,6 +1400,53 @@ function moveDown (elem){
             linhaHead.appendChild(th)
         }
 
+        //---------------Tabela Media, Moda e Mediana
+
+    let tabelaM = criarElemento('table')
+    tabelaMedia.appendChild(tabelaM)
+    tabelaM.classList.add('tabela')
+
+    let mediaHead = criarElemento('thead')
+    let mediabody = criarElemento('tbody')
+
+    tabelaM.appendChild(mediaHead)
+    tabelaM.appendChild(mediabody)
+
+    let indicesMedia = ['Média', 'Moda', 'Mediana']
+
+    let linhaHeadM = criarElemento('tr')
+    mediaHead.appendChild(linhaHeadM)
+
+    for (let i = 0; i < indicesMedia.length; i++) {
+        let thM = criarElemento('th')
+        thM.textContent = indicesMedia[i]
+        linhaHeadM.appendChild(thM)        
+    }
+    
+    // -----------------Tabela Desvio Padrão e Coeficiente de Variação (%)
+
+    let tabelaD = criarElemento('table')
+    tabelaDesvio.appendChild(tabelaD)
+    tabelaD.classList.add('tabela')
+
+    let desvioHead = criarElemento('thead')
+    let desvioBody = criarElemento('tbody')
+
+    tabelaD.appendChild(desvioHead)
+    tabelaD.appendChild(desvioBody)
+
+    let indicesDesvio = ['Desvio Padrão', 'Coeficiênte de Variação (%)']
+
+    let linhaHeadD = criarElemento('tr')
+    desvioHead.appendChild(linhaHeadD)
+
+    for (let i = 0; i < indicesMedia.length; i++) {
+        let thD = criarElemento('th')
+        thD.textContent = indicesDesvio[i]
+        linhaHeadD.appendChild(thD)        
+    }
+
+
 
         //-----------CALCULOS-----------
 
@@ -1297,12 +1467,6 @@ function moveDown (elem){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-
-        // //Calculo da média######
-        let soma = 0
-        let media = 0
-        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
-        media = soma/dadosSeparados.length
 
         //Calculo##########
         
@@ -1345,17 +1509,8 @@ function moveDown (elem){
         let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
-        if(dadosSeparados.length % 2 == 0){
-            let pos1 = dadosSeparados.length/2
-            let pos2 = pos1 - 1
-            let elem1 = dadosSeparados[pos1]
-            let elem2 = dadosSeparados[pos2]
-            var mediana = (parseInt(elem1)+parseInt(elem2))/2
-        }
-        else{
-            let posCentro = (dadosSeparados.length - 1)/2
-            var mediana = dadosSeparados[posCentro]
-        }
+            let posCentro = (todosDados.length - 1)/2
+            var mediana = todosDados[posCentro]
 
         // Exibição dos dados na nova tabela
         for(let i = 0; i < dados.length; i++){
@@ -1407,6 +1562,36 @@ function moveDown (elem){
             
             tbody.appendChild(linha)
             linha.classList.add('linha-tabela')
+        
+        }
+
+        //Tabela Média, Moda e Mediana (Continuação)
+        let linhaMedia = criarElemento('tr')
+        mediabody.appendChild(linhaMedia)
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = 'Não Existe'
+        linhaMedia.appendChild(tdMedia)
+
+        let tdmoda = criarElemento('td')
+        tdmoda.textContent = moda
+        linhaMedia.appendChild(tdmoda)
+
+        let tdMediana = criarElemento('td')
+        tdMediana.textContent = mediana
+        linhaMedia.appendChild(tdMediana)
+
+        //Tabela Desvio Padrão e Coeficiênte de Variação (continuação)
+        let linhaDesvio = criarElemento('tr')
+        desvioBody.appendChild(linhaDesvio)
+
+        let tdDesvio = criarElemento('td')
+        tdDesvio.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdDesvio)
+
+        let tdCoef = criarElemento('td')
+        tdCoef.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdCoef)
 
              //GRÁFICO
         new Chart(ctx, {
@@ -1427,11 +1612,5 @@ function moveDown (elem){
                 }
             }
         });
-
-
-        }
-        
-                //Exibição da Média, Moda e Mediana#####
-    mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>' + 'Moda: ' + moda + '</br>' + 'Mediana: ' + mediana
 
 } 
