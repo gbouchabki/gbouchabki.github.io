@@ -487,7 +487,7 @@ function coletaDados (){
         }
 
         //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
+        function obterPosMaior(arr){
             let posMaior=0
             let numMaior=dadosSeparados[0]
             for (var pos in dadosSeparados){
@@ -1048,90 +1048,182 @@ function coletaDados (){
             th.textContent = indicesTabela[i]
             linhaHead.appendChild(th)
         }
+                
+        //Logs para aferição dos resultados no console
+        console.log(at)
+        console.log(n)
+        console.log('Quantidade de Linhas: ' + Math.trunc(k))
+        console.log('Intervalo: ' + Math.round(intervalo))
 
-        //Calculo da média######
-        let soma = 0
-        let media = 0
-        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
-        media = soma/dadosSeparados.length
 
-        //Calculo##########
-        
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        let auxItv = dadosSeparados[0]
+        let intervaloTemp = 0
+        let cont = 0
+        let acm = 0
+        let varAcm = []
+
+        let frCalc = 0
+        let facPCalc = 0
+
+        let labelContinua = []
+        let dataContinua = []
+
+        let mediaItv = []
+        let vetModa = []
+        let medianaIndex = []
+    
+        for (let i = 0; i < Math.round(k) - 1; i++){
+
+            intervaloTemp = auxItv + intervalo
+            console.log('Intervalo Temp: ' + intervaloTemp)
+            
+            for (let x = acm; dadosSeparados[x] <= Math.round(intervaloTemp); x++){
+                if (dadosSeparados[i] <= intervaloTemp) {
+                    cont++
+                    acm++
                 }
             }
-            return num_vezes
+
+            console.log('contador 2º FOR: ' + cont)
+
+            let linha = criarElemento('tr')
+            tbody.appendChild(linha)
+
+            let tdItv = criarElemento('td')
+            tdItv.textContent = auxItv + ' |-- ' + Math.round(intervaloTemp)
+            labelContinua.push(tdItv.textContent)
+            linha.appendChild(tdItv)
+
+            let tdFi = criarElemento('td')
+            tdFi.textContent = cont
+            linha.appendChild(tdFi)
+            
+            let tdFr = criarElemento('td')
+            frCalc = ((cont/dadosSeparados.length) * 100 ).toFixed(2)
+            tdFr.textContent = frCalc + '%'
+            dataContinua.push(frCalc)
+            linha.appendChild(tdFr)
+            
+            let tdFac = criarElemento('td')
+            tdFac.textContent = acm
+            linha.appendChild(tdFac)
+
+            let tdFacP = criarElemento('td')
+            facPCalc = ((acm/dadosSeparados.length) * 100 ).toFixed(2)
+            tdFacP.textContent = facPCalc + '%'
+            linha.appendChild(tdFacP)
+
+            medianaIndex.push(auxItv)
+
+            mediaItv.push((auxItv + Math.round(intervaloTemp))/2)
+            console.log('Médias dos intervalos: '+ mediaItv)
+
+            vetModa.push(cont)
+            varAcm.push(acm)
+            // auxItv = Math.round(intervaloTemp)
+            auxItv += intervalo
+            cont = 0
+            console.log('Contador Zerado: ' + cont)
+
+            tbody.appendChild(linha)
+
+
+
         }
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
+        //Calculo Média ----------------------
+        let totalMedia = []
+        for (let i = 0; i < mediaItv.length; i++) {
+            totalMedia.push(mediaItv[i]*vetModa[i])            
+        }
+        console.log('Médias: '+totalMedia)
+
+        let somaMedia = totalMedia.reduce((somaMedia, element) => somaMedia + element)
+        let media = somaMedia/acm
+        console.log('Media: ' + totalMedia)
+
+        //Calculo da Moda -------------------------
+
+        let modaPos = obterPosMaior(vetModa)
+        console.log('Posição da Moda: ' + modaPos)
+
+            //Descobre a posição do maior elemento
+            function obterPosMaior(arr){
+                let posMaior=0
+                let numMaior=arr[0]
+                for (var pos in arr){
+                    if (arr[pos]>numMaior) {
+                        numMaior=arr[pos]
+                        posMaior=pos
+                    }
                 }
+                return posMaior
             }
-            return posMaior
-        }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
+            
+            let moda = mediaItv[modaPos]
+            console.log('Moda: ' + moda)
 
         //Calculo da Mediana####
+        
+        //Encontrar a Posição da Mediana
+        let posMediana = Math.round(acm/2)
+        console.log('Posição Mediana: ' + posMediana)
 
-        if(dadosSeparados.length % 2 == 0){
-            let pos1 = dadosSeparados.length/2
-            let pos2 = pos1 - 1
-            let elem1 = dadosSeparados[pos1]
-            let elem2 = dadosSeparados[pos2]
-            var mediana = (parseInt(elem1)+parseInt(elem2))/2
+        //Encontrar os valores de Fimd e Fant
+        let fimd = 0
+        let fant = 0
+        let posFimd = 0
+
+        let verificado = false
+        let i = 0
+
+        do{
+            if (varAcm[i] >= posMediana){
+                fimd = varAcm[i]
+                fant = varAcm[i-1]
+                posFimd = i
+                verificado = true
+            }
+            else {
+                i++
+            } 
+            console.log(i)
+            console.log(varAcm[i])
+            console.log(verificado)          
         }
-        else{
-            let posCentro = (dadosSeparados.length - 1)/2
-            var mediana = dadosSeparados[posCentro]
-        }
+        while (verificado === false)
+
+        let mediana = medianaIndex[posFimd] + ((posMediana - fant)/fimd)*intervalo
+        console.log('Mediana: ' + mediana)
+        console.log('Fimd: ' + fimd)
+        console.log('Fant: ' + fant)
+        console.log('posFimd: ' + posFimd)
+
+
 
         //Calcular Quartil##########
 
-        //Q1
-        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[Math.round(posQ1)]
+        // //Q1
+        // let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
+        // let q1 = dadosSeparados[Math.round(posQ1)]
 
-        let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3)]
+        // let mq3 = posQ1 * 3 // Q3
+        // let q3 = dadosSeparados[Math.round(mq3)]
 
         
-        //Calcular Quintil##########
+        // //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length - 1) / 5 //K1
-        let k1 = dadosSeparados[Math.round(posK1)]
+        // let posK1 = (dadosSeparados.length - 1) / 5 //K1
+        // let k1 = dadosSeparados[Math.round(posK1)]
 
-        let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[Math.round(mk2)]
+        // let mk2 = posK1 * 2 //K2
+        // let k2 = dadosSeparados[Math.round(mk2)]
 
-        let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[Math.round(mk3)]
+        // let mk3 = posK1 * 3 //K3
+        // let k3 = dadosSeparados[Math.round(mk3)]
 
-        let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[Math.round(mk4)]
+        // let mk4 = posK1 * 4 //K4
+        // let k4 = dadosSeparados[Math.round(mk4)]
 
         // //Cacular XI.FI
         // for(let i = 0; i < dados.length; i++){
@@ -1189,88 +1281,52 @@ function coletaDados (){
         // //Logs para conferir os arrays  no console
         // console.log(totalFi)
         // console.log(fr)
-                
-        //Logs para aferição dos resultados no console
-        console.log(at)
-        console.log(n)
-        console.log('Quantidade de Linhas: ' + Math.trunc(k))
-        console.log('Intervalo: ' + Math.round(intervalo))
+
+        
+        //Tabela Média, Moda e Mediana (Continuação)
+        let linhaMedia = criarElemento('tr')
+        mediabody.appendChild(linhaMedia)
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = media.toFixed(2)
+        linhaMedia.appendChild(tdMedia)
+
+        let tdmoda = criarElemento('td')
+        tdmoda.textContent = moda.toFixed(0)
+        linhaMedia.appendChild(tdmoda)
+
+        let tdMediana = criarElemento('td')
+        tdMediana.textContent = mediana.toFixed(2)
+        linhaMedia.appendChild(tdMediana)
+
+        //Tabela Desvio Padrão e Coeficiênte de Variação (continuação)
+        let linhaDesvio = criarElemento('tr')
+        desvioBody.appendChild(linhaDesvio)
+
+        let tdDesvio = criarElemento('td')
+        tdDesvio.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdDesvio)
+
+        let tdCoef = criarElemento('td')
+        tdCoef.textContent = 'Não Existe'
+        linhaDesvio.appendChild(tdCoef)
+
+        
 
 
-        let auxItv = 0
-        let intervaloTemp = 0
-        let cont = 0
-        let acm = 0
-
-        let frCalc = 0
-        let facPCalc = 0
-
-        let labelContinua = []
-        let dataContinua = []
-    
-        for (let i = 1; i <= Math.round(k); i++){
-
-            intervaloTemp = intervalo * i
-            
-            for (let x = acm; dadosSeparados[x] <= Math.round(intervaloTemp); x++){
-                if (dadosSeparados[i] <= intervaloTemp) {
-                    cont++
-                    acm++
-                }
-            }
-
-            console.log('contador 2º FOR: ' + cont)
-
-            let linha = criarElemento('tr')
-            tbody.appendChild(linha)
-
-            let tdItv = criarElemento('td')
-            tdItv.textContent = auxItv + ' |-- ' + Math.round(intervaloTemp)
-            labelContinua.push(tdItv.textContent)
-            linha.appendChild(tdItv)
-
-            let tdFi = criarElemento('td')
-            tdFi.textContent = cont
-            linha.appendChild(tdFi)
-            
-            let tdFr = criarElemento('td')
-            frCalc = ((cont/dadosSeparados.length) * 100 ).toFixed(2)
-            tdFr.textContent = frCalc + '%'
-            dataContinua.push(frCalc)
-            linha.appendChild(tdFr)
-            
-            let tdFac = criarElemento('td')
-            tdFac.textContent = acm
-            linha.appendChild(tdFac)
-
-            let tdFacP = criarElemento('td')
-            facPCalc = ((acm/dadosSeparados.length) * 100 ).toFixed(2)
-            tdFacP.textContent = facPCalc + '%'
-            linha.appendChild(tdFacP)
-
-
-            auxItv += Math.round(intervaloTemp)
-            cont = 0
-            console.log('Contador Zerado: ' + cont)
-
-            tbody.appendChild(linha)
-
-        }
-
-
-        //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
-        + 'Moda: ' + moda + '</br>'
-        + 'Mediana: ' + mediana + '</br>'
-        + 'Quartil Q1: ' + q1 + '</br>'
-        + 'Quartil Q2: ' + mediana + '</br>'
-        + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quintil K1: ' + k1 + '</br>'
-        + 'Quintil K2: ' + k2 + '</br>'
-        + 'Quintil K3: ' + k3 + '</br>'
-        + 'Quintil K4: ' + k4 + '</br>'
-        // + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        // + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+        // //Exibição da Média, Moda e Mediana#####
+        // mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
+        // + 'Moda: ' + moda + '</br>'
+        // + 'Mediana: ' + mediana + '</br>'
+        // + 'Quartil Q1: ' + q1 + '</br>'
+        // + 'Quartil Q2: ' + mediana + '</br>'
+        // + 'Quartil Q3: ' + q3 + '</br>'
+        // + 'Quintil K1: ' + k1 + '</br>'
+        // + 'Quintil K2: ' + k2 + '</br>'
+        // + 'Quintil K3: ' + k3 + '</br>'
+        // + 'Quintil K4: ' + k4 + '</br>'
+        // // + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
+        // // + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
