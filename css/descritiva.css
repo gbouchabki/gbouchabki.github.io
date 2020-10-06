@@ -41,6 +41,7 @@ input {
 }
 
 label {
+    font-size: 1.3rem;
     width: 100%;
     margin-top: 40px;
     margin-top: 20px;
@@ -57,6 +58,11 @@ select {
     margin: auto;
     margin-top: 40px;
     padding: 40px;
+}
+
+#instrucoes {
+    margin-bottom: 20px;
+    font-style: italic;
 }
 
 .button-group{
