@@ -191,12 +191,6 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        //Calculo da média######
-        let soma = 0
-        let media = 0
-        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
-        media = soma/dadosSeparados.length
-
         //Calculo##########
         
         //Acha a frequência de um número no Array
@@ -270,59 +264,6 @@ function coletaDados (){
         //Calcular Decil##########
 
         //Calcular o Percentil##########
-
-        //Cacular XI.FI
-        for(let i = 0; i < dados.length; i++){
-            xifi[i]=dados[i]*fi[i]
-        }
-
-        //Soma dos elementos do "xifi" retornados em uma variável simples
-        let totalXifi = 0
-        for(let i in xifi) {
-            totalXifi += xifi[i]
-        }
-
-        //Média aritimética ponderada
-        let map = 0
-        map = totalXifi / totalFi
-
-        //Calculando o desvio
-        for(let i = 0; i < dados.length; i++){
-            if(dados[i] > map){
-                desvio[i] = dados[i] - map
-            }
-            else{
-                desvio[i] = map - dados[i]
-            }
-        }
-
-        //Calculando desvio ao quadrado
-        for(let i = 0; i < desvio.length; i++){
-            desvioQ[i] = desvio[i]*desvio[i]
-        }
-
-        //Calculando desvioQ * f1
-        for(let i = 0; i < desvioQ.length; i++){
-            desvioFi[i] = desvioQ[i]*fi[i]
-        }
-
-        //Soma dos elementos do "desvioFi" retornados em uma variável simples
-        let totalDesvioFi = 0
-        for(let i in desvioFi) {
-            totalDesvioFi += desvioFi[i]
-        }
-
-        //Calculo Variância
-        let variancia = 0
-        variancia = totalDesvioFi / totalFi
-
-        //Calculo Desvio Padrão
-        let desvioPadrao = 0
-        desvioPadrao = Math.sqrt(variancia)
-
-        //Calculo coeficiente de variação
-        let coefVar = 0
-        coefVar = (desvioPadrao / media)*100
 
         //Logs para conferir os arrays  no console
         console.log(totalFi)//4
@@ -467,12 +408,6 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        //Calculo da média######
-        let soma = 0
-        let media = 0
-        soma = dadosSeparados.reduce((t, n) => n+++t , 0) // Soma do vetor dadosSeparados para calcular a média dos dados inseridos
-        media = soma/dadosSeparados.length
-
         //Calculo##########
         
         //Acha a frequência de um número no Array
@@ -541,58 +476,6 @@ function coletaDados (){
         let mk4 = posK1 * 4 //K4
         let k4 = dadosSeparados[Math.round(mk4)]
 
-        //Cacular XI.FI
-        for(let i = 0; i < dados.length; i++){
-            xifi[i]=dados[i]*fi[i]
-        }
-
-        //Soma dos elementos do "xifi" retornados em uma variável simples
-        let totalXifi = 0
-        for(let i in xifi) {
-            totalXifi += xifi[i]
-        }
-
-        //Média aritimética ponderada
-        let map = 0
-        map = totalXifi / totalFi
-
-        //Calculando o desvio
-        for(let i = 0; i < dados.length; i++){
-            if(dados[i] > map){
-                desvio[i] = dados[i] - map
-            }
-            else{
-                desvio[i] = map - dados[i]
-            }
-        }
-
-        //Calculando desvio ao quadrado
-        for(let i = 0; i < desvio.length; i++){
-            desvioQ[i] = desvio[i]*desvio[i]
-        }
-
-        //Calculando desvioQ * f1
-        for(let i = 0; i < desvioQ.length; i++){
-            desvioFi[i] = desvioQ[i]*fi[i]
-        }
-
-        //Soma dos elementos do "desvioFi" retornados em uma variável simples
-        let totalDesvioFi = 0
-        for(let i in desvioFi) {
-            totalDesvioFi += desvioFi[i]
-        }
-
-        //Calculo Variância
-        let variancia = 0
-        variancia = totalDesvioFi / totalFi
-
-        //Calculo Desvio Padrão
-        let desvioPadrao = 0
-        desvioPadrao = Math.sqrt(variancia)
-
-        //Calculo coeficiente de variação
-        let coefVar = 0
-        coefVar = (desvioPadrao / media)*100
         
         //Logs para conferir os arrays  no console
         console.log(totalFi)
