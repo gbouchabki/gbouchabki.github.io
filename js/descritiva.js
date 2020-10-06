@@ -176,14 +176,8 @@ function coletaDados (){
     
     thS.setAttribute('colspan', 2)
 
-
-
-
-    if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************************************************************
+    if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
     
-
-
-
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -429,14 +423,8 @@ function coletaDados (){
         });
     }
     
-
-
-
-    else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************************************************************
+    else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
         
-
-
-
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -704,18 +692,9 @@ function coletaDados (){
                 }
             }
         });
-
-     
-
     }
     
-
-
-
-    else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************************************************************
-
-
-
+    else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
 
         function ordernarNumeros(a, b){
             return a - b
@@ -1037,10 +1016,7 @@ function coletaDados (){
         });
     }
     
-
-
-
-    else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************************************************************
+    else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
         
 
 
@@ -1334,7 +1310,7 @@ function coletaDados (){
         for(let i in xifi) {
             totalXifi += xifi[i]
         }
-        console.log('soma dos dados XI.FI: ' + totalXifi)
+        console.log('soma dos dados XI.FI: ' + toyytalXifi)
 
 
         //Média aritimética ponderada
@@ -1886,7 +1862,7 @@ function moveDown (elem){
 
             }   
         }
-        
+
              //GRÁFICO
         new Chart(ctx, {
             type: 'pie',
