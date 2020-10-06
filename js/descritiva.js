@@ -1001,9 +1001,6 @@ function coletaDados (){
             console.log('Contador Zerado: ' + cont)
 
             tbody.appendChild(linha)
-
-
-
         }
 
 
@@ -1159,8 +1156,16 @@ function coletaDados (){
 
         //Calculo Variância
         let variancia = 0
-        variancia = totalDesvioFi / totalFi
-        console.log('Variância ' + variancia)
+        //Parametro População Selecionado
+        if(parametro.selectedIndex === 1){ 
+            variancia = totalDesvioFi / totalFi
+            console.log('Variância ' + variancia)            
+        }
+        //Parametro Amostra Selecionado
+        else{
+            variancia = totalDesvioFi / (totalFi - 1)
+            console.log('Variância ' + variancia)            
+        }
 
 
         //Calculo Desvio Padrão
@@ -1169,6 +1174,8 @@ function coletaDados (){
         console.log('Desvio Padrão:' + desvioPadrao)
 
         //Calculo coeficiente de variação
+
+        
         let coefVar = 0
         coefVar = (desvioPadrao / media)*100
         console.log('Coeficiênte de Variação:' + coefVar)
