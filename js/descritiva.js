@@ -175,14 +175,8 @@ function coletaDados (){
     
     thS.setAttribute('colspan', 2)
 
-
-
-
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
     
-
-
-
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -388,14 +382,8 @@ function coletaDados (){
         });
     }
     
-
-
-
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
         
-
-
-
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -631,18 +619,9 @@ function coletaDados (){
                 }
             }
         });
-
-     
-
     }
     
-
-
-
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
-
-
-
 
         function ordernarNumeros(a, b){
             return a - b
@@ -930,9 +909,6 @@ function coletaDados (){
         });
     }
     
-
-
-
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
         
 
@@ -1745,7 +1721,7 @@ function moveDown (elem){
 
             }   
         }
-        
+
              //GRÁFICO
         new Chart(ctx, {
             type: 'pie',
