@@ -44,7 +44,7 @@
         <div>
             <label>Tipo da Variável</label>
             <select id="variavel">
-                <option >Selecione...</option>
+                <option>Selecione...</option>
                 <option>Qualitativa Nominal</option>
                 <option id="ordinal">Qualitativa Ordinal</option>
                 <option>Quantitativa Discreta</option>
@@ -55,28 +55,42 @@
         <div>
             <label>Parâmetro</label>
             <select id="parametro">
-                <option >Selecione...</option>
+                <option>Selecione...</option>
                 <option>População</option>
                 <option>Amostra</option>
             </select>
+        </div>
+        <div>
+            <label>Medida Separatriz</label>
+                <select name="" id="medida-separatriz">
+                    <option>Selecione...</option>
+                    <option>Quartil</option>
+                    <option>Quintil</option>
+                    <!-- <option>Decil</option>
+                    <option>Percentil</option> -->
+                </select>
 
+                <!-- <select id="opcoes-separatriz"></select> -->
         </div>
         <div class="button-group">
             <button id="inserir">Calcular</button>
             <!-- <button id="exibir">Exibir</button> -->
         </div>
 
-        <table id="tabela" class="tabela"></table>
+        <!-- Tabela dados -->
+        <div> 
+            <table id="tabela" class="tabela"></table>
+        </div>
         <div id="tabela-media"></div>
         <div id="tabela-desvio"></div>
         <div id="separatriz"></div>
-        <div id="mtc"></div>
-    <div class="chart-container">
-        <canvas class="line-chart"></canvas>
-        <canvas class="line-chart2"></canvas>
-        <canvas class="line-chart3"></canvas>
-        
-    </div>
+
+        <div class="chart-container">
+            <canvas class="line-chart"></canvas>
+            <canvas class="line-chart2"></canvas>
+            <canvas class="line-chart3"></canvas>
+            
+        </div>
 
 </div> 
 
