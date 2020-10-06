@@ -189,45 +189,27 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        //Calculo##########
+        //Calcular a MODA
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
 
@@ -269,24 +251,12 @@ function coletaDados (){
         console.log(fi)//6
         console.log(fac)//7
         console.log(facP)//8
-        console.log(soma)//9
-        console.log(media)//10
-        console.log(moda)//11
         console.log(mediana)//12
         console.log(k1)
         console.log(k2)
         console.log(k3)
         console.log(k4)
-        console.log(xifi)
-        console.log(totalXifi)
-        console.log(map)
-        console.log(desvio)
-        console.log(desvioQ)
-        console.log(desvioFi)
-        console.log(totalDesvioFi)
-        console.log(variancia)
-        console.log(desvioPadrao)
-        console.log(coefVar)
+        console.log(obterModa(dadosSeparados))//11
         //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
@@ -320,7 +290,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
 
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(dadosSeparados)
         linhaMedia.appendChild(tdmoda)
 
         let tdMediana = criarElemento('td')
@@ -405,46 +375,28 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
             facP[i+1] = facP[i+0] + fr[i+1]
         }
-
-        //Calculo##########
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        //Calcular a MODA
+        
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(arr){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
         let posCentro = (dadosSeparados.length) / 2
@@ -542,7 +494,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
 
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(dadosSeparados)
         linhaMedia.appendChild(tdmoda)
 
         let tdMediana = criarElemento('td')
@@ -636,43 +588,27 @@ function coletaDados (){
         media = soma/dadosSeparados.length
 
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        //Calcular a MODA
+        
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
 
@@ -809,7 +745,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
  
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(separarDados)
         linhaMedia.appendChild(tdmoda)
  
         let tdMediana = criarElemento('td')
