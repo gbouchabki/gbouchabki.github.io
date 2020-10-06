@@ -177,8 +177,12 @@ function coletaDados (){
 
 
 
+
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
     
+
+
+
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -207,45 +211,27 @@ function coletaDados (){
             facP[i+1] = facP[i+0] + fr[i+1]
         }
 
-        //Calculo##########
+        //Calcular a MODA
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
 
@@ -314,7 +300,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
 
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(dadosSeparados)
         linhaMedia.appendChild(tdmoda)
 
         let tdMediana = criarElemento('td')
@@ -402,8 +388,14 @@ function coletaDados (){
         });
     }
     
+
+
+
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
         
+
+
+
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -434,46 +426,28 @@ function coletaDados (){
         for(let i = 0; i < fi.length; i++){ //Calculo do "Fac%"
             facP[i+1] = facP[i+0] + fr[i+1]
         }
-
-        //Calculo##########
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        //Calcular a MODA
+        
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(arr){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
         let posCentro = (dadosSeparados.length) / 2
@@ -571,7 +545,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
 
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(dadosSeparados)
         linhaMedia.appendChild(tdmoda)
 
         let tdMediana = criarElemento('td')
@@ -662,7 +636,13 @@ function coletaDados (){
 
     }
     
+
+
+
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
+
+
+
 
         function ordernarNumeros(a, b){
             return a - b
@@ -704,43 +684,27 @@ function coletaDados (){
         media = soma/dadosSeparados.length
 
         
-        //Acha a frequência de um número no Array
-        function calcularFreq(numero, dadosSeparados){
-            let num_vezes=0
-            for (let pos in dadosSeparados) {
-                if (dadosSeparados[pos]==numero) {
-                    num_vezes++
+        //Calcular a MODA
+        
+        function obterModa(arr){
+            let freqT = {}
+            arr.forEach(elem => freqT[elem] = freqT[elem]+1 || 1)
+
+            let moda = []
+            let maxFreq = 0
+            for(let i in freqT){
+                if(freqT[i] > maxFreq){
+                    moda = [i]
+                    maxFreq = freqT[i]
+                }
+                else if(freqT[i] === maxFreq){
+                    moda.push([i])
                 }
             }
-            return num_vezes
-        }
+            if(moda.length === Object.keys(freqT).length) moda = []
 
-        //Descobre a posição do maior elemento
-        function obterPosMaior(dadosSeparados){
-            let posMaior=0
-            let numMaior=dadosSeparados[0]
-            for (var pos in dadosSeparados){
-                if (dadosSeparados[pos]>numMaior) {
-                    numMaior=dadosSeparados[pos]
-                    posMaior=pos
-                }
-            }
-            return posMaior
+            return moda
         }
-
-        //Função para calcular a MODA
-        function obterModa(dadosSeparados){
-            let freq=new Array(dadosSeparados.length)
-            for (let pos in dadosSeparados){
-                let numero=dadosSeparados[pos]
-                freq[pos]=calcularFreq(numero, dadosSeparados)
-            }
-            let posModa=obterPosMaior(freq)
-            return dadosSeparados[posModa]
-        }
-
-        let vetModa = dadosSeparados
-        let moda = obterModa(vetModa)
 
         //Calculo da Mediana####
 
@@ -877,7 +841,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
  
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = moda
+        tdmoda.textContent = obterModa(separarDados)
         linhaMedia.appendChild(tdmoda)
  
         let tdMediana = criarElemento('td')
@@ -966,7 +930,13 @@ function coletaDados (){
         });
     }
     
+
+
+
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
+        
+
+
         
         for (let i = 0; i < dadosSeparados.length; i++){
             dadosSeparados[i] = parseFloat(dadosSeparados[i])
