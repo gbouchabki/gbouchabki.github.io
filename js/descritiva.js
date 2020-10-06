@@ -368,7 +368,7 @@ function coletaDados (){
                 labels: dados,
                 datasets: [{
                 data: fr,
-                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                backgroundColor: '#6495ED'
                 }],
             },
             options: {
@@ -607,7 +607,7 @@ function coletaDados (){
                 labels: dados,
                 datasets: [{
                 data: fr,
-                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                backgroundColor: '#6495ED',
                 }],
             },
             options: {
@@ -736,7 +736,7 @@ function coletaDados (){
             totalXifi += xifi[i]
         }
 
-            //Média aritimética ponderada
+        //Média aritimética ponderada
         let map = 0
         map = totalXifi / totalFi
 
@@ -820,7 +820,7 @@ function coletaDados (){
         linhaMedia.appendChild(tdMedia)
  
         let tdmoda = criarElemento('td')
-        tdmoda.textContent = obterModa(separarDados)
+        tdmoda.textContent = obterModa(dadosSeparados)
         linhaMedia.appendChild(tdmoda)
  
         let tdMediana = criarElemento('td')
@@ -896,7 +896,9 @@ function coletaDados (){
                 datasets: [{
                     label: "FR%",
                     data: fr,
-                    backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                    borderWidth: 1,
+                    backgroundColor: '#6495ED',
+                    borderColor: '#F8F8FF',
                 }],
             },
             options: {
@@ -1171,7 +1173,7 @@ function coletaDados (){
         for(let i in xifi) {
             totalXifi += xifi[i]
         }
-        console.log('soma dos dados XI.FI: ' + totalXifi)
+        console.log('soma dos dados XI.FI: ' + toyytalXifi)
 
 
         //Média aritimética ponderada
@@ -1330,7 +1332,9 @@ function coletaDados (){
               datasets: [{
                 label: 'Fr%',
                 data: dataContinua,
-                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                borderWidth: 1,
+                backgroundColor: '#6495ED',
+                borderColor: '#F8F8FF',
               }]
             },
             options: {
@@ -1729,7 +1733,9 @@ function moveDown (elem){
                 labels: dados,
                 datasets: [{
                 data: fr,
-                backgroundColor: ['#000080', '#0000CD','#0000FF', '#6495ED', '#4169E1', '#1E90FF', '#00CED1', '#40E0D0', '#48D1CC', '#20B2AA', '#008B8B', '#008080', '#00FA9A', '#00FF7F', '#32CD32', '#3CB371', '#2E8B57', '#006400', '#008000', '#228B22'],
+                borderWidth: 1,
+                backgroundColor: '#6495ED',
+                borderColor: '#F8F8FF',
                 }],
             },
             options: {
