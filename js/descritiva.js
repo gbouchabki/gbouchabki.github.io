@@ -8,6 +8,7 @@ const variavel = document.getElementById('variavel')
 const nomeVariavel = document.getElementById('nomeVariavel')
 const parametro = document.getElementById('parametro')
 const medidaSeparatriz = document.getElementById('medida-separatriz')
+const parSep = document.getElementById('parametroSeparatriz')
 
 const tabela = document.getElementById('tabela')
 
@@ -259,6 +260,36 @@ function coletaDados (){
 
         //Calcular Decil##########
 
+        let posD1 = (dadosSeparados.length - 1) / 10 //K1
+        let d1 = dadosSeparados[Math.round(posD1)]
+
+        let md2 = posD1 * 2 
+        let k2 = dadosSeparados[Math.round(md2)]
+
+        let md3 = posD1 * 3 
+        let d3 = dadosSeparados[Math.round(md3)]
+
+        let md4 = posD1 * 4 
+        let d4 = dadosSeparados[Math.round(md4)]
+
+        let md5 = posD1 * 5 
+        let d5 = dadosSeparados[Math.round(md4)]
+
+        let md6 = posD1 * 6 
+        let d6 = dadosSeparados[Math.round(md4)]
+
+        let md7 = posD1 * 7 
+        let d7 = dadosSeparados[Math.round(md4)]
+
+        let md8 = posD1 * 8 
+        let d8 = dadosSeparados[Math.round(md4)]
+
+        let md9 = posD1 * 9 
+        let d9 = dadosSeparados[Math.round(md4)]
+
+        let m10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md4)]
+
         //Calcular o Percentil##########
 
         //Exibição dos daods na nova tabela
@@ -360,6 +391,16 @@ function coletaDados (){
 
             }   
         }
+
+        let n = dadosSeparados.length
+        let resSep = 0
+        let mostraSep
+        if(medidaSeparatriz.selectedIndex = 1){ //Calculando Quartil
+            resSep = n/parSep
+            mostraSep = dadosSeparados[resSep]
+        }
+
+        console.log(dadosSeparados[resSep])
 
         //GRÁFICO
         new Chart(ctx, {
@@ -464,6 +505,38 @@ function coletaDados (){
 
         let mk4 = posK1 * 4 //K4
         let k4 = dadosSeparados[Math.round(mk4)]
+
+        //Calcular Decil##########
+
+        let posD1 = (dadosSeparados.length - 1) / 10 //K1
+        let d1 = dadosSeparados[Math.round(posD1)]
+
+        let md2 = posD1 * 2 
+        let k2 = dadosSeparados[Math.round(md2)]
+
+        let md3 = posD1 * 3 
+        let d3 = dadosSeparados[Math.round(md3)]
+
+        let md4 = posD1 * 4 
+        let d4 = dadosSeparados[Math.round(md4)]
+
+        let md5 = posD1 * 5 
+        let d5 = dadosSeparados[Math.round(md4)]
+
+        let md6 = posD1 * 6 
+        let d6 = dadosSeparados[Math.round(md4)]
+
+        let md7 = posD1 * 7 
+        let d7 = dadosSeparados[Math.round(md4)]
+
+        let md8 = posD1 * 8 
+        let d8 = dadosSeparados[Math.round(md4)]
+
+        let md9 = posD1 * 9 
+        let d9 = dadosSeparados[Math.round(md4)]
+
+        let m10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md4)]
 
         
         //Logs para conferir os arrays  no console
@@ -722,6 +795,38 @@ function coletaDados (){
 
         let mk4 = posK1 * 4 //K4
         let k4 = dadosSeparados[Math.round(mk4)]
+
+        //Calcular Decil##########
+
+        let posD1 = (dadosSeparados.length - 1) / 10 //K1
+        let d1 = dadosSeparados[Math.round(posD1)]
+
+        let md2 = posD1 * 2 
+        let k2 = dadosSeparados[Math.round(md2)]
+
+        let md3 = posD1 * 3 
+        let d3 = dadosSeparados[Math.round(md3)]
+
+        let md4 = posD1 * 4 
+        let d4 = dadosSeparados[Math.round(md4)]
+
+        let md5 = posD1 * 5 
+        let d5 = dadosSeparados[Math.round(md4)]
+
+        let md6 = posD1 * 6 
+        let d6 = dadosSeparados[Math.round(md4)]
+
+        let md7 = posD1 * 7 
+        let d7 = dadosSeparados[Math.round(md4)]
+
+        let md8 = posD1 * 8 
+        let d8 = dadosSeparados[Math.round(md4)]
+
+        let md9 = posD1 * 9 
+        let d9 = dadosSeparados[Math.round(md4)]
+
+        let m10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md4)]
 
 
         
@@ -1161,6 +1266,38 @@ function coletaDados (){
 
         let mk4 = posK1 * 4 //K4
         let k4 = dadosSeparados[Math.round(mk4)]
+
+        //Calcular Decil##########
+
+        let posD1 = (dadosSeparados.length - 1) / 10 //K1
+        let d1 = dadosSeparados[Math.round(posD1)]
+
+        let md2 = posD1 * 2 
+        let k2 = dadosSeparados[Math.round(md2)]
+
+        let md3 = posD1 * 3 
+        let d3 = dadosSeparados[Math.round(md3)]
+
+        let md4 = posD1 * 4 
+        let d4 = dadosSeparados[Math.round(md4)]
+
+        let md5 = posD1 * 5 
+        let d5 = dadosSeparados[Math.round(md4)]
+
+        let md6 = posD1 * 6 
+        let d6 = dadosSeparados[Math.round(md4)]
+
+        let md7 = posD1 * 7 
+        let d7 = dadosSeparados[Math.round(md4)]
+
+        let md8 = posD1 * 8 
+        let d8 = dadosSeparados[Math.round(md4)]
+
+        let md9 = posD1 * 9 
+        let d9 = dadosSeparados[Math.round(md4)]
+
+        let m10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md4)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
