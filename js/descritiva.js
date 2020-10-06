@@ -593,7 +593,7 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i].toFixed(2)
+                tdSeparaDado.textContent = dadosQuintil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1173,7 +1173,7 @@ function coletaDados (){
         for(let i in xifi) {
             totalXifi += xifi[i]
         }
-        console.log('soma dos dados XI.FI: ' + toyytalXifi)
+        console.log('soma dos dados XI.FI: ' + totalXifi)
 
 
         //Média aritimética ponderada
@@ -1409,7 +1409,6 @@ function moveDown (elem){
     tabela.innerHTML = ''
     tabelaMedia.innerHTML = ''
     tabelaDesvio.innerHTML = ''
-    mtc.innerHTML = ''
     ctx.innerHTML = ''
 
     function changePosition(arr, from, to) {
@@ -1507,6 +1506,27 @@ function moveDown (elem){
         thD.textContent = indicesDesvio[i]
         linhaHeadD.appendChild(thD)        
     }
+
+    // -----------------Tabela Medida Separatriz -------------------------------
+    let tabelaS = criarElemento('table')
+    tabelaDesvio.appendChild(tabelaS)
+    tabelaS.classList.add('tabela')
+
+    let separatrizHead = criarElemento('thead')
+    let separatrizBody = criarElemento('tbody')
+
+    tabelaS.appendChild(separatrizHead)
+    tabelaS.appendChild(separatrizBody)
+
+
+    let linhaHeadS = criarElemento('tr')
+    separatrizHead.appendChild(linhaHeadS)
+
+    let thS = criarElemento('th')
+    thS.textContent = 'Medida Separatriz'
+    linhaHeadS.appendChild(thS)  
+    
+    thS.setAttribute('colspan', 2)
 
         //-----------CALCULOS-----------
 
@@ -1696,7 +1716,7 @@ function moveDown (elem){
                 tdSepara.classList.add('text-align-right')
                 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuartil[i].toFixed(0)
+                tdSeparaDado.textContent = dadosQuartil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
