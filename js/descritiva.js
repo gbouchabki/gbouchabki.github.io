@@ -374,7 +374,7 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i]
+                tdSeparaDado.textContent = dadosQuintil[i].toFixed(0)
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -631,7 +631,7 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i]
+                tdSeparaDado.textContent = dadosQuintil[i].toFixed(2)
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -914,7 +914,7 @@ function coletaDados (){
                 tdSepara.classList.add('text-align-right')
                 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuartil[i]
+                tdSeparaDado.textContent = dadosQuartil[i].toFixed(2)
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -937,7 +937,7 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i]
+                tdSeparaDado.textContent = dadosQuintil[i].toFixed(2)
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1346,7 +1346,7 @@ function coletaDados (){
                 tdSepara.classList.add('text-align-right')
                 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuartil[i]
+                tdSeparaDado.textContent = dadosQuartil[i].toFixed(0)
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1729,15 +1729,53 @@ function moveDown (elem){
         tdCoef.textContent = 'Não Existe'
         linhaDesvio.appendChild(tdCoef)
 
+        if(medidaSeparatriz.selectedIndex === 1){
 
-        mtc.innerHTML += 'Quartil Q1: ' + q1 + '</br>'
-        + 'Quartil Q2: ' + mediana + '</br>'
-        + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quintil K1: ' + k1 + '</br>'
-        + 'Quintil K2: ' + k2 + '</br>'
-        + 'Quintil K3: ' + k3 + '</br>'
-        + 'Quintil K4: ' + k4 + '</br>'
+            let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
 
+            let dadosQuartil = [q1, mediana, q3]
+
+            for (let i = 0; i < indiceQuartil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuartil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+                
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuartil[i].toFixed(0)
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }
+        }
+        else if(medidaSeparatriz.selectedIndex === 2){
+            let indiceQuintil = ['Quintil 1', 'Quintil 2', 'Quintil 3', 'Quintil 4']
+
+            let dadosQuintil = [k1, k2, k3, k4]
+
+            for (let i = 0; i < indiceQuintil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuintil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+        
              //GRÁFICO
         new Chart(ctx, {
             type: 'pie',
