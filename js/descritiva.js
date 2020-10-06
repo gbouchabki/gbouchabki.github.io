@@ -1295,18 +1295,13 @@ function coletaDados (){
 
 
         // //Exibição da Média, Moda e Mediana#####
-        // mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
-        // + 'Moda: ' + moda + '</br>'
-        // + 'Mediana: ' + mediana + '</br>'
-        // + 'Quartil Q1: ' + q1 + '</br>'
+        // mtc.innerHTML += 'Quartil Q1: ' + q1 + '</br>'
         // + 'Quartil Q2: ' + mediana + '</br>'
         // + 'Quartil Q3: ' + q3 + '</br>'
         // + 'Quintil K1: ' + k1 + '</br>'
         // + 'Quintil K2: ' + k2 + '</br>'
         // + 'Quintil K3: ' + k3 + '</br>'
         // + 'Quintil K4: ' + k4 + '</br>'
-        // // + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        // // + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
 
         //GRÁFICO
         new Chart(ctx, {
@@ -1490,15 +1485,7 @@ function moveDown (elem){
         linhaHeadD.appendChild(thD)        
     }
 
-
-
         //-----------CALCULOS-----------
-
-        let xifi = fi
-        let desvio = fi
-        let desvioQ = fi
-        let desvioFi = fi
-        let ds = fi
 
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) 
@@ -1589,60 +1576,6 @@ function moveDown (elem){
         let mk4 = posK1 * 4 //K4
         let k4 = totalDados[Math.round(mk4)]
 
-        //Cacular XI.FI
-        for(let i = 0; i < dados.length; i++){
-            xifi[i]=dados[i]*fi[i]
-        }
-
-        //Soma dos elementos do "xifi" retornados em uma variável simples
-        let totalXifi = 0
-        for(let i in xifi) {
-            totalXifi += xifi[i]
-        }
-
-        //Média aritimética ponderada
-        let map = 0
-        map = totalXifi / totalFi
-
-        //Calculando o desvio
-        for(let i = 0; i < dados.length; i++){
-            if(dados[i] > map){
-                desvio[i] = dados[i] - map
-            }
-            else{
-                desvio[i] = map - dados[i]
-            }
-        }
-
-        //Calculando desvio ao quadrado
-        for(let i = 0; i < desvio.length; i++){
-            desvioQ[i] = desvio[i]*desvio[i]
-        }
-
-        //Calculando desvioQ * f1
-        for(let i = 0; i < desvioQ.length; i++){
-            desvioFi[i] = desvioQ[i]*fi[i]
-        }
-
-        //Soma dos elementos do "desvioFi" retornados em uma variável simples
-        let totalDesvioFi = 0
-        for(let i in desvioFi) {
-            totalDesvioFi += desvioFi[i]
-        }
-
-        //Calculo Variância
-        let variancia = 0
-        variancia = totalDesvioFi / totalFi
-
-        // //Calculo Desvio Padrão
-        // let desvioPadrao = 0
-        // desvioPadrao = Math.sqrt(variancia)
-
-        // //Calculo coeficiente de variação
-        // let coefVar = 0
-        // coefVar = (desvioPadrao / media)*100
-
-        // Exibição dos dados na nova tabela
         for(let i = 0; i < dados.length; i++){
 
             let linha = criarElemento('tr')
