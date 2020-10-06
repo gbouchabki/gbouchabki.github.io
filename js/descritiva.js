@@ -6,15 +6,14 @@ const inserir = document.getElementById('inserir')
 const exibir = document.getElementById('exibir')
 const variavel = document.getElementById('variavel')
 const nomeVariavel = document.getElementById('nomeVariavel')
-const populacao = document.getElementById('populacao')
 const parametro = document.getElementById('parametro')
-const tituloResultado = document.getElementById('tituloResultado')
-const frequenciaTotal = document.getElementById('frequencia')
+const medidaSeparatriz = document.getElementById('medida-separatriz')
+
 const tabela = document.getElementById('tabela')
+
 const ctx = document.getElementsByClassName("line-chart")
 const ctx2 = document.getElementsByClassName("line-chart2")
 const ctx3 = document.getElementsByClassName("line-chart3")
-const mtc = document.getElementById('mtc')
 
 const tabelaMedia = document.querySelector('#tabela-media')
 const tabelaDesvio = document.querySelector('#tabela-desvio')
@@ -34,7 +33,7 @@ function coletaDados (){
 
     tabela.innerHTML = ''
 
-    let valido = true
+    // let valido = true
 
     if(nomeVariavel.value.trim()===''){ //Validar se o campo do nome da variável foi preenchido
         alert('Informe um nome de variável válido')
@@ -156,11 +155,34 @@ function coletaDados (){
     }
 
     // -----------------Tabela Medida Separatriz -------------------------------
+    let tabelaS = criarElemento('table')
+    tabelaDesvio.appendChild(tabelaS)
+    tabelaS.classList.add('tabela')
+
+    let separatrizHead = criarElemento('thead')
+    let separatrizBody = criarElemento('tbody')
+
+    tabelaS.appendChild(separatrizHead)
+    tabelaS.appendChild(separatrizBody)
+
+
+    let linhaHeadS = criarElemento('tr')
+    separatrizHead.appendChild(linhaHeadS)
+
+    let thS = criarElemento('th')
+    thS.textContent = 'Medida Separatriz'
+    linhaHeadS.appendChild(thS)  
+    
+    thS.setAttribute('colspan', 2)
+
 
 
 
     if(variavel.selectedIndex == 1){ //Nominal********************************************************************************************
     
+
+
+
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Nominal'
         tituloTab.style.fontWeight = 700
@@ -245,18 +267,6 @@ function coletaDados (){
 
         //Calcular o Percentil##########
 
-        //Logs para conferir os arrays  no console
-        console.log(totalFi)//4
-        console.log(fr)//5
-        console.log(fi)//6
-        console.log(fac)//7
-        console.log(facP)//8
-        console.log(mediana)//12
-        console.log(k1)
-        console.log(k2)
-        console.log(k3)
-        console.log(k4)
-        console.log(obterModa(dadosSeparados))//11
         //Exibição dos daods na nova tabela
         for(let i = 0; i < dados.length; i++){
             let linha = criarElemento('tr')
@@ -309,18 +319,53 @@ function coletaDados (){
         tdCoef.textContent = 'Não Existe'
         linhaDesvio.appendChild(tdCoef)
 
-        //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 
-        'Quartil Q1: ' + q1 + '</br>'
-        + 'Quartil Q2: ' + mediana + '</br>'
-        + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quintil K1: ' + k1 + '</br>'
-        + 'Quintil K2: ' + k2 + '</br>'
-        + 'Quintil K3: ' + k3 + '</br>'
-        + 'Quintil K4: ' + k4 + '</br>'
+        //Tabela Medida Separatriz (Continuação)
+        if(medidaSeparatriz.selectedIndex === 1){
 
-        
-        
+            let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
+
+            let dadosQuartil = [q1, mediana, q3]
+
+            for (let i = 0; i < indiceQuartil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuartil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+                
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuartil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }
+        }
+        else if(medidaSeparatriz.selectedIndex === 2){
+            let indiceQuintil = ['Quintil 1', 'Quintil 2', 'Quintil 3', 'Quintil 4']
+
+            let dadosQuintil = [k1, k2, k3, k4]
+
+            for (let i = 0; i < indiceQuintil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuintil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
 
         //GRÁFICO
         new Chart(ctx, {
@@ -343,8 +388,14 @@ function coletaDados (){
         });
     }
     
+
+
+
     else if(variavel.selectedIndex == 2){ //Ordinal***************************************************************************************
         
+
+
+
         //Criar Cabeçalho Tabela
         let tituloTab = criarElemento('caption')
         tituloTab.textContent = 'Váriavel Qualitativa Ordinal'
@@ -512,15 +563,54 @@ function coletaDados (){
         let tdCoef = criarElemento('td')
         tdCoef.textContent = 'Não Existe'
         linhaDesvio.appendChild(tdCoef)
-        
-        //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Quartil Q1: ' + q1 + '</br>'
-        + 'Quartil Q2: ' + mediana + '</br>'
-        + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quintil K1: ' + k1 + '</br>'
-        + 'Quintil K2: ' + k2 + '</br>'
-        + 'Quintil K3: ' + k3 + '</br>'
-        + 'Quintil K4: ' + k4 + '</br>'
+
+                //Tabela Medida Separatriz (Continuação)
+        if(medidaSeparatriz.selectedIndex === 1){
+
+            let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
+
+            let dadosQuartil = [q1, mediana, q3]
+
+            for (let i = 0; i < indiceQuartil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuartil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+                
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuartil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }
+        }
+        else if(medidaSeparatriz.selectedIndex === 2){
+            let indiceQuintil = ['Quintil 1', 'Quintil 2', 'Quintil 3', 'Quintil 4']
+
+            let dadosQuintil = [k1, k2, k3, k4]
+
+            for (let i = 0; i < indiceQuintil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuintil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
 
         //GRÁFICO
         new Chart(ctx, {
@@ -546,7 +636,13 @@ function coletaDados (){
 
     }
     
+
+
+
     else if(variavel.selectedIndex == 3){ //Discreta**************************************************************************************
+
+
+
 
         function ordernarNumeros(a, b){
             return a - b
@@ -764,14 +860,54 @@ function coletaDados (){
         tdCoef.textContent = coefVar.toFixed(2) + '%'
         linhaDesvio.appendChild(tdCoef)
         
-        //Exibição da Média, Moda e Mediana#####
-        mtc.innerHTML += 'Quartil Q1: ' + q1 + '</br>'
-        + 'Quartil Q2: ' + mediana + '</br>'
-        + 'Quartil Q3: ' + q3 + '</br>'
-        + 'Quintil K1: ' + k1 + '</br>'
-        + 'Quintil K2: ' + k2 + '</br>'
-        + 'Quintil K3: ' + k3 + '</br>'
-        + 'Quintil K4: ' + k4 + '</br>'
+        //Tabela Medida Separatriz (Continuação)
+        if(medidaSeparatriz.selectedIndex === 1){
+
+            let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
+
+            let dadosQuartil = [q1, mediana, q3]
+
+            for (let i = 0; i < indiceQuartil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuartil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+                
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuartil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }
+        }
+        else if(medidaSeparatriz.selectedIndex === 2){
+            let indiceQuintil = ['Quintil 1', 'Quintil 2', 'Quintil 3', 'Quintil 4']
+
+            let dadosQuintil = [k1, k2, k3, k4]
+
+            for (let i = 0; i < indiceQuintil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuintil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+
         //GRÁFICO
         new Chart(ctx, {
             type: 'bar',
@@ -794,7 +930,13 @@ function coletaDados (){
         });
     }
     
+
+
+
     else if(variavel.selectedIndex == 4){ //Contínua**************************************************************************************
+        
+
+
         
         for (let i = 0; i < dadosSeparados.length; i++){
             dadosSeparados[i] = parseFloat(dadosSeparados[i])
@@ -818,6 +960,7 @@ function coletaDados (){
         xmin = dadosSeparados[0] //Captura qual o primeiro elemento da Array
         xmax = dadosSeparados.slice(-1)[0] //Captura o ultimo elemento do Array
         at = xmax - xmin //Subtração do primeiro elemento pelo ultimo elemento
+        at++ // Acrescimo de + 1 à amplitude
         k = Math.sqrt(n) //Calcula a Raiz Quadrada da quantidade de elementos da Array de entrada de dados. Esse dado representa a quantidade de linhas que a tabela deverá ter
         
         //Calculo do intervalo dos agrupamentos
@@ -825,18 +968,23 @@ function coletaDados (){
         let lk1 = lk2 - 1
         let lk3 = lk2 + 1
 
+        let linhas = 0
+
         let valid = false
         do{
             if(at % lk1 === 0){
                 intervalo = at / lk1
+                linhas = lk1
                 valid = true
                 
             } else if (at % lk2 === 0){
                 intervalo = at / lk2
+                linhas = lk2
                 valid = true
                 
             } else if(at % lk3 === 0){
                 intervalo = at / lk3
+                linhas = lk3
                 valid = true
                 
             } else {
@@ -883,13 +1031,13 @@ function coletaDados (){
         let vetModa = []
         let medianaIndex = []
     
-        for (let i = 0; i < Math.round(k); i++){
+        for (let i = 0; i < linhas; i++){
 
             intervaloTemp = auxItv + intervalo
             console.log('Intervalo Temp: ' + intervaloTemp)
             
-            for (let x = acm; dadosSeparados[x] <= Math.round(intervaloTemp); x++){
-                if (dadosSeparados[i] <= intervaloTemp) {
+            for (let x = acm; dadosSeparados[x] < Math.round(intervaloTemp); x++){
+                if (dadosSeparados[i] < intervaloTemp) {
                     cont++
                     acm++
                 }
@@ -1150,21 +1298,53 @@ function coletaDados (){
         tdCoef.textContent = coefVar.toFixed(2) + '%'
         linhaDesvio.appendChild(tdCoef)
         
+        //Tabela Medida Separatriz (Continuação)
+        if(medidaSeparatriz.selectedIndex === 1){
+
+            let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
+
+            let dadosQuartil = [q1, mediana, q3]
+
+            for (let i = 0; i < indiceQuartil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuartil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+                
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuartil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }
+        }
+        else if(medidaSeparatriz.selectedIndex === 2){
+            let indiceQuintil = ['Quintil 1', 'Quintil 2', 'Quintil 3', 'Quintil 4']
+
+            let dadosQuintil = [k1, k2, k3, k4]
+
+            for (let i = 0; i < indiceQuintil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceQuintil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
 
 
-        // //Exibição da Média, Moda e Mediana#####
-        // mtc.innerHTML += 'Média: ' + media.toFixed(2) + '</br>'
-        // + 'Moda: ' + moda + '</br>'
-        // + 'Mediana: ' + mediana + '</br>'
-        // + 'Quartil Q1: ' + q1 + '</br>'
-        // + 'Quartil Q2: ' + mediana + '</br>'
-        // + 'Quartil Q3: ' + q3 + '</br>'
-        // + 'Quintil K1: ' + k1 + '</br>'
-        // + 'Quintil K2: ' + k2 + '</br>'
-        // + 'Quintil K3: ' + k3 + '</br>'
-        // + 'Quintil K4: ' + k4 + '</br>'
-        // // + 'Desvio Padrão: ' + desvioPadrao.toFixed(2) + '</br>'
-        // // + 'Coeficiente de Variação: ' + coefVar.toFixed(2) + '%' + '</br>'
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
 
         //GRÁFICO
         new Chart(ctx, {
@@ -1348,15 +1528,7 @@ function moveDown (elem){
         linhaHeadD.appendChild(thD)        
     }
 
-
-
         //-----------CALCULOS-----------
-
-        let xifi = fi
-        let desvio = fi
-        let desvioQ = fi
-        let desvioFi = fi
-        let ds = fi
 
         let total = 0
         total = fi.reduce((total, currentElement) => total + currentElement) 
@@ -1447,60 +1619,6 @@ function moveDown (elem){
         let mk4 = posK1 * 4 //K4
         let k4 = totalDados[Math.round(mk4)]
 
-        //Cacular XI.FI
-        for(let i = 0; i < dados.length; i++){
-            xifi[i]=dados[i]*fi[i]
-        }
-
-        //Soma dos elementos do "xifi" retornados em uma variável simples
-        let totalXifi = 0
-        for(let i in xifi) {
-            totalXifi += xifi[i]
-        }
-
-        //Média aritimética ponderada
-        let map = 0
-        map = totalXifi / totalFi
-
-        //Calculando o desvio
-        for(let i = 0; i < dados.length; i++){
-            if(dados[i] > map){
-                desvio[i] = dados[i] - map
-            }
-            else{
-                desvio[i] = map - dados[i]
-            }
-        }
-
-        //Calculando desvio ao quadrado
-        for(let i = 0; i < desvio.length; i++){
-            desvioQ[i] = desvio[i]*desvio[i]
-        }
-
-        //Calculando desvioQ * f1
-        for(let i = 0; i < desvioQ.length; i++){
-            desvioFi[i] = desvioQ[i]*fi[i]
-        }
-
-        //Soma dos elementos do "desvioFi" retornados em uma variável simples
-        let totalDesvioFi = 0
-        for(let i in desvioFi) {
-            totalDesvioFi += desvioFi[i]
-        }
-
-        //Calculo Variância
-        let variancia = 0
-        variancia = totalDesvioFi / totalFi
-
-        // //Calculo Desvio Padrão
-        // let desvioPadrao = 0
-        // desvioPadrao = Math.sqrt(variancia)
-
-        // //Calculo coeficiente de variação
-        // let coefVar = 0
-        // coefVar = (desvioPadrao / media)*100
-
-        // Exibição dos dados na nova tabela
         for(let i = 0; i < dados.length; i++){
 
             let linha = criarElemento('tr')
