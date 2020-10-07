@@ -8,7 +8,11 @@ const variavel = document.getElementById('variavel')
 const nomeVariavel = document.getElementById('nomeVariavel')
 const parametro = document.getElementById('parametro')
 const medidaSeparatriz = document.getElementById('medida-separatriz')
+const opcoesSeparatriz = document.getElementById('opcoes-separatriz')
 const parSep = document.getElementById('parametroSeparatriz')
+
+const opcaoDecil = document.getElementById('decil')
+const opcaoPercentil = document.getElementById('percentil')
 
 const tabela = document.getElementById('tabela')
 
@@ -26,8 +30,23 @@ let dadosRepetidos = []
 let mostraNomeVariavel = []
 let freq = []
 
+
+
 const ordem = document.querySelector('#ordem-resultado')
 const ordinal = document.querySelector('#ordinal')
+
+function escolherOpcao (){
+    if(medidaSeparatriz.indexOf === 3){
+        for (let i = 0; i < 10; i++) {
+            let optDecil = document.createElement('option')
+            optDecil.textContent = i
+            opcoesSeparatriz.appendChild(optDecil)
+        }
+    }
+    console.log('clicado')
+}
+
+opcaoDecil.addEventListener('select', escolherOpcao)
 
 //Função para coletar os dados
 function coletaDados (){
@@ -234,61 +253,59 @@ function coletaDados (){
         var mediana = dadosSeparados[Math.round(posCentro)]
 
         
-        //Calcular Quartil##########
-
         //Q1
-        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[Math.round(posQ1)]
+        let posQ1 = (dadosSeparados.length / 4) //Q1
+        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3)]
+        let q3 = dadosSeparados[Math.round(mq3 - 1)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length - 1) / 5 //K1
-        let k1 = dadosSeparados[Math.round(posK1)]
+        let posK1 = (dadosSeparados.length / 5) //K1
+        let k1 = dadosSeparados[Math.round(posK1 - 1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[Math.round(mk2)]
+        let k2 = dadosSeparados[Math.round(mk2 - 1)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[Math.round(mk3)]
+        let k3 = dadosSeparados[Math.round(mk3 - 1)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[Math.round(mk4)]
+        let k4 = dadosSeparados[Math.round(mk4 - 1)]
 
         //Calcular Decil##########
 
-        let posD1 = (dadosSeparados.length - 1) / 10 //K1
-        let d1 = dadosSeparados[Math.round(posD1)]
+        let posD1 = (dadosSeparados.length / 10) //K1
+        let d1 = dadosSeparados[Math.round(posD1 - 1)]
 
-        let md2 = posD1 * 2 
-        let k2 = dadosSeparados[Math.round(md2)]
+        let md2 = posD1 * 2
+        let d2 = dadosSeparados[Math.round(md2 - 1)]
 
-        let md3 = posD1 * 3 
-        let d3 = dadosSeparados[Math.round(md3)]
+        let md3 = posD1 * 3
+        let d3 = dadosSeparados[Math.round(md3 - 1)]
 
-        let md4 = posD1 * 4 
-        let d4 = dadosSeparados[Math.round(md4)]
+        let md4 = posD1 * 4
+        let d4 = dadosSeparados[Math.round(md4 - 1)]
 
         let md5 = posD1 * 5 
-        let d5 = dadosSeparados[Math.round(md4)]
+        let d5 = dadosSeparados[Math.round(md5 - 1)]
 
         let md6 = posD1 * 6 
-        let d6 = dadosSeparados[Math.round(md4)]
+        let d6 = dadosSeparados[Math.round(md6 - 1)]
 
         let md7 = posD1 * 7 
-        let d7 = dadosSeparados[Math.round(md4)]
+        let d7 = dadosSeparados[Math.round(md7 - 1)]
 
         let md8 = posD1 * 8 
-        let d8 = dadosSeparados[Math.round(md4)]
+        let d8 = dadosSeparados[Math.round(md8 - 1)]
 
         let md9 = posD1 * 9 
-        let d9 = dadosSeparados[Math.round(md4)]
+        let d9 = dadosSeparados[Math.round(md9 - 1)]
 
-        let m10 = posD1 * 10 
-        let d10 = dadosSeparados[Math.round(md4)]
+        let md10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md10 - 1)]
 
         //Calcular o Percentil##########
 
@@ -385,7 +402,30 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i].toFixed(0)
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+        else if(medidaSeparatriz.selectedIndex === 3){
+            let indiceDecil = ['Decil 1', 'Decil 2', 'Decil 3', 'Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']
+
+            let dadosDecil = [d1, d2, d3, d4, d5, d6, d7,d8,d9,d10]
+
+            for (let i = 0; i < indiceDecil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceDecil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosDecil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -482,62 +522,59 @@ function coletaDados (){
         let posCentro = (dadosSeparados.length) / 2
         var mediana = dadosSeparados[Math.round(posCentro - 1)]
 
-        //Calcular Quartil##########
-
         //Q1
-        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[Math.round(posQ1)]
+        let posQ1 = (dadosSeparados.length / 4) //Q1
+        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3)]
+        let q3 = dadosSeparados[Math.round(mq3 - 1)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length - 1) / 5 //K1
-        let k1 = dadosSeparados[Math.round(posK1)]
+        let posK1 = (dadosSeparados.length / 5) //K1
+        let k1 = dadosSeparados[Math.round(posK1 - 1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[Math.round(mk2)]
+        let k2 = dadosSeparados[Math.round(mk2 - 1)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[Math.round(mk3)]
+        let k3 = dadosSeparados[Math.round(mk3 - 1)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[Math.round(mk4)]
+        let k4 = dadosSeparados[Math.round(mk4 - 1)]
 
         //Calcular Decil##########
 
-        let posD1 = (dadosSeparados.length - 1) / 10 //K1
-        let d1 = dadosSeparados[Math.round(posD1)]
+        let posD1 = (dadosSeparados.length / 10) //K1
+        let d1 = dadosSeparados[Math.round(posD1 - 1)]
 
-        let md2 = posD1 * 2 
-        let k2 = dadosSeparados[Math.round(md2)]
+        let md2 = posD1 * 2
+        let d2 = dadosSeparados[Math.round(md2 - 1)]
 
-        let md3 = posD1 * 3 
-        let d3 = dadosSeparados[Math.round(md3)]
+        let md3 = posD1 * 3
+        let d3 = dadosSeparados[Math.round(md3 - 1)]
 
-        let md4 = posD1 * 4 
-        let d4 = dadosSeparados[Math.round(md4)]
+        let md4 = posD1 * 4
+        let d4 = dadosSeparados[Math.round(md4 - 1)]
 
         let md5 = posD1 * 5 
-        let d5 = dadosSeparados[Math.round(md4)]
+        let d5 = dadosSeparados[Math.round(md5 - 1)]
 
         let md6 = posD1 * 6 
-        let d6 = dadosSeparados[Math.round(md4)]
+        let d6 = dadosSeparados[Math.round(md6 - 1)]
 
         let md7 = posD1 * 7 
-        let d7 = dadosSeparados[Math.round(md4)]
+        let d7 = dadosSeparados[Math.round(md7 - 1)]
 
         let md8 = posD1 * 8 
-        let d8 = dadosSeparados[Math.round(md4)]
+        let d8 = dadosSeparados[Math.round(md8 - 1)]
 
         let md9 = posD1 * 9 
-        let d9 = dadosSeparados[Math.round(md4)]
+        let d9 = dadosSeparados[Math.round(md9 - 1)]
 
-        let m10 = posD1 * 10 
-        let d10 = dadosSeparados[Math.round(md4)]
-
+        let md10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md10 - 1)]
         
         //Logs para conferir os arrays  no console
         console.log(totalFi)
@@ -672,6 +709,29 @@ function coletaDados (){
 
             }   
         }
+        else if(medidaSeparatriz.selectedIndex === 3){
+            let indiceDecil = ['Decil 1', 'Decil 2', 'Decil 3', 'Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']
+
+            let dadosDecil = [d1, d2, d3, d4, d5, d6, d7,d8,d9,d10]
+
+            for (let i = 0; i < indiceDecil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceDecil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosDecil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
 
         //GRÁFICO
         new Chart(ctx, {
@@ -772,61 +832,59 @@ function coletaDados (){
             var mediana = dadosSeparados[posCentro]
         }
 
-        //Calcular Quartil##########
-
-        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[Math.round(posQ1)]
-
-        let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3)]
-
-        
-        //Calcular Quintil##########
-
-
-        let posK1 = (dadosSeparados.length - 1) / 5 //K1
-        let k1 = dadosSeparados[Math.round(posK1)]
-
-        let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[Math.round(mk2)]
-
-        let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[Math.round(mk3)]
-
-        let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[Math.round(mk4)]
-
-        //Calcular Decil##########
-
-        let posD1 = (dadosSeparados.length - 1) / 10 //K1
-        let d1 = dadosSeparados[Math.round(posD1)]
-
-        let md2 = posD1 * 2 
-        let k2 = dadosSeparados[Math.round(md2)]
-
-        let md3 = posD1 * 3 
-        let d3 = dadosSeparados[Math.round(md3)]
-
-        let md4 = posD1 * 4 
-        let d4 = dadosSeparados[Math.round(md4)]
-
-        let md5 = posD1 * 5 
-        let d5 = dadosSeparados[Math.round(md4)]
-
-        let md6 = posD1 * 6 
-        let d6 = dadosSeparados[Math.round(md4)]
-
-        let md7 = posD1 * 7 
-        let d7 = dadosSeparados[Math.round(md4)]
-
-        let md8 = posD1 * 8 
-        let d8 = dadosSeparados[Math.round(md4)]
-
-        let md9 = posD1 * 9 
-        let d9 = dadosSeparados[Math.round(md4)]
-
-        let m10 = posD1 * 10 
-        let d10 = dadosSeparados[Math.round(md4)]
+            //Q1
+            let posQ1 = (dadosSeparados.length / 4) //Q1
+            let q1 = dadosSeparados[Math.round(posQ1 - 1)]
+    
+            let mq3 = posQ1 * 3 // Q3
+            let q3 = dadosSeparados[Math.round(mq3 - 1)]
+    
+            
+            //Calcular Quintil##########
+    
+            let posK1 = (dadosSeparados.length / 5) //K1
+            let k1 = dadosSeparados[Math.round(posK1 - 1)]
+    
+            let mk2 = posK1 * 2 //K2
+            let k2 = dadosSeparados[Math.round(mk2 - 1)]
+    
+            let mk3 = posK1 * 3 //K3
+            let k3 = dadosSeparados[Math.round(mk3 - 1)]
+    
+            let mk4 = posK1 * 4 //K4
+            let k4 = dadosSeparados[Math.round(mk4 - 1)]
+    
+            //Calcular Decil##########
+    
+            let posD1 = (dadosSeparados.length / 10) //K1
+            let d1 = dadosSeparados[Math.round(posD1 - 1)]
+    
+            let md2 = posD1 * 2
+            let d2 = dadosSeparados[Math.round(md2 - 1)]
+    
+            let md3 = posD1 * 3
+            let d3 = dadosSeparados[Math.round(md3 - 1)]
+    
+            let md4 = posD1 * 4
+            let d4 = dadosSeparados[Math.round(md4 - 1)]
+    
+            let md5 = posD1 * 5 
+            let d5 = dadosSeparados[Math.round(md5 - 1)]
+    
+            let md6 = posD1 * 6 
+            let d6 = dadosSeparados[Math.round(md6 - 1)]
+    
+            let md7 = posD1 * 7 
+            let d7 = dadosSeparados[Math.round(md7 - 1)]
+    
+            let md8 = posD1 * 8 
+            let d8 = dadosSeparados[Math.round(md8 - 1)]
+    
+            let md9 = posD1 * 9 
+            let d9 = dadosSeparados[Math.round(md9 - 1)]
+    
+            let md10 = posD1 * 10 
+            let d10 = dadosSeparados[Math.round(md10 - 1)]
 
 
         
@@ -962,7 +1020,7 @@ function coletaDados (){
                 tdSepara.classList.add('text-align-right')
                 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuartil[i].toFixed(2)
+                tdSeparaDado.textContent = dadosQuartil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -985,7 +1043,30 @@ function coletaDados (){
 
 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuintil[i].toFixed(2)
+                tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+        else if(medidaSeparatriz.selectedIndex === 3){
+            let indiceDecil = ['Decil 1', 'Decil 2', 'Decil 3', 'Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']
+
+            let dadosDecil = [d1, d2, d3, d4, d5, d6, d7,d8,d9,d10]
+
+            for (let i = 0; i < indiceDecil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceDecil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosDecil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1243,61 +1324,61 @@ function coletaDados (){
 
         // Calcular Quartil##########
         let totalFi = 0
-        totalFi = fi.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
+        totalFi = vetModa.reduce((total, currentElement) => total + currentElement) //Soma dos elementos do "Fi" retornados em uma variável simples
 
         //Q1
-        let posQ1 = (dadosSeparados.length - 1) / 4 //Q1
-        let q1 = dadosSeparados[Math.round(posQ1)]
+        let posQ1 = (dadosSeparados.length / 4) //Q1
+        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3)]
+        let q3 = dadosSeparados[Math.round(mq3 - 1)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (dadosSeparados.length - 1) / 5 //K1
-        let k1 = dadosSeparados[Math.round(posK1)]
+        let posK1 = (dadosSeparados.length / 5) //K1
+        let k1 = dadosSeparados[Math.round(posK1 - 1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = dadosSeparados[Math.round(mk2)]
+        let k2 = dadosSeparados[Math.round(mk2 - 1)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = dadosSeparados[Math.round(mk3)]
+        let k3 = dadosSeparados[Math.round(mk3 - 1)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = dadosSeparados[Math.round(mk4)]
+        let k4 = dadosSeparados[Math.round(mk4 - 1)]
 
         //Calcular Decil##########
 
-        let posD1 = (dadosSeparados.length - 1) / 10 //K1
-        let d1 = dadosSeparados[Math.round(posD1)]
+        let posD1 = (dadosSeparados.length / 10) //K1
+        let d1 = dadosSeparados[Math.round(posD1 - 1)]
 
-        let md2 = posD1 * 2 
-        let k2 = dadosSeparados[Math.round(md2)]
+        let md2 = posD1 * 2
+        let d2 = dadosSeparados[Math.round(md2 - 1)]
 
-        let md3 = posD1 * 3 
-        let d3 = dadosSeparados[Math.round(md3)]
+        let md3 = posD1 * 3
+        let d3 = dadosSeparados[Math.round(md3 - 1)]
 
-        let md4 = posD1 * 4 
-        let d4 = dadosSeparados[Math.round(md4)]
+        let md4 = posD1 * 4
+        let d4 = dadosSeparados[Math.round(md4 - 1)]
 
         let md5 = posD1 * 5 
-        let d5 = dadosSeparados[Math.round(md4)]
+        let d5 = dadosSeparados[Math.round(md5 - 1)]
 
         let md6 = posD1 * 6 
-        let d6 = dadosSeparados[Math.round(md4)]
+        let d6 = dadosSeparados[Math.round(md6 - 1)]
 
         let md7 = posD1 * 7 
-        let d7 = dadosSeparados[Math.round(md4)]
+        let d7 = dadosSeparados[Math.round(md7 - 1)]
 
         let md8 = posD1 * 8 
-        let d8 = dadosSeparados[Math.round(md4)]
+        let d8 = dadosSeparados[Math.round(md8 - 1)]
 
         let md9 = posD1 * 9 
-        let d9 = dadosSeparados[Math.round(md4)]
+        let d9 = dadosSeparados[Math.round(md9 - 1)]
 
-        let m10 = posD1 * 10 
-        let d10 = dadosSeparados[Math.round(md4)]
+        let md10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md10 - 1)]
 
         //Cacular XI.FI
         for(let i = 0; i < dados.length; i++){
@@ -1418,7 +1499,7 @@ function coletaDados (){
 
             let indiceQuartil = ['Quartil 1', 'Quartil 2', 'Quartil 3']
 
-            let dadosQuartil = [q1, mediana, q3]
+            let dadosQuartil = [q1, mediana - 1, q3]
 
             for (let i = 0; i < indiceQuartil.length; i++) {
                 
@@ -1431,7 +1512,7 @@ function coletaDados (){
                 tdSepara.classList.add('text-align-right')
                 
                 let tdSeparaDado = criarElemento('td')
-                tdSeparaDado.textContent = dadosQuartil[i].toFixed(0)
+                tdSeparaDado.textContent = dadosQuartil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1455,6 +1536,29 @@ function coletaDados (){
 
                 let tdSeparaDado = criarElemento('td')
                 tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+        else if(medidaSeparatriz.selectedIndex === 3){
+            let indiceDecil = ['Decil 1', 'Decil 2', 'Decil 3', 'Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']
+
+            let dadosDecil = [d1, d2, d3, d4, d5, d6, d7,d8,d9,d10]
+
+            for (let i = 0; i < indiceDecil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceDecil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosDecil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
@@ -1734,27 +1838,67 @@ function moveDown (elem){
 
         //Calcular Quartil##########
 
-        //Q1
-        let posQ1 = (totalDados.length - 1) / 4 //Q1
-        let q1 = totalDados[Math.round(posQ1)]
+                //Q1
+        let posQ1 = (dadosSeparados.length / 4) //Q1
+        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
 
         let mq3 = posQ1 * 3 // Q3
-        let q3 = totalDados[Math.round(mq3)]
+        let q3 = dadosSeparados[Math.round(mq3 - 1)]
+
+        
+        //Q1
+        let posQ1 = (dadosSeparados.length / 4) //Q1
+        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
+
+        let mq3 = posQ1 * 3 // Q3
+        let q3 = dadosSeparados[Math.round(mq3 - 1)]
 
         
         //Calcular Quintil##########
 
-        let posK1 = (totalDados.length - 1) / 5 //K1
-        let k1 = totalDados[Math.round(posK1)]
+        let posK1 = (dadosSeparados.length / 5) //K1
+        let k1 = dadosSeparados[Math.round(posK1 - 1)]
 
         let mk2 = posK1 * 2 //K2
-        let k2 = totalDados[Math.round(mk2)]
+        let k2 = dadosSeparados[Math.round(mk2 - 1)]
 
         let mk3 = posK1 * 3 //K3
-        let k3 = totalDados[Math.round(mk3)]
+        let k3 = dadosSeparados[Math.round(mk3 - 1)]
 
         let mk4 = posK1 * 4 //K4
-        let k4 = totalDados[Math.round(mk4)]
+        let k4 = dadosSeparados[Math.round(mk4 - 1)]
+
+        //Calcular Decil##########
+
+        let posD1 = (dadosSeparados.length / 10) //K1
+        let d1 = dadosSeparados[Math.round(posD1 - 1)]
+
+        let md2 = posD1 * 2
+        let d2 = dadosSeparados[Math.round(md2 - 1)]
+
+        let md3 = posD1 * 3
+        let d3 = dadosSeparados[Math.round(md3 - 1)]
+
+        let md4 = posD1 * 4
+        let d4 = dadosSeparados[Math.round(md4 - 1)]
+
+        let md5 = posD1 * 5 
+        let d5 = dadosSeparados[Math.round(md5 - 1)]
+
+        let md6 = posD1 * 6 
+        let d6 = dadosSeparados[Math.round(md6 - 1)]
+
+        let md7 = posD1 * 7 
+        let d7 = dadosSeparados[Math.round(md7 - 1)]
+
+        let md8 = posD1 * 8 
+        let d8 = dadosSeparados[Math.round(md8 - 1)]
+
+        let md9 = posD1 * 9 
+        let d9 = dadosSeparados[Math.round(md9 - 1)]
+
+        let md10 = posD1 * 10 
+        let d10 = dadosSeparados[Math.round(md10 - 1)]
 
         for(let i = 0; i < dados.length; i++){
 
@@ -1877,6 +2021,29 @@ function moveDown (elem){
 
                 let tdSeparaDado = criarElemento('td')
                 tdSeparaDado.textContent = dadosQuintil[i]
+                linhaSepara.appendChild(tdSeparaDado)
+                tdSeparaDado.classList.add('text-align-left')
+
+            }   
+        }
+        else if(medidaSeparatriz.selectedIndex === 3){
+            let indiceDecil = ['Decil 1', 'Decil 2', 'Decil 3', 'Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']
+
+            let dadosDecil = [d1, d2, d3, d4, d5, d6, d7,d8,d9,d10]
+
+            for (let i = 0; i < indiceDecil.length; i++) {
+                
+                let linhaSepara = criarElemento('tr')
+                separatrizBody.appendChild(linhaSepara)
+
+                let tdSepara = criarElemento('td')
+                tdSepara.textContent = indiceDecil[i]
+                linhaSepara.appendChild(tdSepara)
+                tdSepara.classList.add('text-align-right')
+
+
+                let tdSeparaDado = criarElemento('td')
+                tdSeparaDado.textContent = dadosDecil[i]
                 linhaSepara.appendChild(tdSeparaDado)
                 tdSeparaDado.classList.add('text-align-left')
 
