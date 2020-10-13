@@ -1838,14 +1838,6 @@ function moveDown (elem){
 
         //Calcular Quartil##########
 
-                //Q1
-        let posQ1 = (dadosSeparados.length / 4) //Q1
-        let q1 = dadosSeparados[Math.round(posQ1 - 1)]
-
-        let mq3 = posQ1 * 3 // Q3
-        let q3 = dadosSeparados[Math.round(mq3 - 1)]
-
-        
         //Q1
         let posQ1 = (dadosSeparados.length / 4) //Q1
         let q1 = dadosSeparados[Math.round(posQ1 - 1)]
