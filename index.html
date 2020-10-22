@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+  rel="stylesheet"
+  />
+  <link rel="shortcut icon" href="images/favicon.ico"/>
   <title>Mini BI | Login</title>
 </head>
+
 <body>
+  <div id="page-login">
+    <aside>
+      <div class="aside-content">
+        <img src="./images/logo-minibi.png" alt="Logo Mini BI">
+        <footer>
+          <h2>Franca - São Paulo</h2> 
+          <div id="social-icons">
+
+          </div>
+        </footer>
+      </div>
+
+    </aside>
+    <main>
+      <div id="box-login">
+        <img src="./images/user.png" alt="Login MiniBI" id="icon-person">
+        
+        <h1>Login</h1>
+
+        <label for="user">Usuário</label>
+        <input placeholder="Informe seu usuário" type="text" name="username">
+        <label for="password">Senha</label>
+        <input placeholder="Informe sua senha" type="password" name="password">
+
+        <button id="btn-acessar">ACESSAR</button>
+        <a href="#" id="recuperar-senha">Esqueci minha senha</a>
+        <a href="#" id="cadastrar">Cadastrar-me</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/login.js"></script>
   
 </body>
 </html>
