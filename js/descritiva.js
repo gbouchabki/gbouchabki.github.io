@@ -44,6 +44,7 @@ function exibirOpt() {
       let optQuartil = document.createElement("option");
       optQuartil.textContent = i;
       opcoesSeparatriz.appendChild(optQuartil);
+      optQuartil.setAttribute('value', i)
     }
   }
   if (medidaSeparatriz.selectedIndex === 2) {
@@ -52,6 +53,7 @@ function exibirOpt() {
       let optQuintil = document.createElement("option");
       optQuintil.textContent = i;
       opcoesSeparatriz.appendChild(optQuintil);
+      optQuintil.setAttribute('value', i)
     }
   }
   if (medidaSeparatriz.selectedIndex === 3) {
@@ -60,6 +62,7 @@ function exibirOpt() {
       let optDecil = document.createElement("option");
       optDecil.textContent = i;
       opcoesSeparatriz.appendChild(optDecil);
+      optDecil.setAttribute('value', i);
     }
   }
   else if(medidaSeparatriz.selectedIndex === 4) {
@@ -67,6 +70,7 @@ function exibirOpt() {
       let optPercentil = document.createElement("option");
       optPercentil.textContent = i;
       opcoesSeparatriz.appendChild(optPercentil);
+      optPercentil.setAttribute('value', i)
     }
   }
 }
@@ -219,8 +223,7 @@ function coletaDados() {
 
   thS.setAttribute("colspan", 2);
 
-  if (variavel.selectedIndex == 1) {
-    //Nominal********************************************************************************************
+  if (variavel.selectedIndex == 1) { //Nominal********************************************************************************************
 
     let tituloTab = criarElemento("caption");
     tituloTab.textContent = "Váriavel Qualitativa Nominal";
@@ -280,67 +283,19 @@ function coletaDados() {
     var mediana = dadosSeparados[Math.round(posCentro)];
 
     //---- CALCULAR QUARTIL ----
-    console.log(opcoesSeparatriz)
-    if(medidaSeparatriz.selectedIndex === 1){
-      let quartil = parseInt(opcoesSeparatriz.options[opcoesSeparatriz.selectedIndex].text)
-      let posQ1 = dadosSeparados.length / 4; //Q1
-
-      let valorQuartil = dadosSeparados[Math.round(posQ1 * quartil)-1]
-
-      console.log(valorQuartil)
-    }
-    // let q1 = dadosSeparados[Math.round(posQ1 - 1)];
-
-    // let mq3 = posQ1 * 3; // Q3
-    // let q3 = dadosSeparados[Math.round(mq3 - 1)];
-
+      let posQuartil = parseInt(opcoesSeparatriz.value)
+      let posQ = dadosSeparados[(Math.round((dadosSeparados.length) / 4)) * posQuartil ]
     //Calcular Quintil##########
-
-    let posK1 = dadosSeparados.length / 5; //K1
-    let k1 = dadosSeparados[Math.round(posK1 - 1)];
-
-    let mk2 = posK1 * 2; //K2
-    let k2 = dadosSeparados[Math.round(mk2 - 1)];
-
-    let mk3 = posK1 * 3; //K3
-    let k3 = dadosSeparados[Math.round(mk3 - 1)];
-
-    let mk4 = posK1 * 4; //K4
-    let k4 = dadosSeparados[Math.round(mk4 - 1)];
+      let posQuintil = parseInt(opcoesSeparatriz.value)
+      let posQui = dadosSeparados[(Math.round((dadosSeparados.length) / 5)) * posQuintil ]
 
     //Calcular Decil##########
-
-    let posD1 = dadosSeparados.length / 10; //K1
-    let d1 = dadosSeparados[Math.round(posD1 - 1)];
-
-    let md2 = posD1 * 2;
-    let d2 = dadosSeparados[Math.round(md2 - 1)];
-
-    let md3 = posD1 * 3;
-    let d3 = dadosSeparados[Math.round(md3 - 1)];
-
-    let md4 = posD1 * 4;
-    let d4 = dadosSeparados[Math.round(md4 - 1)];
-
-    let md5 = posD1 * 5;
-    let d5 = dadosSeparados[Math.round(md5 - 1)];
-
-    let md6 = posD1 * 6;
-    let d6 = dadosSeparados[Math.round(md6 - 1)];
-
-    let md7 = posD1 * 7;
-    let d7 = dadosSeparados[Math.round(md7 - 1)];
-
-    let md8 = posD1 * 8;
-    let d8 = dadosSeparados[Math.round(md8 - 1)];
-
-    let md9 = posD1 * 9;
-    let d9 = dadosSeparados[Math.round(md9 - 1)];
-
-    let md10 = posD1 * 10;
-    let d10 = dadosSeparados[Math.round(md10 - 1)];
+      let posDecil = parseInt(opcoesSeparatriz.value)
+      let posD = dadosSeparados[(Math.round((dadosSeparados.length) / 10)) * posDecil ]
 
     //Calcular o Percentil##########
+      let posPercentil = parseInt(opcoesSeparatriz.value)
+      let posP = dadosSeparados[(Math.round((dadosSeparados.length) / 100)) * posPercentil ]
 
     //Exibição dos daods na nova tabela
     for (let i = 0; i < dados.length; i++) {
@@ -396,71 +351,72 @@ function coletaDados() {
 
     //Tabela Medida Separatriz (Continuação)
     if (medidaSeparatriz.selectedIndex === 1) {
-      // let indiceQuartil = ["Quartil 1", "Quartil 2", "Quartil 3"];
+      let indiceQuartil = 'Quartil ' + opcoesSeparatriz.value;
 
-      // let dadosQuartil = [q1, mediana, q3];
+      let dadosQuartil = posQ;
 
         let linhaSepara = criarElemento("tr");
         separatrizBody.appendChild(linhaSepara);
 
         let tdSepara = criarElemento("td");
-        tdSepara.textContent = 'Quartil ' + opcoesSeparatriz.options[opcoesSeparatriz.selectedIndex].text;
+        tdSepara.textContent = indiceQuartil;
         linhaSepara.appendChild(tdSepara);
         tdSepara.classList.add("text-align-right");
 
         let tdSeparaDado = criarElemento("td");
-        tdSeparaDado.textContent = valorQuartil;
+        tdSeparaDado.textContent = dadosQuartil;
         linhaSepara.appendChild(tdSeparaDado);
         tdSeparaDado.classList.add("text-align-left");
-    } else if (medidaSeparatriz.selectedIndex === 2) {
-      let indiceQuintil = ["Quintil 1", "Quintil 2", "Quintil 3", "Quintil 4"];
+    } 
+    else if (medidaSeparatriz.selectedIndex === 2) {
+      let indiceQuintil = "Quintil " + opcoesSeparatriz.value;
 
-      let dadosQuintil = [k1, k2, k3, k4];
+      let dadosQuintil = posQui;
 
-      for (let i = 0; i < indiceQuintil.length; i++) {
-        let linhaSepara = criarElemento("tr");
-        separatrizBody.appendChild(linhaSepara);
+      let linhaSepara = criarElemento("tr");
+      separatrizBody.appendChild(linhaSepara);
 
-        let tdSepara = criarElemento("td");
-        tdSepara.textContent = indiceQuintil[i];
-        linhaSepara.appendChild(tdSepara);
-        tdSepara.classList.add("text-align-right");
+      let tdSepara = criarElemento("td");
+      tdSepara.textContent = indiceQuintil;
+      linhaSepara.appendChild(tdSepara);
+      tdSepara.classList.add("text-align-right");
 
-        let tdSeparaDado = criarElemento("td");
-        tdSeparaDado.textContent = dadosQuintil[i];
-        linhaSepara.appendChild(tdSeparaDado);
-        tdSeparaDado.classList.add("text-align-left");
-      }
-    } else if (medidaSeparatriz.selectedIndex === 3) {
-      let indiceDecil = [
-        "Decil 1",
-        "Decil 2",
-        "Decil 3",
-        "Decil 4",
-        "Decil 5",
-        "Decil 6",
-        "Decil 7",
-        "Decil 8",
-        "Decil 9",
-        "Decil 10",
-      ];
+      let tdSeparaDado = criarElemento("td");
+      tdSeparaDado.textContent = dadosQuintil;
+      linhaSepara.appendChild(tdSeparaDado);
+      tdSeparaDado.classList.add("text-align-left");
+    } 
+    else if (medidaSeparatriz.selectedIndex === 3) {
+      let indiceDecil = 'Decil ' + opcoesSeparatriz.value
 
-      let dadosDecil = [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10];
+      let linhaSepara = criarElemento("tr");
+      separatrizBody.appendChild(linhaSepara);
 
-      for (let i = 0; i < indiceDecil.length; i++) {
-        let linhaSepara = criarElemento("tr");
-        separatrizBody.appendChild(linhaSepara);
+      let tdSepara = criarElemento("td");
+      tdSepara.textContent = indiceDecil;
+      linhaSepara.appendChild(tdSepara);
+      tdSepara.classList.add("text-align-right");
 
-        let tdSepara = criarElemento("td");
-        tdSepara.textContent = indiceDecil[i];
-        linhaSepara.appendChild(tdSepara);
-        tdSepara.classList.add("text-align-right");
+      let tdSeparaDado = criarElemento("td");
+      tdSeparaDado.textContent = posD;
+      linhaSepara.appendChild(tdSeparaDado);
+      tdSeparaDado.classList.add("text-align-left");
+    }
+    else if (medidaSeparatriz.selectedIndex === 4) {
+      let indicePercentil = 'Percentil ' + opcoesSeparatriz.value
 
-        let tdSeparaDado = criarElemento("td");
-        tdSeparaDado.textContent = dadosDecil[i];
-        linhaSepara.appendChild(tdSeparaDado);
-        tdSeparaDado.classList.add("text-align-left");
-      }
+      let linhaSepara = criarElemento("tr");
+      separatrizBody.appendChild(linhaSepara);
+
+      let tdSepara = criarElemento("td");
+      tdSepara.textContent = indicePercentil;
+      linhaSepara.appendChild(tdSepara);
+      tdSepara.classList.add("text-align-right");
+
+      let tdSeparaDado = criarElemento("td");
+      tdSeparaDado.textContent = posP;
+      linhaSepara.appendChild(tdSeparaDado);
+      tdSeparaDado.classList.add("text-align-left");
     }
 
     let n = dadosSeparados.length;
