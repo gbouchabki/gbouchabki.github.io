@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/menu.css" />
+    <link rel="stylesheet" href="./css/normal.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <title>Estatistica Descritiva</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <nav>
+      <div id="logo-nav">
+        <a href="./home.html"
+          ><img src="./images/logo-minibi.png" alt="logo" srcset=""
+        /></a>
+      </div>
+      <div id="main-menu">
+        <ul class="remove-decoration">
+          <li class="item-main-menu1">
+            <a href="./descritiva.html">Estatística Descritiva</a>
+          </li>
+          <li class="item-main-menu2">
+            <a href="./probabilidade.html">Probabilidade</a>
+          </li>
+          <li class="item-main-menu3">
+            <a href="./correlacao-regressao.html">Correlação e Regressão</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="page-binomial">
+      
+      <div id="main-content">
+        <header>
+          <h1>Uniforme</h1>
+          <a href="./probabilidade.html" class="voltar remove-decoration">Escolher outra opção</a>
+        </header>
+
+        <main>
+          <label>Média</label>
+          <input placeholder="Média" id="ponto-minimo">
+          <label>Desvio Padrão</label>
+          <input type="number" placeholder="Desvio Padrão" id="ponto-maximo">
+          <label>Intervalo</label>
+          <div class="two-columns">
+            <select>
+              <option value="null" selected disabled>Selecione...</option>
+              <option value="maior">Maior que</option>
+              <option value="entre">Entre</option>
+              <option value="menor">Menor que</option>
+            </select>
+          </div>
+          <div class="button-group">
+            <button id="calcular">CALCULAR</button>
+          </div>
+    
+        </main>
+      </div>
+    </div>  
+  </body>
+</html>

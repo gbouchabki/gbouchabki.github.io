@@ -4,9 +4,12 @@ const dadosManual = document.getElementById("dadosManual");
 const saidaDados = document.getElementById("saidaDados");
 const inserir = document.getElementById("inserir");
 const exibir = document.getElementById("exibir");
+
 const variavel = document.getElementById("variavel");
 const nomeVariavel = document.getElementById("nomeVariavel");
+
 const parametro = document.getElementById("parametro");
+
 const medidaSeparatriz = document.getElementById("medida-separatriz");
 const opcoesSeparatriz = document.getElementById("opcoes-separatriz");
 const parSep = document.getElementById("parametroSeparatriz");
@@ -33,18 +36,42 @@ let freq = [];
 const ordem = document.querySelector("#ordem-resultado");
 const ordinal = document.querySelector("#ordinal");
 
-function escolherOpcao() {
-  if (medidaSeparatriz.indexOf === 3) {
-    for (let i = 0; i < 10; i++) {
+function exibirOpt() {
+  opcoesSeparatriz.innerHTML = ''
+  if (medidaSeparatriz.selectedIndex === 1) {
+    
+    for (let i = 1; i <= 4; i++) {
+      let optQuartil = document.createElement("option");
+      optQuartil.textContent = i;
+      opcoesSeparatriz.appendChild(optQuartil);
+    }
+  }
+  if (medidaSeparatriz.selectedIndex === 2) {
+
+    for (let i = 1; i <= 5; i++) {
+      let optQuintil = document.createElement("option");
+      optQuintil.textContent = i;
+      opcoesSeparatriz.appendChild(optQuintil);
+    }
+  }
+  if (medidaSeparatriz.selectedIndex === 3) {
+
+    for (let i = 1; i <= 10; i++) {
       let optDecil = document.createElement("option");
       optDecil.textContent = i;
       opcoesSeparatriz.appendChild(optDecil);
     }
   }
-  console.log("clicado");
+  else if(medidaSeparatriz.selectedIndex === 4) {
+    for (let i = 1; i <= 100; i++) {
+      let optPercentil = document.createElement("option");
+      optPercentil.textContent = i;
+      opcoesSeparatriz.appendChild(optPercentil);
+    }
+  }
 }
 
-opcaoDecil.addEventListener("select", escolherOpcao);
+medidaSeparatriz.addEventListener('input', exibirOpt);
 
 //Função para coletar os dados
 function coletaDados() {
@@ -252,12 +279,20 @@ function coletaDados() {
     let posCentro = (dadosSeparados.length - 1) / 2;
     var mediana = dadosSeparados[Math.round(posCentro)];
 
-    //Q1
-    let posQ1 = dadosSeparados.length / 4; //Q1
-    let q1 = dadosSeparados[Math.round(posQ1 - 1)];
+    //---- CALCULAR QUARTIL ----
+    console.log(opcoesSeparatriz)
+    if(medidaSeparatriz.selectedIndex === 1){
+      let quartil = parseInt(opcoesSeparatriz.options[opcoesSeparatriz.selectedIndex].text)
+      let posQ1 = dadosSeparados.length / 4; //Q1
 
-    let mq3 = posQ1 * 3; // Q3
-    let q3 = dadosSeparados[Math.round(mq3 - 1)];
+      let valorQuartil = dadosSeparados[Math.round(posQ1 * quartil)-1]
+
+      console.log(valorQuartil)
+    }
+    // let q1 = dadosSeparados[Math.round(posQ1 - 1)];
+
+    // let mq3 = posQ1 * 3; // Q3
+    // let q3 = dadosSeparados[Math.round(mq3 - 1)];
 
     //Calcular Quintil##########
 
@@ -361,24 +396,22 @@ function coletaDados() {
 
     //Tabela Medida Separatriz (Continuação)
     if (medidaSeparatriz.selectedIndex === 1) {
-      let indiceQuartil = ["Quartil 1", "Quartil 2", "Quartil 3"];
+      // let indiceQuartil = ["Quartil 1", "Quartil 2", "Quartil 3"];
 
-      let dadosQuartil = [q1, mediana, q3];
+      // let dadosQuartil = [q1, mediana, q3];
 
-      for (let i = 0; i < indiceQuartil.length; i++) {
         let linhaSepara = criarElemento("tr");
         separatrizBody.appendChild(linhaSepara);
 
         let tdSepara = criarElemento("td");
-        tdSepara.textContent = indiceQuartil[i];
+        tdSepara.textContent = 'Quartil ' + opcoesSeparatriz.options[opcoesSeparatriz.selectedIndex].text;
         linhaSepara.appendChild(tdSepara);
         tdSepara.classList.add("text-align-right");
 
         let tdSeparaDado = criarElemento("td");
-        tdSeparaDado.textContent = dadosQuartil[i];
+        tdSeparaDado.textContent = valorQuartil;
         linhaSepara.appendChild(tdSeparaDado);
         tdSeparaDado.classList.add("text-align-left");
-      }
     } else if (medidaSeparatriz.selectedIndex === 2) {
       let indiceQuintil = ["Quintil 1", "Quintil 2", "Quintil 3", "Quintil 4"];
 

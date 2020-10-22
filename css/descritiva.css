@@ -1,145 +1,150 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #449FD4;
-    --secundary-color: #2AA4BB;
-    --soft-color: #C0B9DD;
-    --action-color: #5BB776;
-    --dark-color: #333333;
-    --white-color: #EDEEF0;
-    --gray-color: #C0B9DD;
+  --primary-color: #449fd4;
+  --secundary-color: #2aa4bb;
+  --soft-color: #c0b9dd;
+  --action-color: #5bb776;
+  --dark-color: #333333;
+  --white-color: #edeef0;
+  --gray-color: #c0b9dd;
 }
 
 .item-main-menu1 {
-    color: var(--secundary-color);
+  color: var(--secundary-color);
 }
 
-body{
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color:white;
-    /* text-align: center; */
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: white;
+  /* text-align: center; */
 }
 
-input, select, option{
-    border-radius: 5px;
-    background-color: white;
-    font-size: 1rem;
-    margin-bottom: 20px;
+input,
+select,
+option {
+  border-radius: 5px;
+  background-color: white;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 input {
-    width: 100%;
-    padding: 10px;
+  width: 100%;
+  padding: 10px;
 }
 
 label {
-    font-size: 1.3rem;
-    width: 100%;
-    margin-top: 40px;
-    margin-top: 20px;
-    font-weight: 700;
+  font-size: 1.3rem;
+  width: 100%;
+  margin-top: 40px;
+  margin-top: 20px;
+  font-weight: 700;
 }
 
 select {
-    padding: 5px;
-    width: 100%;
+  padding: 5px;
+  width: 100%;
 }
 
-.text-align-left{
-    text-align: left;
-    padding-left: 15px;
+.text-align-left {
+  text-align: left;
+  padding-left: 15px;
 }
-.text-align-right{
-    text-align: right;
-    padding-right: 15px;
-    width: 50%;
+.text-align-right {
+  text-align: right;
+  padding-right: 15px;
+  width: 50%;
 }
-#main-content{
-    background-color: #EDEEF0;
-    width: 70%;
-    margin: auto;
-    margin-top: 40px;
-    padding: 40px;
+#main-content {
+  background-color: #edeef0;
+  width: 70%;
+  margin: auto;
+  margin-top: 40px;
+  padding: 40px;
 }
 
 #instrucoes {
-    margin-bottom: 20px;
-    font-style: italic;
+  margin-bottom: 20px;
+  font-style: italic;
 }
 
-.button-group{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .button-group button {
-    border-radius: 10px;
-    background-color: var(--action-color);
-    border: none;
-    margin-top: 15px;
-    padding: 10px;
-    width: 40%;
-    font-weight: 700;
-    font-size: 1rem;
+  border-radius: 10px;
+  background-color: var(--action-color);
+  border: none;
+  margin-top: 15px;
+  padding: 10px;
+  width: 40%;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
-.tabela{
-    margin-top: 20px;
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+.tabela {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
 }
 
 .tabela tr {
-    border-bottom: solid var(--secundary-color) 2px;
-    height: 70px;
+  border-bottom: solid var(--secundary-color) 2px;
+  height: 70px;
 }
-.tabela th td{
-        padding: 25px;
-    }
-    
-    tr:nth-child(even) {
-        background-color: whitesmoke;
-    }
-    
-    th {
-        background-color: var(--primary-color);
-        color: white;
-        
-    }
+.tabela th td {
+  padding: 25px;
+}
 
-    .seta {
-        display: inline-block;
-        text-align: left;
-        width: 10px;
-        height: 10px;
-        background-image: url('../images/seta.png');
-        background-position: center;
-        background-size: cover;
-    }
+tr:nth-child(even) {
+  background-color: whitesmoke;
+}
 
-   
+th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.seta {
+  display: inline-block;
+  text-align: left;
+  width: 10px;
+  height: 10px;
+  background-image: url("../images/seta.png");
+  background-position: center;
+  background-size: cover;
+}
 
 .chart-container {
-    position: relative;
-    margin: auto;
-    margin-top: 40px;
-    height: 60vh;
-    width: 60vw;
-  }
+  position: relative;
+  margin: auto;
+  margin-top: 40px;
+  height: 60vh;
+  width: 60vw;
+}
 
 .visibility {
-    visibility: hidden;
+  visibility: hidden;
 }
 /* .hidden {
     visibility: hidden;
 } */
+
+.two-columns{
+    display: flex;
+    column-gap: 1rem;
+
+}
