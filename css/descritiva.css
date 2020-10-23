@@ -28,6 +28,11 @@ body {
   /* text-align: center; */
 }
 
+.info{
+  font-style: italic;
+  font-size: 1rem;
+}
+
 input,
 select,
 option {
@@ -35,6 +40,7 @@ option {
   background-color: white;
   font-size: 1rem;
   margin-bottom: 20px;
+  border: 2px solid var(--primary-color);
 }
 
 input {

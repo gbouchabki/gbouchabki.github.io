@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <nav>
       <div id="logo-nav">
-        <a href="index.html"
+        <a href="./home.html"
           ><img src="images/logo-minibi.png" alt="logo" srcset=""
         /></a>
       </div>
@@ -38,12 +38,20 @@
 
     <div id="main-content">
       <div id="instrucoes">
-        <h3>Intruções para preenchimento</h3>
-        <p>
+        <h1>Intruções para preenchimento</h3>
+
+        <p class="info">
+          Faça o upload de um arquivo .csv ou digite manualmente os dados.
+        </p>
+        <p class="info">
           Para as variaveis Quantitativas, no campo "Entrada de Dados" favor não
           utilizar espaço após o ponto e virgula
         </p>
         <p>Ex: dado;dado;dado</p>
+      </div>
+      <div id="upload-area">
+        <h2>Inserir arquivo .csv</h2>
+        <input type="file">
       </div>
       <div>
         <label>Nome da variável</label>
@@ -58,7 +66,7 @@
         <input
           id="dadosManual"
           type="text"
-          placeholder="Separar os dados com ;"
+          placeholder="Insira os dados separados por ( ; )"
         />
       </div>
       <div>

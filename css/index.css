@@ -49,6 +49,47 @@ body{
   text-align: center;
 }
 
+#page-login aside a {
+  width: 100%;
+  text-decoration: none;
+  color: var(--dark-color);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#page-login aside a span {
+  background: url('../images/next.png');
+  width: 2rem;
+  height: 2rem;
+  background-size: cover;
+  margin-right: 0.3rem;
+}
+
+#page-login aside footer{
+  width: 40%;
+}
+#page-login aside h2{
+  width: 100%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#page-login aside h2 span {
+  background: url('../images/map-locator.png');
+  width: 1.2rem;
+  height: 1.2rem;
+  background-size: cover;
+  margin-right: 0.3rem;
+}
+
+
 #page-login main{
   background: var(--primary-color);
   width: 70vw;
@@ -127,3 +168,69 @@ body{
 #box-login a:hover{
   color: var(--action-color)
 }
+
+/* RESPOSIVIDADE */
+@media (max-width: 1630px){
+  #page-login aside a span{
+    display: none;
+  }  
+}
+@media (max-width: 1384px){
+  #page-login aside h2 span{
+    display: none;
+  }
+}
+@media (max-width: 900px){
+  #page-login {
+    display: initial;
+  }
+  #page-login main{
+    width: 100vw;
+    height: 100vh;
+  }
+  #page-login aside{
+    width: 100vw;
+    height: 80vh;  
+  }
+  #page-login .aside-content{
+    justify-content: initial;
+  }
+  #page-login aside img{
+    width: 30rem;
+  }
+  #page-login aside a span{
+    display: initial;
+  }
+  #page-login aside h2 span{
+    display: initial;
+  }
+  #box-login{
+    width: 90%;
+  }
+}
+@media (max-height: 569px){
+  #box-login button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+}
+
+@media(max-width: 540px){
+  #page-login aside img{
+    width: 50%;
+  } 
+  #page-login main{
+    width: 100vw;
+    height: 100vh;
+  }
+  #page-login aside a{
+    width: 80%;
+    font-size: 1.2rem;
+  }
+  #page-login aside footer{
+    width: 80%;
+    margin-top: 40px;
+  }
+  #page-login aside footer h2{
+    margin: auto;
+  } 
