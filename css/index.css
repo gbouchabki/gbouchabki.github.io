@@ -169,7 +169,7 @@ body{
   color: var(--action-color)
 }
 
-/* RESPOSIVIDADE */
+/********************** RESPOSIVIDADE ************************/
 @media (max-width: 1630px){
   #page-login aside a span{
     display: none;
@@ -234,3 +234,4 @@ body{
   #page-login aside footer h2{
     margin: auto;
   } 
+}

@@ -1,0 +1,33 @@
+#login{
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+
+  width: 10rem;
+  height: 3rem;
+
+  border-radius: 2rem;
+  text-decoration: none;
+  color: white;
+  background: var(--primary-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+
+  transition: background-color 300ms, color 300ms;
+}
+
+#login:hover{
+  background: var(--action-color);
+  color: black;
+}
+
+@media (max-width: 700px){
+  #login{
+    position: initial;
+    margin: auto;
+  }
+}

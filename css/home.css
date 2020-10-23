@@ -34,8 +34,8 @@ main {
 #slider {
     /* position: absolute; */
     margin-top: 19px;
-    width: 100%;
-    height: 65vh;
+    width: 100vw;
+    height: 70vh;
     background-color: var(--primary-color);
 }
 
