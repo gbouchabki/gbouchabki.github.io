@@ -39,30 +39,26 @@
       
       <div id="main-content">
         <header>
-          <h1>Uniforme</h1>
+          <h1>Normal</h1>
           <a href="./probabilidade.html" class="voltar remove-decoration">Escolher outra opção</a>
         </header>
 
         <main>
           <label>Média</label>
-          <input placeholder="Média" id="ponto-minimo">
+          <input placeholder="Média" id="media">
           <label>Desvio Padrão</label>
-          <input type="number" placeholder="Desvio Padrão" id="ponto-maximo">
-          <label>Intervalo</label>
-          <div class="two-columns">
-            <select>
-              <option value="null" selected disabled>Selecione...</option>
-              <option value="maior">Maior que</option>
-              <option value="entre">Entre</option>
-              <option value="menor">Menor que</option>
-            </select>
+          <input placeholder="Desvio Padrão" id="desvio-padrao">
+          <label>Valor</label>
+          <input placeholder="Valor" id="valor">
           </div>
           <div class="button-group">
             <button id="calcular">CALCULAR</button>
           </div>
+          <div id="resultado"></div>
     
         </main>
       </div>
-    </div>  
+    </div> 
+    <script src="js/normal.js"></script> 
   </body>
 </html>

@@ -45,20 +45,22 @@
 
         <main>
           <label>Amostra</label>
-          <input placeholder="Amostra (N)">
+          <input id="n" placeholder="Amostra (N)">
           <label>Sucesso</label>
-          <input placeholder="Sucesso (p)">
+          <input id="p" placeholder="Sucesso (p)">
           <label>Fracasso</label>
-          <input placeholder="Fracasso (q)">
+          <input id="q" placeholder="Fracasso (q)">
           <label>Evento</label>
-          <input placeholder="Evento (K)">
+          <input id="k" placeholder="Evento (K)">
 
           <div class="button-group">
             <button id="calcular">Calcular</button>
           </div>
+          <div id="resultado"></div>
     
         </main>
       </div>
-    </div>  
+    </div>
+    <script src="js/binominal.js"></script>
   </body>
 </html>
