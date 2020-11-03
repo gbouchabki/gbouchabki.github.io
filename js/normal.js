@@ -329,24 +329,18 @@ function normal(){
     else if(z == 2.80 & z < 2.81) escoreZ = 0.4974
     else if(z == 2.81 & z < 2.82) escoreZ = 0.4975
     else if(z == 2.82 & z < 2.83) escoreZ = 0.4967
-    else if(z == 2.83 & z < 2.84) escoreZ = 0.4977
-    else if(z == 2.84 & z < 2.85) escoreZ = 0.4977
+    else if(z == 2.83 & z < 2.85) escoreZ = 0.4977
     else if(z == 2.85 & z < 2.86) escoreZ = 0.4978
-    else if(z == 2.86 & z < 2.87) escoreZ = 0.4979
-    else if(z == 2.87 & z < 2.88) escoreZ = 0.4979
+    else if(z == 2.86 & z < 2.88) escoreZ = 0.4979
     else if(z == 2.88 & z < 2.89) escoreZ = 0.4980
     else if(z == 2.89 & z < 2.90) escoreZ = 0.4981
 
     else if(z == 2.90 & z < 2.91) escoreZ = 0.4981
-    else if(z == 2.91 & z < 2.92) escoreZ = 0.4982
-    else if(z == 2.92 & z < 2.93) escoreZ = 0.4982
+    else if(z == 2.91 & z < 2.93) escoreZ = 0.4982
     else if(z == 2.93 & z < 2.94) escoreZ = 0.4983
-    else if(z == 2.94 & z < 2.95) escoreZ = 0.4984
-    else if(z == 2.95 & z < 2.96) escoreZ = 0.4984
-    else if(z == 2.96 & z < 2.97) escoreZ = 0.4985
-    else if(z == 2.97 & z < 2.98) escoreZ = 0.4985
-    else if(z == 2.98 & z < 2.99) escoreZ = 0.4986
-    else if(z == 2.99 & z < 3.00) escoreZ = 0.4986
+    else if(z == 2.94 & z < 2.96) escoreZ = 0.4984
+    else if(z == 2.96 & z < 2.98) escoreZ = 0.4985
+    else if(z == 2.98 & z < 3.00) escoreZ = 0.4986
 
     else if(z == 3.00 & z < 3.03) escoreZ = 0.4987
     else if(z == 3.03 & z < 3.05) escoreZ = 0.4988
