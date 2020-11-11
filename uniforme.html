@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,23 +42,24 @@
           <h1>Uniforme</h1>
           <a href="./probabilidade.html" class="voltar remove-decoration">Escolher outra opção</a>
         </header>
-
+        <p>Para números REAIS, favor utilizar ponto no lugar da virgula.</p>
         <main>
           <label>Ponto Mínimo</label>
           <input type=number placeholder="Ponto Mínimo" id="ponto-minimo">
           <label>Ponto Máximo</label>
           <input type=number placeholder="Ponto Máximo" id="ponto-maximo">
           <label>Intervalo</label>
-          <div class="two-columns">
             <select>
               <option value="null" selected disabled>Selecione...</option>
               <option value="maior">Maior que</option>
               <option value="entre">Entre</option>
               <option value="menor">Menor que</option>
             </select>
-          </div>
+          <label>Valor</label>
+          <input type=number placeholder="Valor" id="valor">
           <div class="button-group">
             <button id="calcular">CALCULAR</button>
+          </div>
           </div>
           <div id="resultado"></div>
     
