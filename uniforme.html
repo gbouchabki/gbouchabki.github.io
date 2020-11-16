@@ -49,19 +49,21 @@
           <label>Ponto Máximo</label>
           <input type=number placeholder="Ponto Máximo" id="ponto-maximo">
           <label>Intervalo</label>
-            <select>
+            <select id="intervalo">
               <option value="null" selected disabled>Selecione...</option>
-              <option value="maior">Maior que</option>
-              <option value="entre">Entre</option>
-              <option value="menor">Menor que</option>
+              <option id="maior">Maior que</option>
+              <option id="menor">Menor que</option>
+              <option id="entre">Entre</option>
             </select>
           <label>Valor</label>
           <input type=number placeholder="Valor" id="valor">
+          <input type=number placeholder="Apenas para intervalo 'Entre'" id="valor2">
+          
           <div class="button-group">
             <button id="calcular">CALCULAR</button>
           </div>
-          </div>
           <div id="resultado"></div>
+          </div>
     
         </main>
       </div>
