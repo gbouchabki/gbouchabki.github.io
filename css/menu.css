@@ -35,11 +35,9 @@
 }
 #logo-nav a {
     display: inline-block;
-    margin: 15px 0 10px 0;
-
 }
 #logo-nav a img {
-    width: 15rem;
+    width: 12rem;
     display: inline-block;
 }
 
@@ -58,7 +56,7 @@
     padding: 1rem;
 }
 #main-menu ul li a {
-    padding: 2rem;
+    padding: 1rem;
     display: inline-block;
     text-decoration: none;
     font-size: 1.5rem;
