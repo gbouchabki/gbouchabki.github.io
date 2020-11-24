@@ -130,11 +130,35 @@ function correlacao(){
     console.log(baixoA, "Baixo A")
     console.log(a.toFixed(2), "Coeficiente A")
     console.log(b.toFixed(2), "Coeficiente B")
+
+    //Criar Tabela
+    let tabela = criarElemento('table')
+    let thead = criarElemento("thead")
+    let tbody = criarElemento("tbody")
+
+    resultado.appendChild(tabela);
+    tabela.appendChild(thead);
+    tabela.appendChild(tbody);
+
     
+    let cabecalho = ['Coeficiente de Correlação', 'Fórmula']
 
-    resultado.innerHTML += "Coeficiente de Correlação: " + cc.toFixed(2) + "%" + "</br>"
-    resultado.innerHTML += "Fórmula: Y=" + a.toFixed(2) + ".X + " + b.toFixed(2)
+    for (let i = 0; i < cabecalho.length; i++) {
+        let th = criarElemento('th')
+        th.textContent = cabecalho[i]
+        thead.appendChild(th)        
+    }
+    
+    // resultado.innerHTML += "Coeficiente de Correlação: " + cc.toFixed(2) + "%" + "</br>"
+    // resultado.innerHTML += "Fórmula: Y=" + a.toFixed(2) + ".X + " + b.toFixed(2)
 
+    let tdCc = criarElemento('td')
+    tdCc.textContent = cc.toFixed(2) + "%"
+    tbody.appendChild(tdCc)
+
+    let tdForm = criarElemento('td')
+    tdForm.textContent = "Y = " + a.toFixed(2) + ".X + " + b.toFixed(2)
+    tbody.appendChild(tdForm)
 
 
     //GRÁFICO

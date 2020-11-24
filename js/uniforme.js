@@ -33,6 +33,23 @@ function uniforme(){
     cv = (dp/media)*100
     console.log(cv)
 
+    //Criar Tabela
+    let tabela = criarElemento('table')
+    let thead = criarElemento("thead")
+    let tbody = criarElemento("tbody")
+
+    resultado.appendChild(tabela);
+    tabela.appendChild(thead);
+    tabela.appendChild(tbody);
+
+    
+    let cabecalho = ['Média Aritmética', 'Desvio Padrão', 'Coeficiente de variação', 'Probabilidade']
+
+    for (let i = 0; i < cabecalho.length; i++) {
+        let th = criarElemento('th')
+        th.textContent = cabecalho[i]
+        thead.appendChild(th)        
+    }
 
 
     if(intervalo.selectedIndex == 1){ //Maior que**************************
@@ -42,10 +59,26 @@ function uniforme(){
         console.log(prob)
 
         //Exibição dos resultados
-        resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
-        resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
-        resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
-        resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = media.toFixed(2)
+        tbody.appendChild(tdMedia)
+
+        let tdDp = criarElemento('td')
+        tdDp.textContent = dp.toFixed(2)
+        tbody.appendChild(tdDp)
+
+        let tdCv = criarElemento('td')
+        tdCv.textContent = cv.toFixed(2) + "%" 
+        tbody.appendChild(tdDv)
+
+        let tdProb = criarElemento('td')
+        tdProb.textContent =  prob.toFixed(2) + "%" 
+        tbody.appendChild(tdProb)
     }
     else if(intervalo.selectedIndex == 2){ //Menor que*******************
         let int = v - pmin
@@ -54,10 +87,26 @@ function uniforme(){
         console.log(prob)
 
         //Exibição dos resultados
-        resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
-        resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
-        resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
-        resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = media.toFixed(2)
+        tbody.appendChild(tdMedia)
+
+        let tdDp = criarElemento('td')
+        tdDp.textContent = dp.toFixed(2)
+        tbody.appendChild(tdDp)
+
+        let tdCv = criarElemento('td')
+        tdCv.textContent = cv.toFixed(2) + "%" 
+        tbody.appendChild(tdDv)
+
+        let tdProb = criarElemento('td')
+        tdProb.textContent =  prob.toFixed(2) + "%" 
+        tbody.appendChild(tdProb)
     }
     else if(intervalo.selectedIndex == 3){ //Entre***********************
         let int = v2 - v
@@ -66,10 +115,26 @@ function uniforme(){
         console.log(prob)
 
         //Exibição dos resultados
-        resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
-        resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
-        resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
-        resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Média aritmética é: " + media.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Desvio Padrão é: " + dp.toFixed(2) + "</br>"
+        // resultado.innerHTML += "Coeficiente de variação é: " + cv.toFixed(2) + "%"  + "</br>"
+        // resultado.innerHTML += "Probabilidade de: " + prob.toFixed(2) + "%"  + "</br>"
+
+        let tdMedia = criarElemento('td')
+        tdMedia.textContent = media.toFixed(2)
+        tbody.appendChild(tdMedia)
+
+        let tdDp = criarElemento('td')
+        tdDp.textContent = dp.toFixed(2)
+        tbody.appendChild(tdDp)
+
+        let tdCv = criarElemento('td')
+        tdCv.textContent = cv.toFixed(2) + "%" 
+        tbody.appendChild(tdDv)
+
+        let tdProb = criarElemento('td')
+        tdProb.textContent =  prob.toFixed(2) + "%" 
+        tbody.appendChild(tdProb)
     }
 }
 

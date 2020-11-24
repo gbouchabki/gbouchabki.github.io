@@ -18,6 +18,22 @@ function normal(){
     console.log(v)
     console.log(v2)
 
+    function criarElemento(elemento) {
+        return document.createElement(elemento);
+    }
+    //Criar Tabela
+    let tabela = criarElemento('table')
+    let thead = criarElemento("thead")
+    let tbody = criarElemento("tbody")
+
+    resultado.appendChild(tabela);
+    tabela.appendChild(thead);
+    tabela.appendChild(tbody);
+
+    let th = criarElemento('th')
+    th.textContent = 'Resultado'
+    thead.appendChild(th)
+
     if(intervalo.selectedIndex == 1){ //Maior que *************************************
         z = (v - m)/dp
         z = z.toFixed(2)
@@ -748,14 +764,20 @@ function normal(){
             prob = (0.5 - escoreZ)*100 
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
         else if(v < m){
             let prob = 0
             prob = (escoreZ + 0.5)*100
 
             //Exibir Resultado--------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
 
     }
@@ -765,14 +787,20 @@ function normal(){
             prob = (0.5 - escoreZ)*100 
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
         if(v > m){
             let prob = 0
             prob = (escoreZ + 0.5)*100
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
     }
     else if(intervalo.selectedIndex == 3){ //Entre***********************************
@@ -781,21 +809,30 @@ function normal(){
             prob = (escoreZ + escoreZ2)*100
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
         else if(v == m && v2 > m || v < m && v2 == m){
             let prob = 0
             prob = escoreZ*100
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
         else if(v > m && v2 > m || v < m && v2 < m){
             let prob = 0
             prob = (escoreZ - escoreZ2)*100
 
             //Exibir Resultado-------------------------------------------------------
-            resultado.innerHTML += prob.toFixed(2) + "%"
+            // resultado.innerHTML += prob.toFixed(2) + "%"
+            let td = criarElemento('td')
+            td.textContent = prob.toFixed(2) + "%"
+            tbody.appendChild(td)
         }
     }
 }
