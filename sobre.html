@@ -13,7 +13,7 @@
     />
     <link rel="shortcut icon" href="./images/favicon.ico" />
   </head>
-  <body>
+  <body onLoad="slide1()">
     <header>
       <nav id="header">
         <div id="logo-nav">
@@ -26,31 +26,78 @@
     </header>
 
     <main>
-      <div id="slider">SLIDER
-        <a href="./images/imagem-teste1.jpg" class="selected"></a>
-        <a href="./images/imagem-teste2.jpg" class="selected"></a>
-        <a href="./images/imagem-teste3.jpg" class="selected"></a>
+      <div id="slider">
+        
       </div>
 
       <div id="content-box">
         <ul class="remove-decoration">
-          <li id="coluna1" class="coluna"></li>
-          <li id="coluna2" class="coluna"></li>
-          <li id="coluna3" class="coluna"></li>
+          <li id="coluna1" class="coluna">
+            <div class="content-main-box">
+            <div id="icon-file" class="icon"></div>
+              <h1>Estatistica Descritiva</h1>
+              <p>Veja como o uso da estatística descritiva pode minimizar seus esforços para descrever, resumir e compreender um conjunto de dados da sua empresa.</p>
+            </div>
+
+          </li>
+          <li id="coluna2" class="coluna">
+            <div class="content-main-box">
+            <div id="icon-pie" class="icon"></div>
+              <h1>Probabilidade</h1>
+              <p>Na hora da tomada de decisão a incerteza é uma realidade. Faça previsões concretas calculando o nível de segurança na ocorrência de eventos determinados usando a probabilidade.</p>
+            </div>
+
+          </li>
+          <li id="coluna3" class="coluna">
+            <div class="content-main-box">
+              <div id="icon-line" class="icon"></div>
+              <h1>Correlação e Regressão</h1>
+              <p>Analise a relação entre duas variáveis identificando quais têm maior impacto em seu negócio, como os fatores interagem entre si e quais podem ser ignorados.</p>
+            </div>
+
+          </li>
         </ul>
       </div>
 
       <iframe
         width="727"
         height="409"
-        src="https://www.youtube.com/embed/xcJtL7QggTI"
+        src="https://www.youtube.com/embed/M1hspNDBLkA"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
     </main>
 
-    <footer id="footer"></footer>
+    <footer id="footer">
+      <div id="main-footer">
+        <nav>
+          <div id="social-media">
+            <a href="#"><span id="facebook-icon"></span></a> 
+            <a href="#"><span id="instagram-icon"></span></a> 
+            <a href="https://www.youtube.com/channel/UCG1vEu8qJqxYtWQuAQiuGoQ">
+              <span id="youtube-icon"></span>
+            </a> 
+          </div>
+          <div id="menu-footer" >
+            <ul class="remove-decoration">
+              <li>
+                <a href="#">Sobre Nós</a>
+              </li>
+              <li>
+                <a href="#">Fale Conosco</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <aside>
+        <h2>Assine a nossa newsletter</h2>
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="E-mail">
+        <button onclick="assinar()">ASSINAR</button>
+      </aside>
+    </footer>
 
     <script src="./js/slider.js"></script>
   </body>

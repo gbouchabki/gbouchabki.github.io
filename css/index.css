@@ -169,7 +169,7 @@ body{
   color: var(--action-color)
 }
 
-/********************** RESPOSIVIDADE ************************/
+/********************** RESPONSIVIDADE ************************/
 @media (max-width: 1630px){
   #page-login aside a span{
     display: none;

@@ -31,3 +31,19 @@
     margin: auto;
   }
 }
+
+#slider {
+  /* position: absolute; */
+  margin-top: 19px;
+  width: 100vw;
+  height: 70vh;
+}
+.slider-1 {
+  background: url("../images/banner-slider-1.png");
+  background-size: cover;
+}
+.slider-2 {
+  background: url("../images/banner-slider-2.png");
+  background-size: cover;
+
+}

@@ -17,7 +17,11 @@
 .remove-decoration{
     text-decoration: none;
     list-style: none;
-
+}
+.remove-decoration a{
+    text-decoration: none;
+    list-style: none;
+    color: initial;
 }
 
 #header nav {
