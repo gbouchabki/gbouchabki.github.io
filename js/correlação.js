@@ -10,7 +10,7 @@ let x = []
 let y = []
 
 function correlacao(){
-    //Entrada de dados, convertendo em string
+    //Entrada de dados, convertendo em Array
     x = valorX.value.split(";")
     y = valorY.value.split(";")
 
@@ -143,15 +143,13 @@ function correlacao(){
         label: " ",
         data: {
           labels: x,
-          datasets: [
-            {
-              label: "Regressão",
+          datasets: [{
+              label: "Dispersão",
               data: y,
               borderWidth: 3,
               backgroundColor: "#ADD8E6",
               borderColor: "#6495ED",
-            },
-          ],
+            }],
         },
         options: {
             maintainAspectRatio: true,
@@ -160,8 +158,8 @@ function correlacao(){
               fontSize: 45,
             },
           },
-        
       });
+      
 }
 
 calcular.addEventListener("click", correlacao)
