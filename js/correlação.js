@@ -10,6 +10,11 @@ let x = []
 let y = []
 
 function correlacao(){
+
+function criarElemento(elemento) {
+        return document.createElement(elemento);
+    }
+
     //Entrada de dados, convertendo em Array
     x = valorX.value.split(";")
     y = valorY.value.split(";")
