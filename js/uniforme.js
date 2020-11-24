@@ -32,6 +32,10 @@ function uniforme(){
     let cv = 0
     cv = (dp/media)*100
     console.log(cv)
+    
+    function criarElemento(elemento) {
+        return document.createElement(elemento);
+    }
 
     //Criar Tabela
     let tabela = criarElemento('table')
